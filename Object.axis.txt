@@ -1,0 +1,11 @@
+package axis.lang
+
+
+
+//包级别类 <<<<<<<<<<<<<<<<<<<<<<
+
+public abstract Object : Any<Object> { 
+
+}
+
+//包级别类 >>>>>>>>>>>>>>>>>>>>>>

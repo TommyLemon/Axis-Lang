@@ -1,0 +1,33 @@
+package axis.lang
+
+
+
+//包级别类 <<<<<<<<<<<<<<<<<<<<<<
+
+public abstract Number : Any<Number> { 
+
+  public static final MIN_VALUE : Number = 0x0.0000000000001P-1022
+  public static final MAX_VALUE : Number = 0x1.fffffffffffffP+1023
+
+
+    /**
+     * Returns the value of the specified number as a <code>long</code>.
+     * This may involve rounding or truncation.
+     *
+     * @return  the numeric value represented by this object after conversion
+     *          to type <code>long</code>.
+     */
+    public native toInteger() : long
+
+    /**
+     * Returns the value of the specified number as a <code>double</code>.
+     * This may involve rounding.
+     *
+     * @return  the numeric value represented by this object after conversion
+     *          to type <code>double</code>.
+     */
+    public native toDecimal() : double
+
+}
+
+//包级别类 >>>>>>>>>>>>>>>>>>>>>>
