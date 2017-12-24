@@ -34,6 +34,16 @@ String : Any {
         return length() == 0;
     }
 
+    equals(a : Any, ignoreCase : Boolean = false) : Boolean { //可选参数必须设置默认值
+      if (this === a) { //判断内存地址
+        return true
+      }
+      if (a instanceof String) {
+        return this == a
+      }
+      return equals(a : OF(a : a), ignoreCase : ignoreCase)
+    }
+
     /**
      * Returns the <code>char</code> value at the
      * specified index. An index ranges from <code>0</code> to
