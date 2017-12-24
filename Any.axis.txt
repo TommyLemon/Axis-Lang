@@ -6,16 +6,16 @@ UTF_8 : String = “utf-8”
 VERSION_NAME : String = “1.0”
 VERSION_CODE : Number = 1
 DEBUG : Boolean = true
-BASE_TYPES : String[] = String() [“Boolean”, “Number”, “String”, “Object”, “Array”]
+BASE_TYPES : String[] = String{} [“Boolean”, “Number”, “String”, “Object”, “Array”]
 
 //包级别常量 >>>>>>>>>>>>>>>>>>>>>>
 
 
 //包级别类 <<<<<<<<<<<<<<<<<<<<<<
 
-public abstract Any<T : Any> { //任意类型
+abstract Any { //任意类型，自动找到实例化时的精准类型并替换
 
-  private value : T { //重写变量的内部函数
+  private value : Any{ //重写变量的内部函数
     () { //取值函数getter，定义 any : Any  -> 调用 any.value()
        return value
     }
@@ -26,13 +26,14 @@ public abstract Any<T : Any> { //任意类型
   } = null //给变量赋初始值
  
   //转String函数
-  public toString() : String {
-    return JSON.toJSONString(this)
+  toString() : String {
+    return String.OF(this)
   } 
 
-  public static final <V : T> of(V value) : T {
-    return T() { //支持任意类的构造函数
-      value : value //相当于 T().value(value)
+  //static函数名用全大写形式
+  OF(Any value) : Any { //自动找到实例化时的精准类型并替换，例如实例化类型是 User，则替换为 OF(User value) : User {…}
+    return Any{ //支持任意类的构造函数
+      value : value //相当于 Any{}.(value : value)
     }
   }
 

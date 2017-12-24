@@ -4,16 +4,23 @@ package axis.lang
 
 //包级别类 <<<<<<<<<<<<<<<<<<<<<<
 
-public abstract Number : Any<Number> { 
-
-  public static final MIN_VALUE : Number = 0x0.0000000000001P-1022
-  public static final MAX_VALUE : Number = 0x1.fffffffffffffP+1023
+String : Any { 
 
 
-  public length() : long {
-    return value().length
-  }
 
+    length() : Number {
+      return (value).length
+    }
+
+    @Override
+    toString() : String {
+      return this
+    }
+
+    @Override
+    OF(a : Any) : String {
+      return a instanceof String ? a : a.toString() //Java: return a instanceof String ? (String) a : a.toString();
+    } 
 
     /**
      * Returns <tt>true</tt> if, and only if, {@link #length()} is <tt>0</tt>.
@@ -23,8 +30,8 @@ public abstract Number : Any<Number> {
      *
      * @since 1.6
      */
-    public boolean isEmpty() {
-        return value.length == 0;
+    isEmpty() : Boolean {
+        return length() == 0;
     }
 
     /**
@@ -45,7 +52,7 @@ public abstract Number : Any<Number> {
      *             argument is negative or not less than the length of this
      *             string.
      */
-    public char charAt(int index) {
+    at(index : Number) : String {
         if ((index < 0) || (index >= value.length)) {
             throw new StringIndexOutOfBoundsException(index);
         }
@@ -53,7 +60,7 @@ public abstract Number : Any<Number> {
     }
 
     /**
-     * Returns the character (Unicode code point) at the specified
+     * Returns the character (Unicode code poNumber) at the specified
      * index. The index refers to <code>char</code> values
      * (Unicode code units) and ranges from <code>0</code> to
      * {@link #length()}<code> - 1</code>.
@@ -62,27 +69,27 @@ public abstract Number : Any<Number> {
      * is in the high-surrogate range, the following index is less
      * than the length of this <code>String</code>, and the
      * <code>char</code> value at the following index is in the
-     * low-surrogate range, then the supplementary code point
+     * low-surrogate range, then the supplementary code poNumber
      * corresponding to this surrogate pair is returned. Otherwise,
      * the <code>char</code> value at the given index is returned.
      *
      * @param      index the index to the <code>char</code> values
-     * @return     the code point value of the character at the
+     * @return     the code poNumber value of the character at the
      *             <code>index</code>
      * @exception  IndexOutOfBoundsException  if the <code>index</code>
      *             argument is negative or not less than the length of this
      *             string.
      * @since      1.5
      */
-    public int codePointAt(int index) {
+    codePoNumberAt(index : Number) : Number {
         if ((index < 0) || (index >= value.length)) {
             throw new StringIndexOutOfBoundsException(index);
         }
-        return Character.codePointAtImpl(value, index, value.length);
+        return Character.codePoNumberAtImpl(value, index, value.length);
     }
 
     /**
-     * Returns the character (Unicode code point) before the specified
+     * Returns the character (Unicode code poNumber) before the specified
      * index. The index refers to <code>char</code> values
      * (Unicode code units) and ranges from <code>1</code> to {@link
      * CharSequence#length() length}.
@@ -91,40 +98,40 @@ public abstract Number : Any<Number> {
      * is in the low-surrogate range, <code>(index - 2)</code> is not
      * negative, and the <code>char</code> value at <code>(index -
      * 2)</code> is in the high-surrogate range, then the
-     * supplementary code point value of the surrogate pair is
+     * supplementary code poNumber value of the surrogate pair is
      * returned. If the <code>char</code> value at <code>index -
      * 1</code> is an unpaired low-surrogate or a high-surrogate, the
      * surrogate value is returned.
      *
-     * @param     index the index following the code point that should be returned
-     * @return    the Unicode code point value before the given index.
+     * @param     index the index following the code poNumber that should be returned
+     * @return    the Unicode code poNumber value before the given index.
      * @exception IndexOutOfBoundsException if the <code>index</code>
      *            argument is less than 1 or greater than the length
      *            of this string.
      * @since     1.5
      */
-    public int codePointBefore(int index) {
-        int i = index - 1;
+    codePoNumberBefore(index : Number) : Number {
+        Number i = index - 1;
         if ((i < 0) || (i >= value.length)) {
             throw new StringIndexOutOfBoundsException(index);
         }
-        return Character.codePointBeforeImpl(value, index, 0);
+        return Character.codePoNumberBeforeImpl(value, index, 0);
     }
 
     /**
-     * Returns the number of Unicode code points in the specified text
+     * Returns the number of Unicode code poNumbers in the specified text
      * range of this <code>String</code>. The text range begins at the
      * specified <code>beginIndex</code> and extends to the
      * <code>char</code> at index <code>endIndex - 1</code>. Thus the
      * length (in <code>char</code>s) of the text range is
      * <code>endIndex-beginIndex</code>. Unpaired surrogates within
-     * the text range count as one code point each.
+     * the text range count as one code poNumber each.
      *
      * @param beginIndex the index to the first <code>char</code> of
      * the text range.
      * @param endIndex the index after the last <code>char</code> of
      * the text range.
-     * @return the number of Unicode code points in the specified text
+     * @return the number of Unicode code poNumbers in the specified text
      * range
      * @exception IndexOutOfBoundsException if the
      * <code>beginIndex</code> is negative, or <code>endIndex</code>
@@ -132,223 +139,43 @@ public abstract Number : Any<Number> {
      * <code>beginIndex</code> is larger than <code>endIndex</code>.
      * @since  1.5
      */
-    public int codePointCount(int beginIndex, int endIndex) {
+    codePoNumberCount(beginIndex : Number, endIndex : Number) : Number {
         if (beginIndex < 0 || endIndex > value.length || beginIndex > endIndex) {
             throw new IndexOutOfBoundsException();
         }
-        return Character.codePointCountImpl(value, beginIndex, endIndex - beginIndex);
+        return Character.codePoNumberCountImpl(value, beginIndex, endIndex - beginIndex);
     }
 
     /**
      * Returns the index within this <code>String</code> that is
      * offset from the given <code>index</code> by
-     * <code>codePointOffset</code> code points. Unpaired surrogates
+     * <code>codePoNumberOffset</code> code poNumbers. Unpaired surrogates
      * within the text range given by <code>index</code> and
-     * <code>codePointOffset</code> count as one code point each.
+     * <code>codePoNumberOffset</code> count as one code poNumber each.
      *
      * @param index the index to be offset
-     * @param codePointOffset the offset in code points
+     * @param codePoNumberOffset the offset in code poNumbers
      * @return the index within this <code>String</code>
      * @exception IndexOutOfBoundsException if <code>index</code>
      *   is negative or larger then the length of this
-     *   <code>String</code>, or if <code>codePointOffset</code> is positive
+     *   <code>String</code>, or if <code>codePoNumberOffset</code> is positive
      *   and the substring starting with <code>index</code> has fewer
-     *   than <code>codePointOffset</code> code points,
-     *   or if <code>codePointOffset</code> is negative and the substring
+     *   than <code>codePoNumberOffset</code> code poNumbers,
+     *   or if <code>codePoNumberOffset</code> is negative and the substring
      *   before <code>index</code> has fewer than the absolute value
-     *   of <code>codePointOffset</code> code points.
+     *   of <code>codePoNumberOffset</code> code poNumbers.
      * @since 1.5
      */
-    public int offsetByCodePoints(int index, int codePointOffset) {
+    offsetByCodePoNumbers(index : Number, codePoNumberOffset  : Number) : Number {
         if (index < 0 || index > value.length) {
             throw new IndexOutOfBoundsException();
         }
-        return Character.offsetByCodePointsImpl(value, 0, value.length,
-                index, codePointOffset);
-    }
-
-    /**
-     * Copy characters from this string into dst starting at dstBegin.
-     * This method doesn't perform any range checking.
-     */
-    void getChars(char dst[], int dstBegin) {
-        System.arraycopy(value, 0, dst, dstBegin, value.length);
-    }
-
-    /**
-     * Copies characters from this string into the destination character
-     * array.
-     * <p>
-     * The first character to be copied is at index <code>srcBegin</code>;
-     * the last character to be copied is at index <code>srcEnd-1</code>
-     * (thus the total number of characters to be copied is
-     * <code>srcEnd-srcBegin</code>). The characters are copied into the
-     * subarray of <code>dst</code> starting at index <code>dstBegin</code>
-     * and ending at index:
-     * <p><blockquote><pre>
-     *     dstbegin + (srcEnd-srcBegin) - 1
-     * </pre></blockquote>
-     *
-     * @param      srcBegin   index of the first character in the string
-     *                        to copy.
-     * @param      srcEnd     index after the last character in the string
-     *                        to copy.
-     * @param      dst        the destination array.
-     * @param      dstBegin   the start offset in the destination array.
-     * @exception IndexOutOfBoundsException If any of the following
-     *            is true:
-     *            <ul><li><code>srcBegin</code> is negative.
-     *            <li><code>srcBegin</code> is greater than <code>srcEnd</code>
-     *            <li><code>srcEnd</code> is greater than the length of this
-     *                string
-     *            <li><code>dstBegin</code> is negative
-     *            <li><code>dstBegin+(srcEnd-srcBegin)</code> is larger than
-     *                <code>dst.length</code></ul>
-     */
-    public void getChars(int srcBegin, int srcEnd, char dst[], int dstBegin) {
-        if (srcBegin < 0) {
-            throw new StringIndexOutOfBoundsException(srcBegin);
-        }
-        if (srcEnd > value.length) {
-            throw new StringIndexOutOfBoundsException(srcEnd);
-        }
-        if (srcBegin > srcEnd) {
-            throw new StringIndexOutOfBoundsException(srcEnd - srcBegin);
-        }
-        System.arraycopy(value, srcBegin, dst, dstBegin, srcEnd - srcBegin);
-    }
-
-    /**
-     * Copies characters from this string into the destination byte array. Each
-     * byte receives the 8 low-order bits of the corresponding character. The
-     * eight high-order bits of each character are not copied and do not
-     * participate in the transfer in any way.
-     *
-     * <p> The first character to be copied is at index {@code srcBegin}; the
-     * last character to be copied is at index {@code srcEnd-1}.  The total
-     * number of characters to be copied is {@code srcEnd-srcBegin}. The
-     * characters, converted to bytes, are copied into the subarray of {@code
-     * dst} starting at index {@code dstBegin} and ending at index:
-     *
-     * <blockquote><pre>
-     *     dstbegin + (srcEnd-srcBegin) - 1
-     * </pre></blockquote>
-     *
-     * @deprecated  This method does not properly convert characters into
-     * bytes.  As of JDK&nbsp;1.1, the preferred way to do this is via the
-     * {@link #getBytes()} method, which uses the platform's default charset.
-     *
-     * @param  srcBegin
-     *         Index of the first character in the string to copy
-     *
-     * @param  srcEnd
-     *         Index after the last character in the string to copy
-     *
-     * @param  dst
-     *         The destination array
-     *
-     * @param  dstBegin
-     *         The start offset in the destination array
-     *
-     * @throws  IndexOutOfBoundsException
-     *          If any of the following is true:
-     *          <ul>
-     *            <li> {@code srcBegin} is negative
-     *            <li> {@code srcBegin} is greater than {@code srcEnd}
-     *            <li> {@code srcEnd} is greater than the length of this String
-     *            <li> {@code dstBegin} is negative
-     *            <li> {@code dstBegin+(srcEnd-srcBegin)} is larger than {@code
-     *                 dst.length}
-     *          </ul>
-     */
-    @Deprecated
-    public void getBytes(int srcBegin, int srcEnd, byte dst[], int dstBegin) {
-        if (srcBegin < 0) {
-            throw new StringIndexOutOfBoundsException(srcBegin);
-        }
-        if (srcEnd > value.length) {
-            throw new StringIndexOutOfBoundsException(srcEnd);
-        }
-        if (srcBegin > srcEnd) {
-            throw new StringIndexOutOfBoundsException(srcEnd - srcBegin);
-        }
-        int j = dstBegin;
-        int n = srcEnd;
-        int i = srcBegin;
-        char[] val = value;   /* avoid getfield opcode */
-
-        while (i < n) {
-            dst[j++] = (byte)val[i++];
-        }
-    }
-
-    /**
-     * Encodes this {@code String} into a sequence of bytes using the named
-     * charset, storing the result into a new byte array.
-     *
-     * <p> The behavior of this method when this string cannot be encoded in
-     * the given charset is unspecified.  The {@link
-     * java.nio.charset.CharsetEncoder} class should be used when more control
-     * over the encoding process is required.
-     *
-     * @param  charsetName
-     *         The name of a supported {@linkplain java.nio.charset.Charset
-     *         charset}
-     *
-     * @return  The resultant byte array
-     *
-     * @throws  UnsupportedEncodingException
-     *          If the named charset is not supported
-     *
-     * @since  JDK1.1
-     */
-    public byte[] getBytes(String charsetName)
-            throws UnsupportedEncodingException {
-        if (charsetName == null) throw new NullPointerException();
-        return StringCoding.encode(charsetName, value, 0, value.length);
-    }
-
-    /**
-     * Encodes this {@code String} into a sequence of bytes using the given
-     * {@linkplain java.nio.charset.Charset charset}, storing the result into a
-     * new byte array.
-     *
-     * <p> This method always replaces malformed-input and unmappable-character
-     * sequences with this charset's default replacement byte array.  The
-     * {@link java.nio.charset.CharsetEncoder} class should be used when more
-     * control over the encoding process is required.
-     *
-     * @param  charset
-     *         The {@linkplain java.nio.charset.Charset} to be used to encode
-     *         the {@code String}
-     *
-     * @return  The resultant byte array
-     *
-     * @since  1.6
-     */
-    public byte[] getBytes(Charset charset) {
-        if (charset == null) throw new NullPointerException();
-        return StringCoding.encode(charset, value, 0, value.length);
-    }
-
-    /**
-     * Encodes this {@code String} into a sequence of bytes using the
-     * platform's default charset, storing the result into a new byte array.
-     *
-     * <p> The behavior of this method when this string cannot be encoded in
-     * the default charset is unspecified.  The {@link
-     * java.nio.charset.CharsetEncoder} class should be used when more control
-     * over the encoding process is required.
-     *
-     * @return  The resultant byte array
-     *
-     * @since      JDK1.1
-     */
-    public byte[] getBytes() {
-        return StringCoding.encode(value, 0, value.length);
+        return Character.offsetByCodePoNumbersImpl(value, 0, value.length,
+                index, codePoNumberOffset);
     }
 
 
+    
 }
 
 //包级别类 >>>>>>>>>>>>>>>>>>>>>>

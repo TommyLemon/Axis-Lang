@@ -1,0 +1,37 @@
+package axis.lang
+
+
+
+//包级别类 <<<<<<<<<<<<<<<<<<<<<<
+
+Decimal : Number { 
+
+  private leftValue : Number = 0 //小数左边的整数值
+  private rightValue : Number = 0 //小数右边的整数值
+
+
+  @Override
+  compareTo(n : Number) : Number {
+    return compareTo(d : OF(n))
+  }
+
+  compareTo(d : Decimal) : Number {
+    leftCompare : Number = COMPARE_TO(leftValue, d.(leftValue))
+    return leftCompare != 0 ? leftCompare : COMPARE_TO(n0 : rightValue, n1 : d.(rightValue)) // “n0 : ” ， “n1 : ” 这种参数字符串都由编辑器生成且不可更改，参考IntelliJ IDEA参数提示功能
+  }
+
+  @Override
+  toString() : String {
+    return leftValue + ‘.’ + rightValue
+  }
+
+  @Override //在Java中子类实现父类已有的static函数是覆盖，而不是重写，但这里特地加上是为了更明显地提示这个函数会覆盖父类的同名函数
+  OF(n : Number) {
+    return Decimal{
+      leftValue : n == null ? 0 : n.(value)
+    }
+  }
+
+}
+
+//包级别类 >>>>>>>>>>>>>>>>>>>>>>

@@ -4,7 +4,12 @@ package axis.lang
 
 //包级别类 <<<<<<<<<<<<<<<<<<<<<<
 
-public abstract Object : Any<Object> { 
+Object : Any { 
+
+  @Override
+  toString() : String {
+    return JSON.toJSONString(this)
+  }
 
 }
 

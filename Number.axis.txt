@@ -4,29 +4,32 @@ package axis.lang
 
 //包级别类 <<<<<<<<<<<<<<<<<<<<<<
 
-public abstract Number : Any<Number> { 
+Number : Any { 
 
-  public static final MIN_VALUE : Number = 0x0.0000000000001P-1022
-  public static final MAX_VALUE : Number = 0x1.fffffffffffffP+1023
+  final MIN_VALUE : Number = 0x0.0000000000001P-1022
+  final MAX_VALUE : Number = 0x1.fffffffffffffP+1023
 
 
-    /**
-     * Returns the value of the specified number as a <code>long</code>.
-     * This may involve rounding or truncation.
-     *
-     * @return  the numeric value represented by this object after conversion
-     *          to type <code>long</code>.
-     */
-    public native toInteger() : long
+  @NotNull
+  compareTo(n : Number) : Number {
+    return COMPARE_TO(this, n)
+  }
 
-    /**
-     * Returns the value of the specified number as a <code>double</code>.
-     * This may involve rounding.
-     *
-     * @return  the numeric value represented by this object after conversion
-     *          to type <code>double</code>.
-     */
-    public native toDecimal() : double
+  @NotNull
+  COMPARE_TO(n0 : Number, n1 : Number) : Number {
+    n0 = n0 ?? 0
+    n1 = n1 ?? 0
+    diff : Number = n0.(value) - n1.(value) //如果有null则转为0
+    if (diff == 0) {
+      return 0
+    }
+    return diff < 0 ? -1 : 1 //用 diff / Math.abs(diff) 可能因为计算误差导致算出小数
+  }
+
+  @Override
+  toString() : String {
+    return “” + value
+  }
 
 }
 

@@ -6,7 +6,7 @@ UTF_8 : String = “utf-8”
 VERSION_NAME : String = “1.0”
 VERSION_CODE : Number = 1
 DEBUG : Boolean = true
-BASE_TYPES : String[] = String[“Boolean”, “Number”, “String”, “Object”, “Array”]
+BASE_TYPES : String[] = [“Boolean”, “Number”, “String”, “Object”, “Array”]
 
 //包级别常量 >>>>>>>>>>>>>>>>>>>>>>
 
@@ -14,11 +14,13 @@ BASE_TYPES : String[] = String[“Boolean”, “Number”, “String”, “Obj
 
 //包级别函数 <<<<<<<<<<<<<<<<<<<<<<
 
-public abstract call()
+abstract call() //Java: public interface Call$Interface { void call(); }
 
-public abstract callback(arg : Number)
+abstract callback(arg : Number)
 
-public static toString(a : Any) {
+abstract isCorrect()
+
+TO_STRING(a : Any) { //Java: public class TO_STRING$Class { public static TO_STRING(Any a) { return a == null ? null : a.toString(); } }
   return a == null ? null : a.toString()
 }
 
@@ -28,22 +30,76 @@ public static toString(a : Any) {
 
 //包级别类 <<<<<<<<<<<<<<<<<<<<<<
 
-public abstract Any<T : Any> { //任意类型
+/**
+ * 类名第一个字符为大写英语字母，其它每个字符都必须是 英文字母、数字、下划线 中的一种
+ * 静态类：类名所有字符全大写，单词中间用 _ 隔开；默认用 public static 修饰
+ * 非静态类：类名用UpperCamelCase风格；默认用 public 修饰
+ * 可能会碰到 JSON 这种整个单词本身就是全大写的情况，建议在用做非静态类时命名为 Json ，即首字母大写，其它小写。和 静态类 JSON 做区分
+ */
+User : Object, isCorrect { //Java: public class User extends Object implements IsCorrect
 
-  private value : T { //重写变量的内部函数
-    () : T { //取值函数getter，定义 any : Any  -> 调用 any.value()
-       return value
-    }
-    (value: Any) : Any { //赋值函数setter，定义 any : Any  -> 调用 any.value(val)
-      this.value = value //最终所有赋值都是赋给value？
+  final SEX_MAIL : Number = 0 //Java: public static final Number SEX_MAIL;
+  final SEX_FEMAIL : Number = 1 //常量名所有字符全大写，单词中间用 _ 隔开；默认用 public static 修饰
+  final SEX_UNKNOWN : Number = 2
+
+  id : Number //Java: private Number id;
+
+  name : String //变量名第一个字符为小写英语字母，其它每个字符都必须是 英文字母、数字、下划线 中的一种；默认用 private 修饰
+
+  sex : Number
+
+  certified : Boolean {
+
+    @Override
+    () { //重写getter函数
+      this = this ?? false
       return this
     }
-  } = null //给变量赋初始值
- 
-  //转String函数
-  public toString(): String {
-    return JSON.toJSONString(this)
-  } 
+  }
+  /**
+   * Java: 
+     private Boolean certified;
+
+     public Boolean certified() { //相当于getter函数
+       certified = certified != null ? certified : false;
+       return certified;
+     }
+     public User certified(Boolean certified) { //相当于setter函数，自定义了实现逻辑
+       this.value(certified); //Java: this.certified = certified;
+       return this;
+     }
+   */
+
+
+
+  contactIdArray : Array<Number> { //TODO 这里不适合用 Number[] ，因为会有歧义？
+    
+    @Override
+    (value) { //重写setter函数
+      (value : (value == null ? Array<Number>{} : value))
+      return User.this
+    }
+  }
+  /**
+   * Java: 
+     private Array<Number> contactIdArray;
+
+     public Array<Number> contactIdArray() { //相当于getter函数
+       return contactIdArray;
+     }
+     public User contactIdArray(Array<Number> value) { //相当于setter函数，自定义了实现逻辑
+       this.value(value == null ? Array<Number>{} : value);
+       return this;
+     }
+   */
+
+
+
+  @Override
+  isCorrect() : Boolean {
+     return id > 0
+  }
+  
 
 }
 

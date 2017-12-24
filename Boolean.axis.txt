@@ -4,10 +4,15 @@ package axis.lang
 
 //包级别类 <<<<<<<<<<<<<<<<<<<<<<
 
-public abstract Boolean : Any<Boolean> { 
+Boolean : Any { 
 
-  public static final FALSE : Boolean = false
-  public static final TRUE : Boolean = true
+    final TRUE : String = “true”
+    final FALSE : String = “false”
+
+    @Override
+    toString() : String {
+      return this ? TRUE : FALSE
+    }
 
 }
 
