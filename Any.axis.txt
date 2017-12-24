@@ -27,7 +27,7 @@ abstract Any { //任意类型，自动找到实例化时的精准类型并替换
  
   //转String函数
   toString() : String {
-    return String.OF(this)
+    return String.OF(a : this)
   } 
 
   //static函数名用全大写形式

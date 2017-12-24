@@ -28,7 +28,7 @@ Decimal : Number {
   @Override //在Java中子类实现父类已有的static函数是覆盖，而不是重写，但这里特地加上是为了更明显地提示这个函数会覆盖父类的同名函数
   OF(n : Number) {
     return Decimal{
-      leftValue : n == null ? 0 : n.(value)
+      leftValue : (n == null ? 0 : n.(value))
     }
   }
 
@@ -37,8 +37,8 @@ Decimal : Number {
     s = s ?? “”
     index : Number = s.indexOf(‘.’)
     return Decimal{
-      leftValue : Number.OF(index < 0 ? s : s.substring(0, index))
-      rightValue : index < 0 ? 0 : Number.OF(s.substring(index + 1))
+      leftValue : Number.OF(s : (index < 0 ? s : s.substring(0, index)))
+      rightValue : index < 0 ? 0 : Number.OF(s : s.substring(index + 1))
     }
   }
 

@@ -40,7 +40,7 @@ Number : Any {
   }
 
 
-  final native castToNumber() : Number
+  final native castToNumber(s : String) : Number
 }
 
 //包级别类 >>>>>>>>>>>>>>>>>>>>>>
