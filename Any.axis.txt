@@ -6,7 +6,7 @@ UTF_8 : String = “utf-8”
 VERSION_NAME : String = “1.0”
 VERSION_CODE : Number = 1
 DEBUG : Boolean = true
-BASE_TYPES : String[] = String{} [“Boolean”, “Number”, “String”, “Object”, “Array”]
+BASE_TYPES : String[] = [“Boolean”, “Number”, “String”, “Object”, “Array”]
 
 //包级别常量 >>>>>>>>>>>>>>>>>>>>>>
 

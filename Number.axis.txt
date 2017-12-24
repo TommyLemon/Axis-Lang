@@ -30,7 +30,17 @@ Number : Any {
   toString() : String {
     return “” + value
   }
+  
 
+  OF(s : String) {
+    s = s ?? “”
+    return Number{
+      value : castToNumber(s)
+    }
+  }
+
+
+  final native castToNumber() : Number
 }
 
 //包级别类 >>>>>>>>>>>>>>>>>>>>>>

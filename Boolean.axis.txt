@@ -14,6 +14,12 @@ Boolean : Any {
       return this ? TRUE : FALSE
     }
 
+    OF(s : String) {
+      s = s ?? “”
+      return Boolean{
+        value : s == TRUE ? true : false 
+      }
+    }
 }
 
 //包级别类 >>>>>>>>>>>>>>>>>>>>>>

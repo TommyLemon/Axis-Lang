@@ -1,5 +1,7 @@
 package axis.lang
 
+import com.alibaba.fastjson.JSON : JavaJSON //取别名
+import com.alibaba.fastjson.JSONArray
 
 
 //包级别类 <<<<<<<<<<<<<<<<<<<<<<
@@ -9,6 +11,27 @@ package axis.lang
  */
 abstract Array<T> : Any {
 
+
+    private native get(index : Number) : T
+    private native add(value : T)
+    private native add(index : Number, value : T)
+    private native set(index : Number, value : T)
+    
+    (index : Number) {
+      return get(key)
+    } 
+    (index : Number, value : T) {
+      if (index < size) {
+        add(index, value)
+      } else {
+        set(index, value)
+      }
+      return this
+    }
+    push(value : T) {
+      add(value)
+      return this
+    }
 
     private size : Number = 0
 
@@ -23,8 +46,22 @@ abstract Array<T> : Any {
 
     @Override
     toString() : String {
-      return JSON.toJSONString(this)
+      return JavaJSON.toJSONString(this)
     }
+
+    OF(s : String) {
+      return OF(c : JavaJSON.parseArray(s))
+    }
+
+    OF(c : Collection<?>) {
+      c = c ?? Collection<?>{}
+      arr : Array = []
+      c.forEach(index : Number, value : Any) {
+        arr.add(value)
+      }
+      return arr
+    }
+
 
     /**
      * Returns <tt>true</tt> if this list contains the specified element.

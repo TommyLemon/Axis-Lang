@@ -32,6 +32,16 @@ Decimal : Number {
     }
   }
 
+  @Override
+  OF(s : String) {
+    s = s ?? “”
+    index : Number = s.indexOf(‘.’)
+    return Decimal{
+      leftValue : Number.OF(index < 0 ? s : s.substring(0, index))
+      rightValue : index < 0 ? 0 : Number.OF(s.substring(index + 1))
+    }
+  }
+
 }
 
 //包级别类 >>>>>>>>>>>>>>>>>>>>>>
