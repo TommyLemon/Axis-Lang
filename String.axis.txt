@@ -41,7 +41,7 @@ String : Any {
       if (a instanceof String) {
         return this == a
       }
-      return equals(a : OF(a : a), ignoreCase : ignoreCase)
+      return equals(a = OF(a = a), ignoreCase = ignoreCase)
     }
 
     /**
@@ -63,8 +63,8 @@ String : Any {
      *             string.
      */
     at(index : Number) : String {
-        if ((index < 0) || (index >= value.length)) {
-            throw new StringIndexOutOfBoundsException(index);
+        if (index < 0 || index >= value.length) {
+            throw new StringIndexOutOfBoundsException(index = index);
         }
         return value[index];
     }
@@ -93,9 +93,9 @@ String : Any {
      */
     codePoNumberAt(index : Number) : Number {
         if ((index < 0) || (index >= value.length)) {
-            throw new StringIndexOutOfBoundsException(index);
+            throw new StringIndexOutOfBoundsException(index  = index);
         }
-        return Character.codePoNumberAtImpl(value, index, value.length);
+        return Character.codePoNumberAtImpl(value = value, start = index, length = value.length);
     }
 
     /**

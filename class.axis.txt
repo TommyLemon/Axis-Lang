@@ -14,13 +14,13 @@ BASE_TYPES : String[] = [“Boolean”, “Number”, “String”, “Object”
 
 //包级别函数 <<<<<<<<<<<<<<<<<<<<<<
 
-abstract call() //Java: public interface Call$Interface { void call(); }
+abstract call() //Java: public interface Interface$Call { void call(); }
 
 abstract callback(arg : Number)
 
 abstract isCorrect()
 
-TO_STRING(a : Any) { //Java: public class TO_STRING$Class { public static TO_STRING(Any a) { return a == null ? null : a.toString(); } }
+TO_STRING(a : Any) { //Java: public class Class$TO_STRING { public static TO_STRING(Any a) { return a == null ? null : a.toString(); } }
   return a == null ? null : a.toString()
 }
 
@@ -36,7 +36,7 @@ TO_STRING(a : Any) { //Java: public class TO_STRING$Class { public static TO_STR
  * 非静态类：类名用UpperCamelCase风格；默认用 public 修饰
  * 可能会碰到 JSON 这种整个单词本身就是全大写的情况，建议在用做非静态类时命名为 Json ，即首字母大写，其它小写。和 静态类 JSON 做区分
  */
-User : Object, isCorrect { //Java: public class User extends Object implements IsCorrect
+User : Object, isCorrect { //Java: public class User extends Object implements Interface$isCorrect
 
   final SEX_MAIL : Number = 0 //Java: public static final Number SEX_MAIL;
   final SEX_FEMAIL : Number = 1 //常量名所有字符全大写，单词中间用 _ 隔开；默认用 public static 修饰
@@ -75,8 +75,8 @@ User : Object, isCorrect { //Java: public class User extends Object implements I
   contactIdArray : Array<Number> { //TODO 这里不适合用 Number[] ，因为会有歧义？
     
     @Override
-    (value) { //重写setter函数
-      (value : (value == null ? Array<Number>{} : value))
+    (value : Array<Number>) { //重写setter函数
+      (value = value ?? Array<Number>{})
       return User.this
     }
   }
@@ -88,7 +88,7 @@ User : Object, isCorrect { //Java: public class User extends Object implements I
        return contactIdArray;
      }
      public User contactIdArray(Array<Number> value) { //相当于setter函数，自定义了实现逻辑
-       this.value(value == null ? Array<Number>{} : value);
+       this.value(value ?? Array<Number>{});
        return this;
      }
    */

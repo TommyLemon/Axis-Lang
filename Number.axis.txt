@@ -12,7 +12,7 @@ Number : Any {
 
   @NotNull
   compareTo(n : Number) : Number {
-    return COMPARE_TO(this, n)
+    return COMPARE_TO(n0 = this, n1 = n)
   }
 
   @NotNull
@@ -23,7 +23,7 @@ Number : Any {
     if (diff == 0) {
       return 0
     }
-    return diff < 0 ? -1 : 1 //用 diff / Math.abs(diff) 可能因为计算误差导致算出小数
+    return diff < 0 ? -1 : 1 //用 diff / Math.abs(n = diff) 可能因为计算误差导致算出小数
   }
 
   @Override
@@ -35,7 +35,7 @@ Number : Any {
   OF(s : String) {
     s = s ?? “”
     return Number{
-      value : castToNumber(s)
+      value : castToNumber(s = s)
     }
   }
 

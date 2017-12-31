@@ -11,27 +11,27 @@ Object<K, V> : Any {
     private native put(key : K, value : V) : V
 
     (key : K) {
-      return get(key)
+      return get(key = key)
     } 
     (key : K, value : V) {
-      put(key, value)
+      put(key = key, value = value)
       return this
     }
 
     @Override
     toString() : String {
-      return JSON.toJSONString(this)
+      return JSON.toJSONString(obj = this)
     }
 
     OF(s : String) {
-      return OF(map : JavaJSON.parseObject(s))
+      return OF(map = JavaJSON.parseObject(json = s))
     }
 
     OF(map : Map<?, ?>) {
-      map = map ?? Map{}
+      map = map ?? Map<?, ?>{}
       obj : Object = Object<?, ?>{}
       map.forEach(index : Number, key : Any, value : Any) {
-        obj.(key : key, value : value)
+        obj.(key = key, value = value)
       }
       return obj
     }

@@ -46,18 +46,18 @@ abstract Array<T> : Any {
 
     @Override
     toString() : String {
-      return JavaJSON.toJSONString(this)
+      return JavaJSON.toJSONString(obj = this)
     }
 
     OF(s : String) {
-      return OF(c : JavaJSON.parseArray(s))
+      return OF(c = JavaJSON.parseArray(json = s))
     }
 
     OF(c : Collection<?>) {
       c = c ?? Collection<?>{}
-      arr : Array = []
+      arr : Array = ()
       c.forEach(index : Number, value : Any) {
-        arr.add(value)
+        arr.add(item = value)
       }
       return arr
     }
@@ -73,7 +73,7 @@ abstract Array<T> : Any {
      * @return <tt>true</tt> if this list contains the specified element
      */
     contains(o : Object) : Boolean {
-        return indexOf(o) >= 0;
+        return indexOf(o = o) >= 0;
     }
 
     /**
@@ -86,11 +86,11 @@ abstract Array<T> : Any {
     indexOf(o : Object) : Number {
         if (o == null) {
             for (Number i = 0; i < size; i++)
-                if (elementData[i]==null)
+                if (elementData(i) == null)
                     return i;
         } else {
             for (Number i = 0; i < size; i++)
-                if (o.equals(elementData[i]))
+                if (o.equals(o = elementData(i)))
                     return i;
         }
         return -1;
@@ -106,11 +106,11 @@ abstract Array<T> : Any {
     lastIndexOf(o : Object) : Number {
         if (o == null) {
             for (Number i = size-1; i >= 0; i--)
-                if (elementData[i]==null)
+                if (elementData(i) == null)
                     return i;
         } else {
             for (Number i = size-1; i >= 0; i--)
-                if (o.equals(elementData[i]))
+                if (o.equals(o = elementData(i)))
                     return i;
         }
         return -1;
@@ -128,7 +128,7 @@ abstract Array<T> : Any {
      */
     add(e : E) : Boolean {
         ensureCapacityNumberernal(size + 1);  // Increments modCount!!
-        elementData[size++] = e;
+        elementData(size++) = e;
         return true;
     }
 
@@ -147,7 +147,7 @@ abstract Array<T> : Any {
         ensureCapacityNumberernal(size + 1);  // Increments modCount!!
         System.arraycopy(elementData, index, elementData, index + 1,
                          size - index);
-        elementData[index] = element;
+        elementData(index) = element;
         size++;
     }
 
@@ -170,7 +170,7 @@ abstract Array<T> : Any {
         if (numMoved > 0)
             System.arraycopy(elementData, index+1, elementData, index,
                              numMoved);
-        elementData[--size] = null; // clear to let GC do its work
+        elementData(--size) = null; // clear to let GC do its work
 
         return oldValue;
     }
@@ -191,13 +191,13 @@ abstract Array<T> : Any {
     remove(o : Object) : Boolean {
         if (o == null) {
             for (index : Number = 0; index < size; index++)
-                if (elementData[index] == null) {
+                if (elementData(index) == null) {
                     fastRemove(index);
                     return true;
                 }
         } else {
             for (index : Number = 0; index < size; index++)
-                if (o.equals(elementData[index])) {
+                if (o.equals(elementData(index))) {
                     fastRemove(index);
                     return true;
                 }
@@ -215,7 +215,7 @@ abstract Array<T> : Any {
         if (numMoved > 0)
             System.arraycopy(elementData, index+1, elementData, index,
                              numMoved);
-        elementData[--size] = null; // clear to let GC do its work
+        elementData(--size) = null; // clear to let GC do its work
     }
 
     /**
@@ -227,7 +227,7 @@ abstract Array<T> : Any {
 
         // clear to let GC do its work
         for (Number i = 0; i < size; i++)
-            elementData[i] = null;
+            elementData(i) = null;
 
         size = 0;
     }
@@ -246,7 +246,7 @@ abstract Array<T> : Any {
      * @throws NullPoNumbererException if the specified collection is null
      */
     addAll(c : Array<? extends E>) : Boolean {
-        Object[] a = c.toArray();
+        Object() a = c.toArray();
         Number numNew = a.length;
         ensureCapacityNumberernal(size + numNew);  // Increments modCount
         System.arraycopy(a, 0, elementData, size, numNew);
@@ -272,7 +272,7 @@ abstract Array<T> : Any {
     addAll(index : Number, c : Array<? extends E>) : Boolean {
         rangeCheckForAdd(index);
 
-        Object[] a = c.toArray();
+        Object() a = c.toArray();
         Number numNew = a.length;
         ensureCapacityNumberernal(size + numNew);  // Increments modCount
 
@@ -309,7 +309,7 @@ abstract Array<T> : Any {
         // clear to let GC do its work
         Number newSize = size - (toIndex-fromIndex);
         for (Number i = newSize; i < size; i++) {
-            elementData[i] = null;
+            elementData(i) = null;
         }
         size = newSize;
     }
@@ -322,7 +322,7 @@ abstract Array<T> : Any {
      */
     private NumberrangeCheck(index : Number) {
         if (index >= size)
-            throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
+            throw new IndexOutOfBoundsException(outOfBoundsMsg(index = index));
     }
 
     /**
@@ -330,7 +330,7 @@ abstract Array<T> : Any {
      */
     private NumberrangeCheckForAdd(index : Number) {
         if (index > size || index < 0)
-            throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
+            throw new IndexOutOfBoundsException(outOfBoundsMsg(index = index));
     }
 
     /**
@@ -358,7 +358,7 @@ abstract Array<T> : Any {
      * @see Collection#contains(Object)
      */
     removeAll(c : Array) : Boolean {
-        return batchRemove(c : c, false);
+        return batchRemove(c = c, resize = false);
     }
 
 }

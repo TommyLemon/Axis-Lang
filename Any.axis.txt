@@ -16,10 +16,10 @@ BASE_TYPES : String[] = [“Boolean”, “Number”, “String”, “Object”
 abstract Any { //任意类型，自动找到实例化时的精准类型并替换
 
   private value : Any{ //重写变量的内部函数
-    () { //取值函数getter，定义 any : Any  -> 调用 any.value()
+    () { //取值函数getter，定义 any : Any  -> 调用 any.(value) 或 any.value()
        return value
     }
-    (value) { //赋值函数setter，定义 any : Any  -> 调用 any.value(val)
+    (value : Any) { //赋值函数setter，定义 any : Any  -> 调用 any.(value = val) 或 any.value(val)
       this.value = value //最终所有赋值都是赋给value？
       return this
     }
@@ -27,13 +27,13 @@ abstract Any { //任意类型，自动找到实例化时的精准类型并替换
  
   //转String函数
   toString() : String {
-    return String.OF(a : this)
+    return String.OF(a = this) //所有调用函数并给参数赋值都必须明确写出 (arg = value) 这种形式，和取值函数 (key) 严格区分
   } 
 
   //static函数名用全大写形式
   OF(Any value) : Any { //自动找到实例化时的精准类型并替换，例如实例化类型是 User，则替换为 OF(User value) : User {…}
     return Any{ //支持任意类的构造函数
-      value : value //相当于 Any{}.(value : value)
+      value : value //相当于 Any{}.(value = value)
     }
   }
 

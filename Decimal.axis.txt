@@ -12,12 +12,12 @@ Decimal : Number {
 
   @Override
   compareTo(n : Number) : Number {
-    return compareTo(d : OF(n))
+    return compareTo(d = OF(n))
   }
 
   compareTo(d : Decimal) : Number {
-    leftCompare : Number = COMPARE_TO(leftValue, d.(leftValue))
-    return leftCompare != 0 ? leftCompare : COMPARE_TO(n0 : rightValue, n1 : d.(rightValue)) // “n0 : ” ， “n1 : ” 这种参数字符串都由编辑器生成且不可更改，参考IntelliJ IDEA参数提示功能
+    leftCompare : Number = COMPARE_TO(n0 = leftValue, n1 = d.(leftValue))
+    return leftCompare != 0 ? leftCompare : COMPARE_TO(n0 = rightValue, n1 = d.(rightValue)) // “n0 : ” ， “n1 : ” 这种参数字符串都由编辑器生成且不可更改，参考IntelliJ IDEA参数提示功能
   }
 
   @Override
@@ -35,10 +35,10 @@ Decimal : Number {
   @Override
   OF(s : String) {
     s = s ?? “”
-    index : Number = s.indexOf(‘.’)
+    index : Number = s.indexOf(s = ‘.’)
     return Decimal{
-      leftValue : Number.OF(s : (index < 0 ? s : s.substring(0, index)))
-      rightValue : index < 0 ? 0 : Number.OF(s : s.substring(index + 1))
+      leftValue : Number.OF(s = index < 0 ? s : s.substring(start = 0, end = index))
+      rightValue : index < 0 ? 0 : Number.OF(s = s.substring(start = index + 1))
     }
   }
 
