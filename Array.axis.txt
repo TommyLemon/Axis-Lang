@@ -18,18 +18,30 @@ abstract Array<T> : Any {
     private native set(index : Number, value : T)
     
     (index : Number) {
-      return get(key)
+      return get(index = index)
     } 
-    (index : Number, value : T) {
+
+    (
+      index : Number //换行代替逗号，格式更清晰，还不用纠结最后一个逗号要不要删除
+      value : T
+    ) {
+
       if (index < size) {
-        add(index, value)
+        add(
+          index = index
+          value = value
+        )
       } else {
-        set(index, value)
+        set(
+          index = index
+          value = value
+        )
       }
       return this
     }
+
     push(value : T) {
-      add(value)
+      add(value = value)
       return this
     }
 
@@ -49,14 +61,22 @@ abstract Array<T> : Any {
       return JavaJSON.toJSONString(obj = this)
     }
 
-    OF(s : String) {
-      return OF(c = JavaJSON.parseArray(json = s))
+    OF(s : String) : Array<T> {
+
+      return OF(
+        c = JavaJSON.parseArray(json = s)
+      )
     }
 
-    OF(c : Collection<?>) {
+    OF(c : Collection<?>) : Array<T> {
+
       c = c ?? Collection<?>{}
-      arr : Array = ()
-      c.forEach(index : Number, value : Any) {
+      arr : Array<T> = Array<T>{}
+      c.forEach(
+        index : Number
+        value : Any
+      ) {
+
         arr.add(item = value)
       }
       return arr
@@ -86,14 +106,20 @@ abstract Array<T> : Any {
     indexOf(o : Object) : Number {
         if (o == null) {
             for (Number i = 0; i < size; i++)
-                if (elementData(i) == null)
-                    return i;
+                if (elementData.(i) == null) {
+                    return i
+                }
         } else {
             for (Number i = 0; i < size; i++)
-                if (o.equals(o = elementData(i)))
-                    return i;
+                if (
+                  o.equals(
+                    o = elementData.(i)
+                  )
+                ) {
+                    return i
+                }
         }
-        return -1;
+        return -1
     }
 
     /**
@@ -104,16 +130,23 @@ abstract Array<T> : Any {
      * or -1 if there is no such index.
      */
     lastIndexOf(o : Object) : Number {
+
         if (o == null) {
             for (Number i = size-1; i >= 0; i--)
-                if (elementData(i) == null)
-                    return i;
+                if (elementData.(i) == null) {
+                    return i
+                }
         } else {
             for (Number i = size-1; i >= 0; i--)
-                if (o.equals(o = elementData(i)))
-                    return i;
+                if (
+                  o.equals(
+                    o = elementData.(i)
+                  )
+                ) {
+                    return i
+                }
         }
-        return -1;
+        return -1
     }
 
 
@@ -227,7 +260,7 @@ abstract Array<T> : Any {
 
         // clear to let GC do its work
         for (Number i = 0; i < size; i++)
-            elementData(i) = null;
+            elementData.(i) = null;
 
         size = 0;
     }
@@ -309,7 +342,7 @@ abstract Array<T> : Any {
         // clear to let GC do its work
         Number newSize = size - (toIndex-fromIndex);
         for (Number i = newSize; i < size; i++) {
-            elementData(i) = null;
+            elementData.(i) = null;
         }
         size = newSize;
     }

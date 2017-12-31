@@ -12,11 +12,19 @@ Number : Any {
 
   @NotNull
   compareTo(n : Number) : Number {
-    return COMPARE_TO(n0 = this, n1 = n)
+
+    return COMPARE_TO(
+      n0 = this
+      n1 = n
+    )
   }
 
   @NotNull
-  COMPARE_TO(n0 : Number, n1 : Number) : Number {
+  COMPARE_TO(
+    n0 : Number
+    n1 : Number
+  ) : Number {
+
     n0 = n0 ?? 0
     n1 = n1 ?? 0
     diff : Number = n0.(value) - n1.(value) //如果有null则转为0
@@ -33,6 +41,7 @@ Number : Any {
   
 
   OF(s : String) {
+
     s = s ?? “”
     return Number{
       value : castToNumber(s = s)

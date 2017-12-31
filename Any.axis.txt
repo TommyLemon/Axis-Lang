@@ -6,7 +6,13 @@ UTF_8 : String = “utf-8”
 VERSION_NAME : String = “1.0”
 VERSION_CODE : Number = 1
 DEBUG : Boolean = true
-BASE_TYPES : String[] = [“Boolean”, “Number”, “String”, “Object”, “Array”]
+BASE_TYPES : String[] = [
+  “Boolean”
+  “Number”
+  “String”
+  “Object”
+  “Array”
+]
 
 //包级别常量 >>>>>>>>>>>>>>>>>>>>>>
 
@@ -19,6 +25,7 @@ abstract Any { //任意类型，自动找到实例化时的精准类型并替换
     () { //取值函数getter，定义 any : Any  -> 调用 any.(value) 或 any.value()
        return value
     }
+
     (value : Any) { //赋值函数setter，定义 any : Any  -> 调用 any.(value = val) 或 any.value(val)
       this.value = value //最终所有赋值都是赋给value？
       return this

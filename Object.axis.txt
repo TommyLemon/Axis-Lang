@@ -8,13 +8,25 @@ import com.alibaba.fastjson.JSONObject
 Object<K, V> : Any { 
 
     private native get(key : K) : V
-    private native put(key : K, value : V) : V
 
-    (key : K) {
+    private native put(
+      key : K
+      value : V
+    ) : V
+
+    (key : K) : V {
       return get(key = key)
     } 
-    (key : K, value : V) {
-      put(key = key, value = value)
+
+    (
+      key : K
+      value : V
+    ) : Object<K, V> {
+
+      put(
+        key = key
+        value = value
+      )
       return this
     }
 
@@ -23,16 +35,29 @@ Object<K, V> : Any {
       return JSON.toJSONString(obj = this)
     }
 
-    OF(s : String) {
-      return OF(map = JavaJSON.parseObject(json = s))
+    OF(s : String) : Object<?, ?> {
+
+      return OF(
+        map = JavaJSON.parseObject(json = s)
+      )
     }
 
-    OF(map : Map<?, ?>) {
+    OF(map : Map<?, ?>) : Object<?, ?> {
+
       map = map ?? Map<?, ?>{}
-      obj : Object = Object<?, ?>{}
-      map.forEach(index : Number, key : Any, value : Any) {
-        obj.(key = key, value = value)
+      obj : Object<?, ?> = Object<?, ?>{}
+      map.forEach(
+        index : Number
+        key : Any
+        value : Any
+      ) {
+
+        obj.(
+          key = key
+          value = value
+        )
       }
+
       return obj
     }
 

@@ -6,7 +6,13 @@ UTF_8 : String = “utf-8”
 VERSION_NAME : String = “1.0”
 VERSION_CODE : Number = 1
 DEBUG : Boolean = true
-BASE_TYPES : String[] = [“Boolean”, “Number”, “String”, “Object”, “Array”]
+BASE_TYPES : String[] = [
+  “Boolean”
+  “Number”
+  “String”
+  “Object”
+  “Array”
+]
 
 //包级别常量 >>>>>>>>>>>>>>>>>>>>>>
 
@@ -14,15 +20,15 @@ BASE_TYPES : String[] = [“Boolean”, “Number”, “String”, “Object”
 
 //包级别函数 <<<<<<<<<<<<<<<<<<<<<<
 
-abstract call() //Java: public interface Interface$Call { void call(); }
+abstract call() //Java: public interface Interface$call { void call(); }
 
-abstract callback(arg : Number)
+abstract callback(arg : Number)  //Java: public interface Interface$callback { void callback(Number arg); }
 
 abstract isCorrect()
 
-TO_STRING(a : Any) { //Java: public class Class$TO_STRING { public static TO_STRING(Any a) { return a == null ? null : a.toString(); } }
+TO_STRING(a : Any) {
   return a == null ? null : a.toString()
-}
+} //Java: public class Class$TO_STRING { public static TO_STRING(Any a) { return a == null ? null : a.toString(); } }
 
 //包级别函数 >>>>>>>>>>>>>>>>>>>>>>
 
