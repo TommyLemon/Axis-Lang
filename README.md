@@ -112,7 +112,7 @@ user == User{}.(
 ```javascript
 arr : Array = [1, 2, 3]
 
-arr += 4 // arr.add(4)
+//forbidden  arr += 4 // arr.add(4)
 
 PRINT(arr) // [1, 2, 3, 4]
 
