@@ -165,7 +165,7 @@ Array
 ```javascript
 NAMES : String[] = [
   'name0'
-  'name2'
+  'name1'
   'name2'
 ]
 
@@ -184,7 +184,7 @@ Object
 ```javascript
 object : Object = {
   'key0' = value0
-  'key2' = value1
+  'key1' = value1
   'key2' = value2
 }
 
