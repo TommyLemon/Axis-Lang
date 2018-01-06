@@ -93,7 +93,7 @@ class User : Object, isCorrect {
 ```
 the first one must be an Object Type, and the after Object Type can only supply CONSTANS and abstract functions.
 
-<br />
+
 #### No 'static'
 replaced with UPPER_CASE names.
 static class
