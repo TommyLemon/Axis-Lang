@@ -150,13 +150,13 @@ MAIN(args : String[]?) {
 }
 ```
 static field
-```scala
+```javascript
 final TAG : String = 'Axis'
 ```
 
 #### No 'new' and no constructor
 replaced with Type{}, such as
-```scala
+```javascript
 user : User = User{}
 ```
 
