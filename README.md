@@ -52,6 +52,7 @@ name : String{
   @Override
   (value) { 
     name = value
+    return this
   }
 }? = null
 ```
@@ -103,8 +104,8 @@ obj == {}
 arr == []
 user == User{}
 user == User{}.(
-  id = 1
-  name = 'tommy'
+  id = 1 // setId(1)
+  name = 'tommy' // setName('tommy')
 )
 ```
 
