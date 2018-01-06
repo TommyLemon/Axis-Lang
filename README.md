@@ -183,6 +183,20 @@ replaced with Type{}, such as
 user : User = User{}
 ```
 
+#### No 'void' for functions
+```javascript
+call() {
+}
+
+callBack() : String {
+}
+```
+```javascript
+call()
+title : String = callBack()
+```
+
+
 #### No interface
 replaced with Object and function in package level
 
