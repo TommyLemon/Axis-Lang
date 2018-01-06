@@ -150,7 +150,7 @@ MAIN(args : String[]?) {
 }
 ```
 static field
-```javascript
+```scala
 final TAG : String = 'Axis'
 ```
 
