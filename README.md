@@ -135,11 +135,13 @@ PRINT(arr.0) // 3
 
 PRINT(arr.'0') // 3
 
-PRINT(arr.3) // throw IndexOutOfBoundsException('index = 3, arr.length = 2, index > arr.length !')
+PRINT(arr.3) // throw IndexOutOfBoundsException('index = 3, arr.length = 3, index >= arr.length !')
 
 PRINT(arr.'3') // null
 
 //forbidden  PRINT(arr.'a') //the index must be a number
+
+arr.4 = 4 // throw IndexOutOfBoundsException('index = 4, arr.length = 2, index > arr.length !')
 
 arr.'4' = 4
 
@@ -176,6 +178,8 @@ PRINT(obj.'name') // test
 //forbidden  PRINT(obj.tag) // throw NotFoundException('could not find the key "tag" in obj !')
 
 PRINT(obj.'tag') // null
+
+//forbidden  obj.tag = 'Java'
 
 obj.'tag' = 'Java'
 
