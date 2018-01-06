@@ -60,7 +60,7 @@ private, protected or public fields have no getter or setter functions.
 #### Expand fields
 such as
 ```javascript
-user.('isFriend' : true) //isFriend is not a field decleared in User, so it must be covered with ''
+user.('isFriend' = true) //isFriend is not a field decleared in User, so it must be covered with ''
 LOG(
   tag = User.class.getSimpleName()
   message = 'id=' + user.id + '; isFriend=' +  user.('isFriend')
