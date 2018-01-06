@@ -199,5 +199,46 @@ title : String = callBack()
 
 #### No interface
 replaced with Object and function in package level
+```javascript
+abstract refresh(array : Array?)
 
+class AdapterViewCallback {
+  createView(
+    type : Number!
+    parent : ViewGroup
+  ) : View
+  
+  bindView(
+    type : Number!
+    data : Any?
+    position : Number!
+  )
+}
+```
+
+```javascript
+class BaseAdapter : Adapter, AdapterViewCallback, refresh {
+  @Override
+  createView(
+    type : Number!
+    parent : ViewGroup
+  ) {
+    return DemoView{}
+  } : View
+  
+  @Override
+  bindView(
+    type : Number!
+    data : Any?
+    position : Number!
+  ) {
+    //TODO
+  }
+  
+  @Override
+  refresh(array : Array?) {
+    this.array = array == null ? [] : Array.OF(array = array)
+  }
+}
+```
 
