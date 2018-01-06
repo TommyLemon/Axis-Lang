@@ -141,7 +141,7 @@ PRINT(arr.'3') // null
 
 //forbidden  PRINT(arr.'a') //the index must be a number
 
-arr.4 = 4 // throw IndexOutOfBoundsException('index = 4, arr.length = 2, index > arr.length !')
+arr.4 = 4 // throw IndexOutOfBoundsException('index = 4, arr.length = 3, index > arr.length !')
 
 arr.'4' = 4
 
