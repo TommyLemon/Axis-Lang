@@ -94,6 +94,53 @@ class User : Object, isCorrect {
 the first one must be an Object Type, and the after Object Type can only supply CONSTANS and abstract functions.
 
 
+#### FOR_EACH
+Array
+```javascript
+NAMES : String[] = [
+  'name0'
+  'name2'
+  'name2'
+]
+
+FOR_EACH(
+  array = NAMES
+  callback = Callback(
+    item : String?
+    index : Number!
+  ) {
+    LOG(
+      tag = 'FOR_EACH'
+      message = item
+    )
+  }
+)
+```
+
+Object
+```javascript
+object : Object = {
+  'key0' = value0
+  'key2' = value1
+  'key2' = value2
+}
+
+FOR_EACH(
+  object = object
+  callback = Callback(
+    key : String?
+    value : Any?
+    index : Number!
+  ) {
+    LOG(
+      tag = 'FOR_EACH'
+      message = 'key=' + key + '; value=' + value + '; index=' + index
+    )
+  }
+)
+```
+
+
 #### No 'static'
 replaced with UPPER_CASE names.
 static class
