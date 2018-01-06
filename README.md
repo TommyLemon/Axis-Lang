@@ -298,9 +298,9 @@ class BaseAdapter : Adapter, AdapterViewCallback, refresh {
   createView(
     type : Number!
     parent : ViewGroup
-  ) {
+  ) : View {
     return DemoView{}
-  } : View
+  }
   
   @Override
   bindView(
