@@ -55,7 +55,7 @@ name : String{
   }
 }? = null
 ```
-private, protected or public fields have no getter and setter functions.
+private, protected or public fields have no getter or setter functions.
 
 #### Expand fields
 such as
