@@ -112,21 +112,23 @@ user == User{}.(
 ```javascript
 arr : Array = [1, 2, 3]
 
-arr += 4
+arr += 4 // arr.add(4)
 
 PRINT(arr) // [1, 2, 3, 4]
 
-arr += [5, 6] //arr.addAll([4])
+arr += [5, 6] //arr.addAll([5, 6])
 
 PRINT(arr) // [1, 2, 3, 4, 5, 6]
 
-arr -= [2, 3] //arr.removeAll([2, 5])
+arr -= [2, 5] //arr.removeAll([2, 5])
 
 PRINT(arr) // [1, 3, 4, 6]
 
 arr -= 0 //arr.remove(0)
 
 PRINT(arr) // [3, 4, 6]
+
+//forbidden  arr -= {0, 2} //arr.remove(0) arr.remove(2)
 
 PRINT(arr.0) // 3
 
@@ -144,7 +146,7 @@ obj : Object = {}.(
 obj += {}.(
   'name'  = 'test'
   'phone' = '123456789'
-) // obj.putAll({'phone': '123456789'})
+) // obj.putAll({'name' : 'test', 'phone': '123456789'})
 
 PRINT(obj) // { 'id' = 1, 'sex' = 0, 'name' = 'test', 'phone' = '123456789' }
 
@@ -152,7 +154,7 @@ obj -= 'sex' //obj.remove('sex')
 
 PRINT(obj) // { 'id' = 1, 'name' = 'test', 'phone' = '123456789' }
 
-obj -= ['id', 'phone'] //obj.remove('id')  obj.remove('phone')
+//forbidden  obj -= ['id', 'phone'] //obj.remove('id')  obj.remove('phone')
 
 PRINT(obj.'name') // test
 ```
