@@ -20,6 +20,12 @@ onject : Object = {
 #### Few system types
 only Boolean, Number, Decimal, String, Object and Array
 
+#### Safe type
+```javascript
+id : Number! = 0
+name : String? = null
+```
+
 #### Default value for arguments
 such as 
 ```javascript
@@ -58,13 +64,46 @@ user : User{
 }
 ```
 
-#### Multiple extends, such as
+#### Multiple extends and support Objects and functions
+such as
 ```javascript
 class User : Object, isCorrect {
+
+  @Override
+  isCorrect() : Boolean {
+    return true
+  }
 }
 ```
+the first one must be an Object Type, and the after Object Type can only supply CONSTANS and abstract functions.
 
 <br />
-#### No 'static', replaced with UPPER_CASE names <br />
-#### No 'new' and no constructor, replaced with Type{} <br />
-#### No interface, replaced with Object and function in package level <br />
+#### No 'static'
+replaced with UPPER_CASE names.
+static class
+```javascript
+class Outter : Object {
+  class INNER : Object {
+  }
+}
+```
+static funciton
+```javascript
+MAIN() {
+}
+```
+static field
+```javascript
+final TAG : String = 'Axis'
+```
+
+#### No 'new' and no constructor
+replaced with Type{}, such as
+```javascript
+user : User = User{}
+```
+
+#### No interface
+replaced with Object and function in package level
+
+
