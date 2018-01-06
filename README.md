@@ -8,8 +8,8 @@ Powerful, Flexible, Safe and Simple.
 #### Support JSON in the original code
 ```javascript
 onject : Object = {
-  'key0' : value0
-  'key1' : value1
+  'key0' = value0
+  'key1' = value1
   ...
 }
 ```
@@ -156,7 +156,7 @@ final TAG : String = 'Axis'
 
 #### No 'new' and no constructor
 replaced with Type{}, such as
-```javascript
+```scala
 user : User = User{}
 ```
 
