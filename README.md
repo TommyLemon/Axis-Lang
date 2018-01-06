@@ -94,6 +94,16 @@ class User : Object, isCorrect {
 the first one must be an Object Type, and the after Object Type can only supply CONSTANS and abstract functions.
 
 
+#### '==' between any Types
+```javascript
+b == true
+i == 0
+s == ''
+obj == {}
+arr == []
+user == User{}
+```
+
 #### forEach
 Array
 ```javascript
