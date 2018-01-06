@@ -29,7 +29,7 @@ name : String? = null
 #### Default value for arguments
 such as 
 ```javascript
-function(arg0 : Type0, arg1 : Type1 = null),
+function(arg0 : Type0, arg1 : Type1 = null)
 ```
 then you can call 
 ```javascript
