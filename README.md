@@ -134,6 +134,29 @@ object.forEach(
 }
 ```
 
+#### Assign value for final fields on any time
+declare a Type 
+```javascript
+class User : Object {
+  final id : Number!
+  final name : String?
+}
+```
+the call
+```javascript
+user : User = User{
+  id = 1
+  name = null
+}
+```
+or
+```javascript
+user : User = User{}
+user.(
+  id = 1
+  name = null
+)
+```
 
 #### No 'static'
 replaced with UPPER_CASE names.
