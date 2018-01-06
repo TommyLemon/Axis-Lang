@@ -132,6 +132,10 @@ PRINT(arr) // [3, 4, 6]
 
 PRINT(arr.0) // 3
 
+PRINT(arr.'0') // 3
+
+PRINT(arr.3) // throw IndexOutOfBoundsException('index = 3, arr.length = 2, index > arr.length !')
+
 PRINT(arr.'3') // null
 ```
 
@@ -156,7 +160,13 @@ PRINT(obj) // { 'id' = 1, 'name' = 'test', 'phone' = '123456789' }
 
 //forbidden  obj -= ['id', 'phone'] //obj.remove('id')  obj.remove('phone')
 
+PRINT(obj.name) // test
+
 PRINT(obj.'name') // test
+
+PRINT(obj.tag) // throw NotFoundException('could not find the key "tag" in obj !')
+
+PRINT(obj.'tag') // null
 ```
 
 
