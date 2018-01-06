@@ -132,7 +132,7 @@ PRINT(arr) // [3, 4, 6]
 
 PRINT(arr.0) // 3
 
-PRINT(arr.'2') // 6
+PRINT(arr.'3') // null
 ```
 
 ### '+', '-' between Objects
