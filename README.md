@@ -5,13 +5,13 @@ Powerful, Flexible, Safe and Simple.
 
 ## Features
 
-#### Support JSON in the original code
+#### Support JSON like Schema
 ```javascript
-onject : Object = {
+onject : Object = {}.(
   'key0' = value0
   'key1' = value1
   ...
-}
+)
 ```
 
 #### Strong and static Type 
