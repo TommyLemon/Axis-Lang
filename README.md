@@ -137,6 +137,12 @@ PRINT(arr.'0') // 3
 PRINT(arr.3) // throw IndexOutOfBoundsException('index = 3, arr.length = 2, index > arr.length !')
 
 PRINT(arr.'3') // null
+
+arr.'4' = 4
+
+PRINT(arr.'4') // 4
+
+PRINT(arr) // [3, 4, 6, null, 4]
 ```
 
 ### '+', '-' between Objects
@@ -167,6 +173,10 @@ PRINT(obj.'name') // test
 //forbidden  PRINT(obj.tag) // throw NotFoundException('could not find the key "tag" in obj !')
 
 PRINT(obj.'tag') // null
+
+obj.'tag' = 'Java'
+
+PRINT(obj.'tag') // Java
 ```
 
 
