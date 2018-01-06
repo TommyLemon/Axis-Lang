@@ -180,8 +180,8 @@ NAMES : String[] = [
 ]
 
 NAMES.forEach(
-  item : String?
   index : Number!
+  item : String?
 ) {
   LOG(
     tag = 'FOR_EACH'
@@ -201,11 +201,10 @@ object : Object = {
 object.forEach(
   key : String?
   value : Any?
-  index : Number!
 ) {
   LOG(
     tag = 'FOR_EACH'
-    message = 'key=' + key + '; value=' + value + '; index=' + index
+    message = 'key=' + key + '; value=' + value
   )
 }
 ```
