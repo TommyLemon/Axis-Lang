@@ -46,12 +46,12 @@ such as
 name : String{
   @Override
   () {
-    return this
+    return name
   }
 
   @Override
   (value) { 
-    this = value
+    name = value
   }
 }? = null
 ```
