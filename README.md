@@ -164,7 +164,7 @@ PRINT(obj.name) // test
 
 PRINT(obj.'name') // test
 
-PRINT(obj.tag) // throw NotFoundException('could not find the key "tag" in obj !')
+//forbidden  PRINT(obj.tag) // throw NotFoundException('could not find the key "tag" in obj !')
 
 PRINT(obj.'tag') // null
 ```
