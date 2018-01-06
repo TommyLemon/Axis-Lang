@@ -138,6 +138,8 @@ PRINT(arr.3) // throw IndexOutOfBoundsException('index = 3, arr.length = 2, inde
 
 PRINT(arr.'3') // null
 
+//forbidden  PRINT(arr.'a') //the index must be a number
+
 arr.'4' = 4
 
 PRINT(arr.'4') // 4
