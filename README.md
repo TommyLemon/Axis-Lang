@@ -55,14 +55,30 @@ name : String{
   }
 }? = null
 ```
+private, protected or public fields have no getter and setter functions.
 
-#### Expand fields for Types when declearing for variables
+#### Expand fields
 such as
 ```javascript
-user : User{
-  'isFriend' : Boolean 
+user.('isFriend' : Boolean) //isFriend is not a field decleared in User, so it must be covered with ''
+LOG(
+  tag = User.class.getSimpleName()
+  message = 'id=' + user.id + '; isFriend=' +  user.('isFriend')
+)
+```
+
+#### Package level funcions
+such as
+```javascript
+package org.axis.api
+
+abtract isCorrect() : Boolean!
+
+LOG(tag : String, message : String) {
+  ...
 }
 ```
+only suppor public abstract and public static functions.
 
 #### Multiple extends and support Objects and functions
 such as
@@ -70,7 +86,7 @@ such as
 class User : Object, isCorrect {
 
   @Override
-  isCorrect() : Boolean {
+  isCorrect() : Boolean! {
     return true
   }
 }
@@ -89,7 +105,7 @@ class Outter : Object {
 ```
 static funciton
 ```javascript
-MAIN() {
+MAIN(args : String[]?) {
 }
 ```
 static field
