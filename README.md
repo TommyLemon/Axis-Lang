@@ -108,6 +108,39 @@ user == User{}.(
 )
 ```
 
+### '+', '-' between Arrays
+```javascript
+arr : Array = [1, 2, 3]
+
+arr += [4]
+
+PRINT(arr) // [1, 2, 3, 4]
+
+arr -= [2, 3]
+
+PRINT(arr) // [1, 4]
+```
+
+### '+', '-' between Objects
+```javascript
+obj : Object = {}.(
+  'id' = 1
+  'sex' = 0
+  'name' = null
+)
+
+obj += {}.(
+  'phone' = '123456789'
+)
+
+PRINT(obj) // { 'id' = 1, 'sex' = 0, 'name' = null, 'phone' = '123456789' }
+
+obj -= ['id', 'sex']
+
+PRINT(obj) // { 'name' = null, 'phone' = '123456789' }
+```
+
+
 #### forEach
 Array
 ```javascript
