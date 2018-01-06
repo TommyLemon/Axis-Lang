@@ -281,12 +281,12 @@ abstract refresh(array : Array?)
 class AdapterViewCallback {
   createView(
     type : Number!
-    parent : ViewGroup
+    parent : ViewGroup?
   ) : View
   
   bindView(
     type : Number!
-    data : Any?
+    itemView : ItemView!
     position : Number!
   )
 }
@@ -297,7 +297,7 @@ class BaseAdapter : Adapter, AdapterViewCallback, refresh {
   @Override
   createView(
     type : Number!
-    parent : ViewGroup
+    parent : ViewGroup?
   ) : View {
     return DemoView{}
   }
@@ -305,10 +305,14 @@ class BaseAdapter : Adapter, AdapterViewCallback, refresh {
   @Override
   bindView(
     type : Number!
-    data : Any?
+    itemView : ItemView!
     position : Number!
   ) {
-    //TODO
+    itemView.bindView(
+      getItemViewType(position = position)
+      getItem(position = position)
+      position = position
+    )
   }
   
   @Override
