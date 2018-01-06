@@ -102,6 +102,10 @@ s == ''
 obj == {}
 arr == []
 user == User{}
+user == User{}.(
+  id = 1
+  name = 'tommy'
+)
 ```
 
 #### forEach
