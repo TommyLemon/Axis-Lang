@@ -112,13 +112,19 @@ user == User{}.(
 ```javascript
 arr : Array = [1, 2, 3]
 
-arr += [4]
+arr += [4] //arr.addAll([4])
 
 PRINT(arr) // [1, 2, 3, 4]
 
-arr -= [2, 3]
+arr -= [2, 3] //arr.removeAll([2, 3])
 
 PRINT(arr) // [1, 4]
+
+arr -= 0 //arr.remove(0)
+
+PRINT(arr) // [4]
+
+PRINT(arr.0) // 4
 ```
 
 ### '+', '-' between Objects
@@ -131,13 +137,15 @@ obj : Object = {}.(
 
 obj += {}.(
   'phone' = '123456789'
-)
+) // obj.putAll({'phone': '123456789'})
 
 PRINT(obj) // { 'id' = 1, 'sex' = 0, 'name' = null, 'phone' = '123456789' }
 
-obj -= ['id', 'sex']
+obj -= 'sex' //obj.remove('sex')
 
-PRINT(obj) // { 'name' = null, 'phone' = '123456789' }
+PRINT(obj) // { 'id' = 1, 'name' = null, 'phone' = '123456789' }
+
+PRINT(obj.'phone') // 123456789
 ```
 
 
