@@ -338,3 +338,48 @@ class BaseAdapter : Adapter, AdapterViewCallback, refresh {
 }
 ```
 
+
+#### When
+replace if-else if-else, switch-case
+```javascript
+when () {
+  (a = 1) {
+    ...
+  }
+  (a < 1 & a != -1) {
+    ...
+  }
+  () { //else
+    ...
+  }
+}
+```
+
+```javascript
+when (a) {
+  (= 1) {
+    ...
+  }
+  (< 1) {
+    ...
+  }
+  () { //else
+    ...
+  }
+}
+```
+
+```javascript
+when (a =) {
+  (1) {
+    ...
+  }
+  (2 | 3) {
+    ...
+  }
+  () { //else
+    ...
+  }
+}
+```
+
