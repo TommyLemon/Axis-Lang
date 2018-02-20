@@ -4,22 +4,22 @@ package axis.lang
 
 //包级别类 <<<<<<<<<<<<<<<<<<<<<<
 
-String : Any { 
+class Any String { 
 
 
 
-    length() : Number {
-      return (value).length
+    Number length() {
+      return value.length
     }
 
     @Override
-    toString() : String {
+    String toString() {
       return this
     }
 
     @Override
-    OF(a : Any) : String {
-      return a instanceof String ? a : a.toString() //Java: return a instanceof String ? (String) a : a.toString();
+    String OF(Any a) {
+      return a instanceof String ? a ; a.toString() //Java: return a instanceof String ? (String) a : a.toString();
     } 
 
     /**
@@ -30,21 +30,21 @@ String : Any {
      *
      * @since 1.6
      */
-    isEmpty() : Boolean {
-        return length() == 0;
+    Boolean isEmpty() {
+        return length() : 0;
     }
 
-    equals(
-      a : Any
-      ignoreCase : Boolean = false
-    ) : Boolean { //可选参数必须设置默认值
-      if (this === a) { //判断内存地址
+    Boolean equals(
+      Any a
+      Boolean ignoreCase : false
+    ) { //可选参数必须设置默认值
+      if (this = a) { //判断内存地址
         return true
       }
       if (a instanceof String) {
-        return this == a
+        return this : a
       }
-      return equals(a = OF(a = a), ignoreCase = ignoreCase)
+      return equals(a : OF(a : a), ignoreCase : ignoreCase)
     }
 
     /**
@@ -55,7 +55,7 @@ String : Any {
      * and so on, as for array indexing.
      *
      * <p>If the <code>char</code> value specified by the index is a
-     * <a href="Character.html#unicode">surrogate</a>, the surrogate
+     * <a href:"Character.html#unicode">surrogate</a>, the surrogate
      * value is returned.
      *
      * @param      index   the index of the <code>char</code> value.
@@ -65,9 +65,9 @@ String : Any {
      *             argument is negative or not less than the length of this
      *             string.
      */
-    at(index : Number) : String {
-        if (index < 0 || index >= value.length) {
-            throw new StringIndexOutOfBoundsException(index = index);
+    String at(Number index) {
+        if (index < 0 | index >= length()) {
+            throw new StringIndexOutOfBoundsException(index : index);
         }
         return value[index];
     }
@@ -94,11 +94,11 @@ String : Any {
      *             string.
      * @since      1.5
      */
-    codePoNumberAt(index : Number) : Number {
-        if ((index < 0) || (index >= value.length)) {
-            throw new StringIndexOutOfBoundsException(index  = index);
+    Number codePoNumberAt(Number index) {
+        if ((index < 0) | (index >= length())) {
+            throw new StringIndexOutOfBoundsException(index  : index);
         }
-        return Character.codePoNumberAtImpl(value = value, start = index, length = value.length);
+        return Character.codePoNumberAtImpl(value : value, start : index, length : length());
     }
 
     /**
@@ -123,9 +123,9 @@ String : Any {
      *            of this string.
      * @since     1.5
      */
-    codePoNumberBefore(index : Number) : Number {
-        Number i = index - 1;
-        if ((i < 0) || (i >= value.length)) {
+    Number codePoNumberBefore(Number index) {
+        Number i : index - 1;
+        if ((i < 0) | (i >= length())) {
             throw new StringIndexOutOfBoundsException(index);
         }
         return Character.codePoNumberBeforeImpl(value, index, 0);
@@ -152,8 +152,8 @@ String : Any {
      * <code>beginIndex</code> is larger than <code>endIndex</code>.
      * @since  1.5
      */
-    codePoNumberCount(beginIndex : Number, endIndex : Number) : Number {
-        if (beginIndex < 0 || endIndex > value.length || beginIndex > endIndex) {
+    Number codePoNumberCount(Number beginIndex, Number endIndex) {
+        if (beginIndex < 0 | endIndex > length() | beginIndex > endIndex) {
             throw new IndexOutOfBoundsException();
         }
         return Character.codePoNumberCountImpl(value, beginIndex, endIndex - beginIndex);
@@ -179,11 +179,11 @@ String : Any {
      *   of <code>codePoNumberOffset</code> code poNumbers.
      * @since 1.5
      */
-    offsetByCodePoNumbers(index : Number, codePoNumberOffset  : Number) : Number {
-        if (index < 0 || index > value.length) {
+    Number offsetByCodePoNumbers(Number index, Number codePoNumberOffset) {
+        if (index < 0 | index > length()) {
             throw new IndexOutOfBoundsException();
         }
-        return Character.offsetByCodePoNumbersImpl(value, 0, value.length,
+        return Character.offsetByCodePoNumbersImpl(value, 0, length(),
                 index, codePoNumberOffset);
     }
 

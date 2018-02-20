@@ -4,40 +4,40 @@ package axis.lang
 
 //包级别类 <<<<<<<<<<<<<<<<<<<<<<
 
-Decimal : Number { 
+Number Decimal { 
 
-  private leftValue : Number = 0 //小数左边的整数值
-  private rightValue : Number = 0 //小数右边的整数值
+  private Number leftValue : 0 //小数左边的整数值
+  private Number rightValue : 0 //小数右边的整数值
 
 
   @Override
-  compareTo(n : Number) : Number {
+  Number compareTo(Number n) {
     return compareTo(
-      d = OF(n = n)
+      d : OF(n : n)
     )
   }
 
-  compareTo(d : Decimal) : Number {
-    leftCompare : Number = COMPARE_TO(
-      n0 = leftValue
-      n1 = d.(leftValue)
+  Number compareTo(Decimal d) {
+    Number leftCompare : COMPARE_TO(
+      n0 : leftValue
+      n1 : d.(leftValue)
     )
-    return leftCompare != 0 ? leftCompare : COMPARE_TO(
-      n0 = rightValue
-      n1 = d.(rightValue)
+    return leftCompare != 0 ? leftCompare ; COMPARE_TO(
+      n0 : rightValue
+      n1 : d.rightValue
     ) // “n0 : ” ， “n1 : ” 这种参数字符串都由编辑器生成且不可更改，参考IntelliJ IDEA参数提示功能
   }
 
   @Override
-  toString() : String {
+  String toString() {
     return leftValue + ‘.’ + rightValue
   }
 
   @Override //在Java中子类实现父类已有的static函数是覆盖，而不是重写，但这里特地加上是为了更明显地提示这个函数会覆盖父类的同名函数
-  OF(n : Number) {
+  Decimal OF(Number n) {
     return Decimal{
       leftValue : (
-        n == null ? 0 : n.(
+        n = null ? 0 ; n.(
           value
         )
       )
@@ -45,18 +45,18 @@ Decimal : Number {
   }
 
   @Override
-  OF(s : String) {
-    s = s ?? “”
-    index : Number = s.indexOf(s = ‘.’)
+  Decimal OF(String s) {
+    s : s ?; “”
+    Number index : s.indexOf(s : ‘.’)
     return Decimal{
       leftValue : Number.OF(
-        s = index < 0 ? s : s.substring(
-          start = 0
-          end = index
+        s : index < 0 ? s ; s.substring(
+          start : 0
+          end : index
         )
       )
-      rightValue : index < 0 ? 0 : Number.OF(
-        s = s.substring(start = index + 1)
+      rightValue : index < 0 ? 0 ; Number.OF(
+        s : s.substring(start : index + 1)
       )
     }
   }

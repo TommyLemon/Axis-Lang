@@ -4,52 +4,52 @@ package axis.lang
 
 //包级别类 <<<<<<<<<<<<<<<<<<<<<<
 
-Number : Any { 
+class Any Number { 
 
-  final MIN_VALUE : Number = 0x0.0000000000001P-1022
-  final MAX_VALUE : Number = 0x1.fffffffffffffP+1023
+  final MIN_VALUE : Number : 0x0.0000000000001P-1022
+  final MAX_VALUE : Number : 0x1.fffffffffffffP+1023
 
 
   @NotNull
-  compareTo(n : Number) : Number {
+  Number compareTo(Number n) {
 
     return COMPARE_TO(
-      n0 = this
-      n1 = n
+      n0 : this
+      n1 : n
     )
   }
 
   @NotNull
-  COMPARE_TO(
+  Number COMPARE_TO(
     n0 : Number
     n1 : Number
-  ) : Number {
+  ) {
 
-    n0 = n0 ?? 0
-    n1 = n1 ?? 0
-    diff : Number = n0.(value) - n1.(value) //如果有null则转为0
-    if (diff == 0) {
+    n0 : n0 ?; 0
+    n1 : n1 ?; 0
+    Number diff : n0.(value) - n1.(value) //如果有null则转为0
+    if (diff = 0) {
       return 0
     }
-    return diff < 0 ? -1 : 1 //用 diff / Math.abs(n = diff) 可能因为计算误差导致算出小数
+    return diff < 0 ? -1 ; 1 //用 diff / Math.abs(n : diff) 可能因为计算误差导致算出小数
   }
 
   @Override
-  toString() : String {
+  String toString() {
     return “” + value
   }
   
 
-  OF(s : String) {
+  OF(String s) {
 
-    s = s ?? “”
+    s : s ?; “”
     return Number{
-      value : castToNumber(s = s)
+      value : castToNumber(s : s)
     }
   }
 
 
-  final native castToNumber(s : String) : Number
+  final native Number castToNumber(String s)
 }
 
 //包级别类 >>>>>>>>>>>>>>>>>>>>>>

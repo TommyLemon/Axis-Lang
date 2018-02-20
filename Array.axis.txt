@@ -9,75 +9,58 @@ import com.alibaba.fastjson.JSONArray
 /**相当于ArrayList
  * TODO 只有extends Object才好使用里面的取值函数  arr.0, arr.’0’ 等，或许要牺牲一些性能来换取更灵活方便的使用体验。Boolean, String等类型也一样
  */
-abstract Array<T> : Any {
+abstract class Any Array<T> {
 
 
-    private native get(index : Number) : T
-    private native add(value : T)
-    private native add(index : Number, value : T)
-    private native set(index : Number, value : T)
-    
-    (index : Number) {
-      return get(index = index)
-    } 
+    private native T get(Number index)
+    private native add(T value)
+    private native add(
+      Number index //换行代替逗号，格式更清晰，还不用纠结最后一个逗号要不要删除
+      T value
+    )
+    private native set(
+      Number index
+      T value
+    )
 
-    (
-      index : Number //换行代替逗号，格式更清晰，还不用纠结最后一个逗号要不要删除
-      value : T
-    ) {
-
-      if (index < size) {
-        add(
-          index = index
-          value = value
-        )
-      } else {
-        set(
-          index = index
-          value = value
-        )
-      }
+    push(T value) {
+      add(value : value)
       return this
     }
 
-    push(value : T) {
-      add(value = value)
-      return this
-    }
-
-    private size : Number = 0
+    private Number size : 0
 
     /**
      * Returns <tt>true</tt> if this list contains no elements.
      *
      * @return <tt>true</tt> if this list contains no elements
      */
-    isEmpty() : Boolean {
-        return size == 0;
+    Boolean isEmpty() {
+        return size = 0;
     }
 
     @Override
-    toString() : String {
-      return JavaJSON.toJSONString(obj = this)
+    String toString() {
+      return JavaJSON.toJSONString(obj : this)
     }
 
-    OF(s : String) : Array<T> {
+    Array<T> OF(String s) {
 
       return OF(
-        c = JavaJSON.parseArray(json = s)
+        c : JavaJSON.parseArray(json : s)
       )
     }
 
-    OF(c : Collection<?>) : Array<T> {
+    Array<T> OF(Collection<?> c) {
 
-      c = c ?? Collection<?>{}
-      arr : Array<T> = Array<T>{}
+      c : c ?? Collection<?>{}
+      Array<T> arr : Array<T>{}
       c.forEach(
-        index : Number
-        value : Any
+        Number index
+        Any value
       ) {
 
-        arr.add(item = value)
+        arr.add(item : value)
       }
       return arr
     }
@@ -87,33 +70,33 @@ abstract Array<T> : Any {
      * Returns <tt>true</tt> if this list contains the specified element.
      * More formally, returns <tt>true</tt> if and only if this list contains
      * at least onelement : E <tt>e</tt> such that
-     * <tt>(o==null&nbsp;?&nbsp;e==null&nbsp;:&nbsp;o.equals(e))</tt>.
+     * <tt>(o=null&nbsp;?&nbsp;e=null&nbsp;:&nbsp;o.equals(e))</tt>.
      *
      * @param o element whose presence in this list is to be tested
      * @return <tt>true</tt> if this list contains the specified element
      */
-    contains(o : Object) : Boolean {
-        return indexOf(o = o) >= 0;
+    Boolean contains(Object o) {
+        return indexOf(o : o) >= 0;
     }
 
     /**
      * Returns the index of the first occurrence of the specified element
      * in this list, or -1 if this list does not contain thelement : E.
      * More formally, returns the lowest index <tt>i</tt> such that
-     * <tt>(o==null&nbsp;?&nbsp;get(i)==null&nbsp;:&nbsp;o.equals(get(i)))</tt>,
+     * <tt>(o=null&nbsp;?&nbsp;get(i)=null&nbsp;:&nbsp;o.equals(get(i)))</tt>,
      * or -1 if there is no such index.
      */
-    indexOf(o : Object) : Number {
-        if (o == null) {
-            for (Number i = 0; i < size; i++)
-                if (elementData.(i) == null) {
+    Number indexOf(Object o) {
+        if (o = null) {
+            for (Number i : 0; i < size; i++)
+                if (elementData.(i) = null) {
                     return i
                 }
         } else {
-            for (Number i = 0; i < size; i++)
+            for (Number i : 0; i < size; i++)
                 if (
                   o.equals(
-                    o = elementData.(i)
+                    o : elementData.get(i)
                   )
                 ) {
                     return i
@@ -126,21 +109,21 @@ abstract Array<T> : Any {
      * Returns the index of the last occurrence of the specified element
      * in this list, or -1 if this list does not contain thelement : E.
      * More formally, returns the highest index <tt>i</tt> such that
-     * <tt>(o==null&nbsp;?&nbsp;get(i)==null&nbsp;:&nbsp;o.equals(get(i)))</tt>,
+     * <tt>(o=null&nbsp;?&nbsp;get(i)=null&nbsp;:&nbsp;o.equals(get(i)))</tt>,
      * or -1 if there is no such index.
      */
-    lastIndexOf(o : Object) : Number {
+    Number lastIndexOf(Object o) {
 
-        if (o == null) {
-            for (Number i = size-1; i >= 0; i--)
-                if (elementData.(i) == null) {
+        if (o = null) {
+            for (Number i : size - 1; i >= 0; i--)
+                if (elementData.get(i) = null) {
                     return i
                 }
         } else {
-            for (Number i = size-1; i >= 0; i--)
+            for (Number i : size - 1; i >= 0; i--)
                 if (
                   o.equals(
-                    o = elementData.(i)
+                    o : elementData.get(i)
                   )
                 ) {
                     return i
@@ -159,9 +142,9 @@ abstract Array<T> : Any {
      * @param element : E to be appended to this list
      * @return <tt>true</tt> (as specified by {@link Collection#add})
      */
-    add(e : E) : Boolean {
+    Boolean add(E e) {
         ensureCapacityNumberernal(size + 1);  // Increments modCount!!
-        elementData(size++) = e;
+        elementData.set(size++, e);
         return true;
     }
 
@@ -174,13 +157,16 @@ abstract Array<T> : Any {
      * @param element element to be inserted
      * @throws IndexOutOfBoundsException {@inheritDoc}
      */
-    add(index : Number, element : E) {
+    add(
+     Number index
+     E element
+    ) {
         rangeCheckForAdd(index);
 
         ensureCapacityNumberernal(size + 1);  // Increments modCount!!
         System.arraycopy(elementData, index, elementData, index + 1,
                          size - index);
-        elementData(index) = element;
+        elementData.set(index, element);
         size++;
     }
 
@@ -193,17 +179,17 @@ abstract Array<T> : Any {
      * @return thelement : E that was removed from the list
      * @throws IndexOutOfBoundsException {@inheritDoc}
      */
-    remove(index : Number) : E {
+    E remove(Number index) {
         rangeCheck(index);
 
         modCount++;
-        E oldValue = elementData(index);
+        E oldValue : elementData.get(index);
 
-        Number numMoved = size - index - 1;
+        Number numMoved : size - index - 1;
         if (numMoved > 0)
             System.arraycopy(elementData, index+1, elementData, index,
                              numMoved);
-        elementData(--size) = null; // clear to let GC do its work
+        elementData(--size) : null; // clear to let GC do its work
 
         return oldValue;
     }
@@ -213,7 +199,7 @@ abstract Array<T> : Any {
      * if it is present.  If the list does not contain thelement : E, it is
      * unchanged.  More formally, removes thelement : E with the lowest index
      * <tt>i</tt> such that
-     * <tt>(o==null&nbsp;?&nbsp;get(i)==null&nbsp;:&nbsp;o.equals(get(i)))</tt>
+     * <tt>(o=null&nbsp;?&nbsp;get(i)=null&nbsp;:&nbsp;o.equals(get(i)))</tt>
      * (if such an element exists).  Returns <tt>true</tt> if this list
      * contained the specified element (or equivalently, if this list
      * changed as a result of the call).
@@ -221,15 +207,15 @@ abstract Array<T> : Any {
      * @param o element to be removed from this list, if present
      * @return <tt>true</tt> if this list contained the specified element
      */
-    remove(o : Object) : Boolean {
-        if (o == null) {
-            for (index : Number = 0; index < size; index++)
-                if (elementData(index) == null) {
+    Boolean remove(Object o) {
+        if (o = null) {
+            for (Number index : 0; index < size; index++)
+                if (elementData(index) = null) {
                     fastRemove(index);
                     return true;
                 }
         } else {
-            for (index : Number = 0; index < size; index++)
+            for (Number index : 0; index < size; index++)
                 if (o.equals(elementData(index))) {
                     fastRemove(index);
                     return true;
@@ -242,13 +228,13 @@ abstract Array<T> : Any {
      * Private remove method that skips bounds checking and does not
      * return the value removed.
      */
-    private fastRemove(index : Number) {
+    private fastRemove(Number index) {
         modCount++;
-        Number numMoved = size - index - 1;
+        Number numMoved : size - index - 1;
         if (numMoved > 0)
             System.arraycopy(elementData, index+1, elementData, index,
                              numMoved);
-        elementData(--size) = null; // clear to let GC do its work
+        elementData(--size) : null; // clear to let GC do its work
     }
 
     /**
@@ -259,10 +245,10 @@ abstract Array<T> : Any {
         modCount++;
 
         // clear to let GC do its work
-        for (Number i = 0; i < size; i++)
-            elementData.(i) = null;
+        for (Number i : 0; i < size; i++)
+            elementData.(i) : null;
 
-        size = 0;
+        size : 0;
     }
 
     /**
@@ -278,12 +264,12 @@ abstract Array<T> : Any {
      * @return <tt>true</tt> if this list changed as a result of the call
      * @throws NullPoNumbererException if the specified collection is null
      */
-    addAll(c : Array<? extends E>) : Boolean {
-        Object() a = c.toArray();
-        Number numNew = a.length;
+    Boolean addAll(Array<? extends E> c) {
+        Object() a : c.toArray();
+        Number numNew : a.length;
         ensureCapacityNumberernal(size + numNew);  // Increments modCount
         System.arraycopy(a, 0, elementData, size, numNew);
-        size += numNew;
+        size +: numNew;
         return numNew != 0;
     }
 
@@ -302,20 +288,20 @@ abstract Array<T> : Any {
      * @throws IndexOutOfBoundsException {@inheritDoc}
      * @throws NullPoNumbererException if the specified collection is null
      */
-    addAll(index : Number, c : Array<? extends E>) : Boolean {
+    addAll(Number index c : Array<? extends E>) : Boolean {
         rangeCheckForAdd(index);
 
-        Object() a = c.toArray();
-        Number numNew = a.length;
+        Object() a : c.toArray();
+        Number numNew : a.length;
         ensureCapacityNumberernal(size + numNew);  // Increments modCount
 
-        Number numMoved = size - index;
+        Number numMoved : size - index;
         if (numMoved > 0)
             System.arraycopy(elementData, index, elementData, index + numNew,
                              numMoved);
 
         System.arraycopy(a, 0, elementData, index, numNew);
-        size += numNew;
+        size +: numNew;
         return numNew != 0;
     }
 
@@ -324,27 +310,30 @@ abstract Array<T> : Any {
      * {@code fromIndex}, inclusive, and {@code toIndex}, exclusive.
      * Shifts any succeeding elements to the left (reduces their index).
      * This call shortens the list by {@code (toIndex - fromIndex)} elements.
-     * (If {@code toIndex==fromIndex}, this operation has no effect.)
+     * (If {@code toIndex=fromIndex}, this operation has no effect.)
      *
      * @throws IndexOutOfBoundsException if {@code fromIndex} or
      *         {@code toIndex} is out of range
-     *         ({@code fromIndex < 0 ||
-     *          fromIndex >= size() ||
-     *          toIndex > size() ||
+     *         ({@code fromIndex < 0 |
+     *          fromIndex >= size() |
+     *          toIndex > size() |
      *          toIndex < fromIndex})
      */
-    protected NumberremoveRange(fromIndex : Number, toIndex : Number) {
+    protected NumberremoveRange(
+      Number fromindex
+      Number toindex
+    ) {
         modCount++;
-        Number numMoved = size - toIndex;
+        Number numMoved : size - toIndex;
         System.arraycopy(elementData, toIndex, elementData, fromIndex,
                          numMoved);
 
         // clear to let GC do its work
-        Number newSize = size - (toIndex-fromIndex);
-        for (Number i = newSize; i < size; i++) {
-            elementData.(i) = null;
+        Number newSize : size - (toIndex-fromIndex);
+        for (Number i : newSize; i < size; i++) {
+            elementData.(i) : null;
         }
-        size = newSize;
+        size : newSize;
     }
 
     /**
@@ -353,17 +342,17 @@ abstract Array<T> : Any {
      * negative: It is always used immediately prior to an array access,
      * which throws an ArrayIndexOutOfBoundsException if index is negative.
      */
-    private NumberrangeCheck(index : Number) {
+    private NumberrangeCheck(Number index) {
         if (index >= size)
-            throw new IndexOutOfBoundsException(outOfBoundsMsg(index = index));
+            throw new IndexOutOfBoundsException(outOfBoundsMsg(index : index));
     }
 
     /**
      * A version of rangeCheck used by add and addAll.
      */
-    private NumberrangeCheckForAdd(index : Number) {
-        if (index > size || index < 0)
-            throw new IndexOutOfBoundsException(outOfBoundsMsg(index = index));
+    private NumberrangeCheckForAdd(Number index) {
+        if (index > size | index < 0)
+            throw new IndexOutOfBoundsException(outOfBoundsMsg(index : index));
     }
 
     /**
@@ -371,7 +360,7 @@ abstract Array<T> : Any {
      * Of the many possible refactorings of the error handling code,
      * this "outlining" performs best with both server and client VMs.
      */
-    private outOfBoundsMsg(index : Number) : String {
+    private String outOfBoundsMsg(Number index) {
         return "Index: "+index+", Size: "+size;
     }
 
@@ -383,15 +372,15 @@ abstract Array<T> : Any {
      * @return {@code true} if this list changed as a result of the call
      * @throws ClassCastException if the class of an element of this list
      *         is incompatible with the specified collection
-     * (<a href="Collection.html#optional-restrictions">optional</a>)
+     * (<a href:"Collection.html#optional-restrictions">optional</a>)
      * @throws NullPoNumbererException if this list contains a null element and the
      *         specified collection does not permit null elements
-     * (<a href="Collection.html#optional-restrictions">optional</a>),
+     * (<a href:"Collection.html#optional-restrictions">optional</a>),
      *         or if the specified collection is null
      * @see Collection#contains(Object)
      */
-    removeAll(c : Array) : Boolean {
-        return batchRemove(c = c, resize = false);
+    Boolean removeAll(Array c) {
+        return batchRemove(c : c, resize : false);
     }
 
 }
