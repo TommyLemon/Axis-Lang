@@ -7,11 +7,11 @@ Powerful, Flexible, Safe and Simple.
 
 #### Support JSON like Schema
 ```javascript
-onject : Object = {}.(
-  'key0' = value0
-  'key1' = value1
+Object object : {
+  'key0' : value0
+  'key1' : value1
   ...
-)
+}
 ```
 
 #### Strong and static Type 
@@ -22,49 +22,49 @@ only Boolean, Number, Decimal, String, Object and Array
 
 #### Safe type
 ```javascript
-id : Number! = 0
-name : String? = null
+Number id : 0
+String name : null
 ```
 
 #### Default value for arguments
 such as 
 ```javascript
-function(arg0 : Type0, arg1 : Type1 = null)
+function(Type0 arg0, Type1 arg1 : null)
 ```
 then you can call 
 ```javascript
-function(arg0 = value0)
+function(arg0 : value0)
 ```
 or 
 ```javascript
-function(arg0 = value0, arg1 = value1)
+function(arg0 : value0, arg1 : value1)
 ```
 
 #### Default and anonymous getter and setter functions for fields
 such as
 ```javascript
-name : String{
+String name {
   @Override
   () {
     return name
   }
 
   @Override
-  (value) { 
-    name = value
+  (value) {
+    name : value
     return this
   }
-}? = null
+} : null
 ```
 private, protected or public fields have no getter or setter functions.
 
 #### Expand fields
 such as
 ```javascript
-user.'isFriend' = true //isFriend is not a field decleared in User, so it must be covered with ''
+user.'isFriend' : true //isFriend is not a field decleared in User, so it must be covered with ''
 LOG(
-  tag = User.class.getSimpleName()
-  message = 'id=' + user.id + '; isFriend=' +  user.'isFriend'
+  tag : User.class.getSimpleName()
+  message : 'id = ' + user.id + '; isFriend = ' +  user.'isFriend'
 )
 ```
 
@@ -73,9 +73,9 @@ such as
 ```javascript
 package org.axis.api
 
-abtract isCorrect() : Boolean!
+abtract Boolean isCorrect()
 
-LOG(tag : String, message : String) {
+LOG(String tag, String message) {
   ...
 }
 ```
@@ -84,10 +84,10 @@ only suppor public abstract and public static functions.
 #### Multiple extends and support Objects and functions
 such as
 ```javascript
-class User : Object, isCorrect {
+class Object User implements isCorrect {
 
   @Override
-  isCorrect() : Boolean! {
+  Boolean isCorrect() {
     return true
   }
 }
@@ -95,55 +95,55 @@ class User : Object, isCorrect {
 the first one must be an Object Type, and the after Object Type can only supply CONSTANS and abstract functions.
 
 
-#### '==' between any Types
+#### '=' between any Types
 ```javascript
-b == true
-i == 0
-s == ''
-obj == {}
-arr == []
-user == User{}
-user == User{}.(
-  id = 1 // setId(1)
-  name = 'tommy' // setName('tommy')
-)
+b = true
+i = 0
+s = ''
+obj = {}
+arr = []
+user = User{}
+user = User{
+  id : 1 // setId(1)
+  name : 'tommy' // setName('tommy')
+}
 ```
 
 ### '+', '-' between Arrays
 ```javascript
-arr : Array = [1, 2, 3]
+Array arr : [1, 2, 3]
 
-//forbidden  arr += 4 // arr.add(4)
+//forbidden  arr +: 4 // arr.add(4)
 
 PRINT(arr) // [1, 2, 3, 4]
 
-arr += [5, 6] //arr.addAll([5, 6])
+arr +: [5, 6] //arr.addAll([5, 6])
 
 PRINT(arr) // [1, 2, 3, 4, 5, 6]
 
-arr -= [2, 5] //arr.removeAll([2, 5])
+arr -: [2, 5] //arr.remove(2);  arr.remove(5);
 
 PRINT(arr) // [1, 3, 4, 6]
 
-arr -= 0 //arr.remove(0)
+arr -: 0 //arr.remove(0)
 
 PRINT(arr) // [3, 4, 6]
 
-//forbidden  arr -= {0, 2} //arr.remove(0) arr.remove(2)
+//forbidden  arr -: {0, 2} //arr.remove(0) arr.remove(2)
 
 PRINT(arr.0) // 3
 
 PRINT(arr.'0') // 3
 
-PRINT(arr.3) // throw IndexOutOfBoundsException('index = 3, arr.length = 3, index >= arr.length !')
+PRINT(arr.3) // throw IndexOutOfBoundsException('index : 3, arr.length : 3, index >: arr.length !')
 
 PRINT(arr.'3') // null
 
 //forbidden  PRINT(arr.'a') //the index must be a number
 
-arr.4 = 4 // throw IndexOutOfBoundsException('index = 4, arr.length = 3, index > arr.length !')
+arr.4 : 4 // throw IndexOutOfBoundsException('index : 4, arr.length : 3, index > arr.length !')
 
-arr.'4' = 4
+arr.'4' : 4
 
 PRINT(arr.'4') // 4
 
@@ -152,24 +152,24 @@ PRINT(arr) // [3, 4, 6, null, 4]
 
 ### '+', '-' between Objects
 ```javascript
-obj : Object = {}.(
-  'id' = 1
-  'sex' = 0
-  'name' = null
-)
+Object obj : {
+  'id' : 1
+  'sex' : 0
+  'name' : null
+}
 
-obj += {}.(
-  'name'  = 'test'
-  'phone' = '123456789'
-) // obj.putAll({'name' : 'test', 'phone': '123456789'})
+obj +: {
+  'name'  : 'test'
+  'phone' : '123456789'
+} // obj.putAll({'name' : 'test', 'phone': '123456789'})
 
-PRINT(obj) // { 'id' = 1, 'sex' = 0, 'name' = 'test', 'phone' = '123456789' }
+PRINT(obj) // { 'id' : 1, 'sex' : 0, 'name' : 'test', 'phone' : '123456789' }
 
-obj -= 'sex' //obj.remove('sex')
+obj -: 'sex' //obj.remove('sex')
 
-PRINT(obj) // { 'id' = 1, 'name' = 'test', 'phone' = '123456789' }
+PRINT(obj) // { 'id' : 1, 'name' : 'test', 'phone' : '123456789' }
 
-//forbidden  obj -= ['id', 'phone'] //obj.remove('id')  obj.remove('phone')
+//forbidden  obj -: ['id', 'phone'] //obj.remove('id')  obj.remove('phone')
 
 PRINT(obj.name) // test
 
@@ -179,9 +179,9 @@ PRINT(obj.'name') // test
 
 PRINT(obj.'tag') // null
 
-//forbidden  obj.tag = 'Java'
+//forbidden  obj.tag : 'Java'
 
-obj.'tag' = 'Java'
+obj.'tag' : 'Java'
 
 PRINT(obj.'tag') // Java
 ```
@@ -190,38 +190,38 @@ PRINT(obj.'tag') // Java
 #### forEach
 Array
 ```javascript
-NAMES : String[] = [
+String[] NAMES : [
   'name0'
   'name1'
   'name2'
 ]
 
 NAMES.forEach(
-  index : Number!
-  item : String?
+  Number index
+  String item
 ) {
   LOG(
-    tag = 'FOR_EACH'
-    message = item
+    tag : 'FOR_EACH'
+    message : item
   )
 }
 ```
 
 Object
 ```javascript
-object : Object = {
-  'key0' = value0
-  'key1' = value1
-  'key2' = value2
+object : Object : {
+  'key0' : value0
+  'key1' : value1
+  'key2' : value2
 }
 
 object.forEach(
-  key : String?
-  value : Any?
+  String key
+  Any value
 ) {
   LOG(
-    tag = 'FOR_EACH'
-    message = 'key=' + key + '; value=' + value
+    tag : 'FOR_EACH'
+    message : 'key = ' + key + '; value = ' + value
   )
 }
 ```
@@ -229,50 +229,49 @@ object.forEach(
 #### Assign value for final fields on any time
 declare a Type 
 ```javascript
-class User : Object {
-  final id : Number!
-  final name : String?
+class Object User {
+  final Number id
+  final String name
 }
 ```
 the call
 ```javascript
-user : User = User{
-  id = 1
-  name = null
+User user : User{
+  id : 1
+  name : null
 }
 ```
 or
 ```javascript
-user : User = User{}
-user.(
-  id = 1
-  name = null
-)
+User user : User{}
+user
+  .id : 1
+  .name : null
 ```
 
 #### No 'static'
 replaced with UPPER_CASE names.
 static class
 ```javascript
-class Outter : Object {
-  class INNER : Object {
+class Object Outter {
+  class Object INNER {
   }
 }
 ```
 static funciton
 ```javascript
-MAIN(args : String[]?) {
+MAIN(String[] args) {
 }
 ```
 static field
 ```javascript
-final TAG : String = 'Axis'
+final String TAG : 'Axis'
 ```
 
 #### No 'new' and no constructor
 replaced with Type{}, such as
 ```javascript
-user : User = User{}
+User user : User{}
 ```
 
 #### No 'void' for functions
@@ -280,60 +279,64 @@ user : User = User{}
 call() {
 }
 
-callBack() : String {
+String callBack() {
+  return 'Title'
 }
 ```
 ```javascript
 call()
-title : String = callBack()
+String title : callBack()
 ```
 
 
 #### No interface
 replaced with Object and function in package level
 ```javascript
-abstract refresh(array : Array?)
+abstract refresh(Array array)
 
 class AdapterViewCallback {
-  createView(
-    type : Number!
-    parent : ViewGroup?
-  ) : View
+  View createView(
+    Number type
+    ViewGroup parent
+  )
   
   bindView(
-    type : Number!
-    itemView : ItemView!
-    position : Number!
+    Number type
+    ItemView itemView
+    Number position
   )
 }
 ```
 
 ```javascript
-class BaseAdapter : Adapter, AdapterViewCallback, refresh {
+class Adapter BaseAdapter implements AdapterViewCallback, refresh {
   @Override
-  createView(
-    type : Number!
-    parent : ViewGroup?
-  ) : View {
+  View createView(
+    Number type
+    ViewGroup parent
+  ) {
     return DemoView{}
   }
   
   @Override
   bindView(
-    type : Number!
-    itemView : ItemView!
-    position : Number!
+    Number type
+    ItemView itemView
+    Number position
   ) {
     itemView.bindView(
-      getItemViewType(position = position)
-      getItem(position = position)
-      position = position
+      type : getItemViewType(position : position)
+      itemView : getItem(position : position)
+      position : position
     )
   }
   
   @Override
-  refresh(array : Array?) {
-    this.array = array == null ? [] : Array.OF(array = array)
+  refresh(Array array) {
+    this.array : when (array =) {
+      (null) : []
+      () : Array.OF(array : array)
+    }
   }
 }
 ```
