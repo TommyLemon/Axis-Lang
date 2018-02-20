@@ -169,7 +169,7 @@ obj -: 'sex' //obj.remove('sex')
 
 PRINT(obj) // { 'id' : 1, 'name' : 'test', 'phone' : '123456789' }
 
-//forbidden  obj -: ['id', 'phone'] //obj.remove('id')  obj.remove('phone')
+obj -: ['id', 'phone'] //obj.remove('id');  obj.remove('phone');
 
 PRINT(obj.name) // test
 
