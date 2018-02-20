@@ -225,7 +225,7 @@ NAMES.forEach(
 
 Object
 ```javascript
-object : Object : {
+Object object : {
   'key0' : value0
   'key1' : value1
   'key2' : value2
