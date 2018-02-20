@@ -44,7 +44,10 @@ class Any String {
       if (a instanceof String) {
         return this : a
       }
-      return equals(a : OF(a : a), ignoreCase : ignoreCase)
+      return equals(
+        a : OF(a : a)
+        ignoreCase : ignoreCase
+      )
     }
 
     /**

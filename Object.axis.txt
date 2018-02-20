@@ -1,6 +1,6 @@
 package axis.lang
 
-import com.alibaba.fastjson.JSON : JavaJSON //取别名
+import JavaJSON : com.alibaba.fastjson.JSON //取别名
 import com.alibaba.fastjson.JSONObject
 
 //包级别类 <<<<<<<<<<<<<<<<<<<<<<
