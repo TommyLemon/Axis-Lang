@@ -37,7 +37,10 @@ function(arg0 : value0)
 ```
 or 
 ```javascript
-function(arg0 : value0, arg1 : value1)
+function(
+  arg0 : value0
+  arg1 : value1
+)
 ```
 
 #### Default and anonymous getter and setter functions for fields
@@ -50,7 +53,7 @@ String name {
   }
 
   @Override
-  String set(value) {
+  String set(String value) {
     name : value
     return this
   }
@@ -75,7 +78,10 @@ package org.axis.api
 
 abtract Boolean isCorrect()
 
-LOG(String tag, String message) {
+LOG(
+  String tag
+  String message
+) {
   ...
 }
 ```
