@@ -95,15 +95,15 @@ class Object User implements isCorrect {
 the first one must be an Object Type, and the after Object Type can only supply CONSTANS and abstract functions.
 
 
-#### '=' equal between any Types
+#### '=' equal for any Types
 ```javascript
-b = true
-i = 0
-s = ''
-obj = {}
-arr = []
-user = User{}
-user = User{
+b = true // b.equals(true)
+i = 0 // i.equals(0)
+s = '' // s.equals('')
+obj = {} // obj.equals({})
+arr = [] // arr.equals([])
+user = User{} // user.equals(new User())
+user = User{ // user.equals(new User().setId(1).setName('tommy'))
   id : 1 // setId(1)
   name : 'tommy' // setName('tommy')
 }
@@ -117,15 +117,19 @@ Array arr : [1, 2, 3]
 
 PRINT(arr) // [1, 2, 3, 4]
 
-arr +: [5, 6] //arr.addAll([5, 6])
+arr +: [2, 5, 6] //arr.addAll([2, 5, 6])
 
-PRINT(arr) // [1, 2, 3, 4, 5, 6]
+PRINT(arr) // [1, 2, 2, 3, 4, 5, 6]
 
-arr -: [2, 5] //arr.remove(2);  arr.remove(5);
+arr -: <0, 1> //arr.remove(0);  arr.remove(1);
 
-PRINT(arr) // [1, 3, 4, 6]
+PRINT(arr) // [2, 3, 4, 5, 6]
 
-arr -: 0 //arr.remove(0)
+arr -: [5] //arr.remove([5]);
+
+PRINT(arr) // [2, 3, 4, 6]
+
+arr -: 2 //arr.remove((Object) 2)
 
 PRINT(arr) // [3, 4, 6]
 
@@ -165,11 +169,17 @@ obj +: {
 
 PRINT(obj) // { 'id' : 1, 'sex' : 0, 'name' : 'test', 'phone' : '123456789' }
 
-obj -: 'sex' //obj.remove('sex')
+obj -: <'sex'> //obj.remove('sex')
 
 PRINT(obj) // { 'id' : 1, 'name' : 'test', 'phone' : '123456789' }
 
-obj -: ['id', 'phone'] //obj.remove('id');  obj.remove('phone');
+obj -: 1 //obj.removeValue(1);
+
+PRINT(obj) // { 'name' : 'test', 'phone' : '123456789' }
+
+obj -: ['123456789'] //obj.removeValues(['123456789']);
+
+PRINT(obj) // { 'name' : 'test' }
 
 PRINT(obj.name) // test
 
