@@ -90,7 +90,7 @@ only suppor public abstract and public static functions.
 #### Multiple extends and support Objects and functions
 such as
 ```javascript
-class Object User implements isCorrect {
+class Object User implements isCorrect { // public class User extends Object implements Interface$isCorrect {
 
   @Override
   Boolean isCorrect() {
