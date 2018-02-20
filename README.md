@@ -5,7 +5,7 @@ Powerful, Flexible, Safe and Simple.
 
 ## Features
 
-#### Support JSON like Schema
+#### Support JSON Schema
 ```javascript
 Object object : {
   'key0' : value0
