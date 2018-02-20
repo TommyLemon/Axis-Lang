@@ -45,12 +45,12 @@ such as
 ```javascript
 String name {
   @Override
-  () {
+  String get() {
     return name
   }
 
   @Override
-  (value) {
+  String set(value) {
     name : value
     return this
   }
