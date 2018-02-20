@@ -64,7 +64,7 @@ such as
 user.('isFriend' = true) //isFriend is not a field decleared in User, so it must be covered with ''
 LOG(
   tag = User.class.getSimpleName()
-  message = 'id=' + user.id + '; isFriend=' +  user.('isFriend')
+  message = 'id=' + user.id + '; isFriend=' +  user.'isFriend'
 )
 ```
 
