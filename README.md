@@ -95,7 +95,7 @@ class Object User implements isCorrect {
 the first one must be an Object Type, and the after Object Type can only supply CONSTANS and abstract functions.
 
 
-#### '=' between any Types
+#### '=' equal between any Types
 ```javascript
 b = true
 i = 0
