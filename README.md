@@ -125,15 +125,15 @@ PRINT(arr) // [1, 2, 3, 4]
 
 arr +: [2, 5, 6] //arr.addAll([2, 5, 6])
 
-PRINT(arr) // [1, 2, 2, 3, 4, 5, 6]
+PRINT(arr) // [1, 2, 3, 4, 2, 5, 6]
 
 arr -: <0, 1> //arr.remove(0);  arr.remove(1);
 
-PRINT(arr) // [2, 3, 4, 5, 6]
+PRINT(arr) // [3, 4, 2, 5, 6]
 
 arr -: [5] //arr.remove([5]);
 
-PRINT(arr) // [2, 3, 4, 6]
+PRINT(arr) // [3, 4, 2, 6]
 
 arr -: 2 //arr.remove((Object) 2)
 
@@ -250,16 +250,16 @@ class Object User {
   final String name
 }
 ```
-the call
+then call
 ```javascript
-User user : User{
+User user : {
   id : 1
   name : null
 }
 ```
 or
 ```javascript
-User user : User{}
+User user : {}
 user
   .id : 1
   .name : null
