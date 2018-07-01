@@ -25,6 +25,8 @@ only Boolean, Number, Decimal, String, Object and Array
 Number id : 0
 String name : null
 
+id.toString() // '0'
+
 name.length //won't execute and won't throw NullPoninterExeption
 name.toUpperCase() //won't execute and won't throw NullPoninterExeption
 ```
