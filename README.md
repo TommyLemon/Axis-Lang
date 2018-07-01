@@ -24,6 +24,9 @@ only Boolean, Number, Decimal, String, Object and Array
 ```javascript
 Number id : 0
 String name : null
+
+name.length //won't execute and won't throw NullPoninterExeption
+name.toUpperCase() //won't execute and won't throw NullPoninterExeption
 ```
 
 #### Default value for arguments
