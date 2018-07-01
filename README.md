@@ -411,7 +411,7 @@ when (a = 1) {
 
 #### Callback
 ##### Abstract Method
-1.Define a abstract method:
+1.Define an abstract method:
 ```javascript
 run()
 ```
@@ -431,7 +431,7 @@ runOnUiThread (
 ```
 
 ##### Interface
-1.Define a interface:
+1.Define an interface:
 ```javascript
 interface Runnable {
   run()
