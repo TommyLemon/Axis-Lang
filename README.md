@@ -409,3 +409,48 @@ when (a = 1) {
 }
 ```
 
+#### Callback
+##### Abstract Method
+1.Define a abstract method:
+```javascript
+run()
+```
+2.Define a method with argument, and the type of the argument is a abstract method above:
+```javascript
+runOnUiThread (run action) {
+  ...
+}
+```
+3.Then you can call:
+```javascript
+runOnUiThread (
+  /* run */ action : () { //type was a generated comment. No name means default name 'run'.
+    ...
+  }
+)
+```
+
+##### Interface
+1.Define a interface:
+```javascript
+interface Runnable {
+  run()
+}
+```
+2.Define a method with argument, and the type of the argument is a interface above:
+```javascript
+runOnUiThread (Runnable action) {
+  ...
+}
+```
+3.Then you can call:
+```javascript
+runOnUiThread (
+  /* Runnable */ action : { //type was a generated comment. No name means default name 'Runnable'.
+    run () {
+      ...
+    }
+  }
+)
+```
+
