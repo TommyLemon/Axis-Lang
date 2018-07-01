@@ -446,7 +446,7 @@ runOnUiThread (Runnable action) {
 3.Then you can call:
 ```javascript
 runOnUiThread (
-  /* Runnable */ action : { //type was a generated comment. No name means default name 'Runnable'.
+    /* Runnable */ action : { //type was a generated comment. No name means default name 'Runnable'.
     run () {
       ...
     }
