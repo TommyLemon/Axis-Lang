@@ -459,7 +459,7 @@ runOnUiThread (
 )
 ```
 
-#### childThread, mainThread
+#### Thread
 childThread:
 ```javascript
 childThread { // in a automatically recycler thread pool
