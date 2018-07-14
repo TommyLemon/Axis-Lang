@@ -363,10 +363,10 @@ class Adapter BaseAdapter implements AdapterViewCallback, refresh {
 ```
 
 
-#### When
+#### If
 replace if-else if-else, switch-case
 ```javascript
-when () {
+if () {
   (a = 1) {
     ...
   }
@@ -380,7 +380,7 @@ when () {
 ```
 
 ```javascript
-when (a) {
+if (a) {
   (= 1) {
     ...
   }
@@ -394,7 +394,7 @@ when (a) {
 ```
 
 ```javascript
-when (a =) {
+if (a =) {
   (1) {
     ...
   }
@@ -409,7 +409,7 @@ when (a =) {
 
 
 ```javascript
-when (a = 1) {
+if (a = 1) {
   ...
 }
 ```
@@ -459,7 +459,7 @@ runOnUiThread (
 )
 ```
 
-##### childThread, mainThread
+#### childThread, mainThread
 childThread:
 ```javascript
 childThread { // in a automatically recycler thread pool
