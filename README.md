@@ -459,3 +459,20 @@ runOnUiThread (
 )
 ```
 
+##### childThread, mainThread
+childThread:
+```javascript
+childThread {
+  // run on child thread
+}
+```
+mainThread:
+```javascript
+childThread {
+  // run on child thread
+  
+  mainThread {
+       // run on main thread
+  }
+}
+```
