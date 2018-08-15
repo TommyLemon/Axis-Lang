@@ -264,10 +264,12 @@ User user : {
 ```
 or
 ```javascript
-User user : {}
-user
-  .id : 1
-  .name : null
+User user : {} // User user = new User();
+user.sex : 0 // user.setSex(0);
+user.{
+  id : 1 // user.setId(1);
+  name : null // user.setName(null);
+}
 ```
 
 #### No 'static'
