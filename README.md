@@ -273,7 +273,7 @@ user.{
 ```
 
 #### No 'static'
-replaced with UPPER_CASE names.
+replaced with UPPER_CASE names. <br />
 static class
 ```javascript
 class Object Outter {
