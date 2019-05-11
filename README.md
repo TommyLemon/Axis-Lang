@@ -29,6 +29,10 @@ id.toChar() // '0'
 
 name.length //won't throw NullPoninterExeption but return null
 name.toUpperCase() //won't throw NullPoninterExeption but return null 
+
+Map map = {}
+map.user.name : name //automatically create user in map and name in user when they are null and the expression is for assign
+PRINT(map.toChar()) //{ user : { name : null } }
 ```
 
 #### Default value for arguments
