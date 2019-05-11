@@ -7,7 +7,7 @@ Powerful, Flexible, Safe and Simple.
 
 #### Support JSON like Schema
 ```javascript
-Map object : {
+Map map : {
   'key0' : value0
   'key1' : value1
   ...
@@ -27,8 +27,8 @@ Char name : null
 
 id.toChar() // '0'
 
-name.length //won't execute and won't throw NullPoninterExeption
-name.toUpperCase() //won't execute and won't throw NullPoninterExeption
+name.length //won't throw NullPoninterExeption but return null
+name.toUpperCase() //won't throw NullPoninterExeption but return null 
 ```
 
 #### Default value for arguments
@@ -111,8 +111,8 @@ the first one must be an Map Type, and the after Map Type can only supply CONSTA
 b = true // b.equals(true)
 i = 0 // i.equals(0)
 s = '' // s.equals('')
-obj = {} // obj.equals({})
-arr = [] // arr.equals([])
+map = {} // map.equals({})
+list = [] // list.equals([])
 user = User{} // user.equals(new User())
 user = User{ // user.equals(new User().setId(1).setName('tommy'))
   id : 1 // setId(1)
@@ -122,89 +122,89 @@ user = User{ // user.equals(new User().setId(1).setName('tommy'))
 
 ### '+', '-' between Lists
 ```javascript
-List arr : [1, 2, 3]
+List list : [1, 2, 3]
 
-//forbidden  arr +: 4 // arr.add(4)
+//forbidden  list +: 4 // list.add(4)
 
-PRINT(arr) // [1, 2, 3, 4]
+PRINT(list) // [1, 2, 3, 4]
 
-arr +: [2, 5, 6] //arr.addAll([2, 5, 6])
+list +: [2, 5, 6] //list.addAll([2, 5, 6])
 
-PRINT(arr) // [1, 2, 3, 4, 2, 5, 6]
+PRINT(list) // [1, 2, 3, 4, 2, 5, 6]
 
-arr -: <0, 1> //arr.remove(0);  arr.remove(1);
+list -: <0, 1> //list.remove(0);  list.remove(1);
 
-PRINT(arr) // [3, 4, 2, 5, 6]
+PRINT(list) // [3, 4, 2, 5, 6]
 
-arr -: [5] //arr.remove([5]);
+list -: [5] //list.remove([5]);
 
-PRINT(arr) // [3, 4, 2, 6]
+PRINT(list) // [3, 4, 2, 6]
 
-arr -: 2 //arr.remove((Map) 2)
+list -: 2 //list.remove((Map) 2)
 
-PRINT(arr) // [3, 4, 6]
+PRINT(list) // [3, 4, 6]
 
-//forbidden  arr -: {0, 2} //arr.remove(0) arr.remove(2)
+//forbidden  list -: {0, 2} //list.remove(0) list.remove(2)
 
-PRINT(arr.0) // 3
+PRINT(list.0) // 3
 
-PRINT(arr.'0') // 3
+PRINT(list.'0') // 3
 
-PRINT(arr.3) // throw IndexOutOfBoundsException('index : 3, arr.length : 3, index >: arr.length !')
+PRINT(list.3) // throw IndexOutOfBoundsException('index : 3, list.length : 3, index >: list.length !')
 
-PRINT(arr.'3') // null
+PRINT(list.'3') // null
 
-//forbidden  PRINT(arr.'a') //the index must be a number
+//forbidden  PRINT(list.'a') //the index must be a number
 
-arr.4 : 4 // throw IndexOutOfBoundsException('index : 4, arr.length : 3, index > arr.length !')
+list.4 : 4 // throw IndexOutOfBoundsException('index : 4, list.length : 3, index > list.length !')
 
-arr.'4' : 4
+list.'4' : 4
 
-PRINT(arr.'4') // 4
+PRINT(list.'4') // 4
 
-PRINT(arr) // [3, 4, 6, null, 4]
+PRINT(list) // [3, 4, 6, null, 4]
 ```
 
 ### '+', '-' between Maps
 ```javascript
-Map obj : {
+Map map : {
   'id' : 1
   'sex' : 0
   'name' : null
 }
 
-obj +: {
+map +: {
   'name'  : 'test'
   'phone' : '123456789'
-} // obj.putAll({'name' : 'test', 'phone': '123456789'})
+} // map.putAll({'name' : 'test', 'phone': '123456789'})
 
-PRINT(obj) // { 'id' : 1, 'sex' : 0, 'name' : 'test', 'phone' : '123456789' }
+PRINT(map) // { 'id' : 1, 'sex' : 0, 'name' : 'test', 'phone' : '123456789' }
 
-obj -: <'sex'> //obj.remove('sex')
+map -: <'sex'> //map.remove('sex')
 
-PRINT(obj) // { 'id' : 1, 'name' : 'test', 'phone' : '123456789' }
+PRINT(map) // { 'id' : 1, 'name' : 'test', 'phone' : '123456789' }
 
-obj -: 1 //obj.removeValue(1);
+map -: 1 //map.removeValue(1);
 
-PRINT(obj) // { 'name' : 'test', 'phone' : '123456789' }
+PRINT(map) // { 'name' : 'test', 'phone' : '123456789' }
 
-obj -: ['123456789'] //obj.removeValues(['123456789']);
+map -: ['123456789'] //map.removeValues(['123456789']);
 
-PRINT(obj) // { 'name' : 'test' }
+PRINT(map) // { 'name' : 'test' }
 
-PRINT(obj.name) // test
+PRINT(map.name) // test
 
-PRINT(obj.'name') // test
+PRINT(map.'name') // test
 
-//forbidden  PRINT(obj.tag) // throw NotFoundException('could not find the key "tag" in obj !')
+//forbidden  PRINT(map.tag) // throw NotFoundException('could not find the key "tag" in map !')
 
-PRINT(obj.'tag') // null
+PRINT(map.'tag') // null
 
-//forbidden  obj.tag : 'Java'
+//forbidden  map.tag : 'Java'
 
-obj.'tag' : 'Java'
+map.'tag' : 'Java'
 
-PRINT(obj.'tag') // Java
+PRINT(map.'tag') // Java
 ```
 
 
@@ -230,13 +230,13 @@ NAMES.forEach(
 
 Map
 ```javascript
-Map object : {
+Map map : {
   'key0' : value0
   'key1' : value1
   'key2' : value2
 }
 
-object.forEach(
+map.forEach(
   Char key
   Any value
 ) {
@@ -315,7 +315,7 @@ Char title : callBack()
 #### No interface
 replaced with Map and function in package level
 ```javascript
-abstract refresh(List array)
+abstract refresh(List list)
 
 class AdapterViewCallback {
   View createView(
@@ -355,10 +355,10 @@ class Adapter BaseAdapter implements AdapterViewCallback, refresh {
   }
   
   @Override
-  refresh(List array) {
-    this.array : when (array =) {
+  refresh(List list) {
+    this.list : when (list =) {
       (null) : []
-      () : List.OF(array : array)
+      () : List.OF(list : list)
     }
   }
 }
