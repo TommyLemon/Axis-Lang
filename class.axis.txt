@@ -2,16 +2,16 @@ package axis.lang
 
 //包级别常量 <<<<<<<<<<<<<<<<<<<<<<
 
-String UTF_8 : “utf-8”
-String VERSION_NAME : “1.0”
-Number VERSION_CODE : 1
-Boolean DEBUG : true
-String[] BASE_TYPES : [
-  “Boolean”
-  “Number”
-  “String”
-  “Object”
-  “Array”
+Char UTF_8 : “utf-8”
+Char VERSION_NAME : “1.0”
+Int VERSION_CODE : 1
+Bool DEBUG : true
+Char[] BASE_TYPES : [
+  “Bool”
+  “Int”
+  “Char”
+  “Map”
+  “List”
 ]
 
 //包级别常量 >>>>>>>>>>>>>>>>>>>>>>
@@ -22,13 +22,13 @@ String[] BASE_TYPES : [
 
 abstract call() //Java: public interface Interface$call { void call(); }
 
-abstract callback(Number arg)  //Java: public interface Interface$callback { void callback(Number arg); }
+abstract callback(Int arg)  //Java: public interface Interface$callback { void callback(Int arg); }
 
 abstract isCorrect()
 
-TO_STRING(Any a) {
-  return a = null ? null ; a.toString()
-} //Java: public class Class$TO_STRING { public static TO_STRING(Any a) { return a == null ? null : a.toString(); } }
+TO_Char(Any a) {
+  return a = null ? null ; a.toChar()
+} //Java: public class Class$TO_Char { public static TO_Char(Any a) { return a == null ? null : a.toChar(); } }
 
 //包级别函数 >>>>>>>>>>>>>>>>>>>>>>
 
@@ -42,35 +42,35 @@ TO_STRING(Any a) {
  * 非静态类：类名用UpperCamelCase风格；默认用 public 修饰
  * 可能会碰到 JSON 这种整个单词本身就是全大写的情况，建议在用做非静态类时命名为 Json ，即首字母大写，其它小写。和 静态类 JSON 做区分
  */
-class Object User implements isCorrect { //Java: public class User extends Object implements Interface$isCorrect
+class Map User implements isCorrect { //Java: public class User extends Map implements Interface$isCorrect
 
-  final Number SEX_MAIL : 0 //Java: public static final Number SEX_MAIL;
-  final Number  SEX_FEMAIL : 1 //常量名所有字符全大写，单词中间用 _ 隔开；默认用 public static 修饰
-  final Number  SEX_UNKNOWN : 2
+  final Int SEX_MAIL : 0 //Java: public static final Int SEX_MAIL;
+  final Int  SEX_FEMAIL : 1 //常量名所有字符全大写，单词中间用 _ 隔开；默认用 public static 修饰
+  final Int  SEX_UNKNOWN : 2
 
-  Number id //Java: private Number id;
+  Int id //Java: private Int id;
 
-  String name //变量名第一个字符为小写英语字母，其它每个字符都必须是 英文字母、数字、下划线 中的一种；默认用 private 修饰
+  Char name //变量名第一个字符为小写英语字母，其它每个字符都必须是 英文字母、数字、下划线 中的一种；默认用 private 修饰
 
-  Number sex
+  Int sex
 
-  Boolean certified {
+  Bool certified {
 
     @Override
-    Boolean get() { //重写getter函数
+    Bool get() { //重写getter函数
       this = this ?; false
       return this
     }
   }
   /**
    * Java: 
-     private Boolean certified;
+     private Bool certified;
 
-     public Boolean certified() { //相当于getter函数
+     public Bool certified() { //相当于getter函数
        certified = certified != null ? certified : false;
        return certified;
      }
-     public User certified(Boolean certified) { //相当于setter函数，自定义了实现逻辑
+     public User certified(Bool certified) { //相当于setter函数，自定义了实现逻辑
        this.value(certified); //Java: this.certified = certified;
        return this;
      }
@@ -78,23 +78,23 @@ class Object User implements isCorrect { //Java: public class User extends Objec
 
 
 
-  Array<Number> contactIdArray { //TODO 这里不适合用 Number[] ，因为会有歧义？
+  List<Int> contactIdList { //TODO 这里不适合用 Int[] ，因为会有歧义？
     
     @Override
-    User set(Array<Number> value) { //重写setter函数
-      (value = value ?; Array<Number>{})
+    User set(List<Int> value) { //重写setter函数
+      (value = value ?; List<Int>{})
       return User.this
     }
   }
   /**
    * Java: 
-     private Array<Number> contactIdArray;
+     private List<Int> contactIdList;
 
-     public Array<Number> contactIdArray() { //相当于getter函数
-       return contactIdArray;
+     public List<Int> contactIdList() { //相当于getter函数
+       return contactIdList;
      }
-     public User contactIdArray(Array<Number> value) { //相当于setter函数，自定义了实现逻辑
-       this.value = value ? value : Array<Number>{});
+     public User contactIdList(List<Int> value) { //相当于setter函数，自定义了实现逻辑
+       this.value = value ? value : List<Int>{});
        return this;
      }
    */
@@ -102,7 +102,7 @@ class Object User implements isCorrect { //Java: public class User extends Objec
 
 
   @Override
-  Boolean isCorrect() {
+  Bool isCorrect() {
      return id > 0
   }
   

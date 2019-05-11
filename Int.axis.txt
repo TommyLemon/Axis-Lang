@@ -4,14 +4,14 @@ package axis.lang
 
 //包级别类 <<<<<<<<<<<<<<<<<<<<<<
 
-class Any Number { 
+class Any Int { 
 
-  final MIN_VALUE : Number : 0x0.0000000000001P-1022
-  final MAX_VALUE : Number : 0x1.fffffffffffffP+1023
+  final MIN_VALUE : Int : 0x0.0000000000001P-1022
+  final MAX_VALUE : Int : 0x1.fffffffffffffP+1023
 
 
   @NotNull
-  Number compareTo(Number n) {
+  Int compareTo(Int n) {
 
     return COMPARE_TO(
       n0 : this
@@ -20,14 +20,14 @@ class Any Number {
   }
 
   @NotNull
-  Number COMPARE_TO(
-    n0 : Number
-    n1 : Number
+  Int COMPARE_TO(
+    n0 : Int
+    n1 : Int
   ) {
 
     n0 : n0 ?; 0
     n1 : n1 ?; 0
-    Number diff : n0.(value) - n1.(value) //如果有null则转为0
+    Int diff : n0.(value) - n1.(value) //如果有null则转为0
     if (diff = 0) {
       return 0
     }
@@ -35,21 +35,21 @@ class Any Number {
   }
 
   @Override
-  String toString() {
+  Char toChar() {
     return “” + value
   }
   
 
-  OF(String s) {
+  OF(Char s) {
 
     s : s ?; “”
-    return Number{
-      value : castToNumber(s : s)
+    return Int{
+      value : castToInt(s : s)
     }
   }
 
 
-  final native Number castToNumber(String s)
+  final native Int castToInt(Char s)
 }
 
 //包级别类 >>>>>>>>>>>>>>>>>>>>>>

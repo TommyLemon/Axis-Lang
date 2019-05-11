@@ -1,38 +1,38 @@
 package axis.lang
 
 import JavaJSON : com.alibaba.fastjson.JSON //取别名
-import com.alibaba.fastjson.JSONObject
+import com.alibaba.fastjson.JSONMap
 
 //包级别类 <<<<<<<<<<<<<<<<<<<<<<
 
-class Any Object<K, V> { 
+class Any Map<K, V> { 
 
     private native V get(K key)
 
-    private native Object<K, V> put(
+    private native Map<K, V> put(
       K key
       V value
     )
 
 
     @Override
-    String toString() {
-      return JSON.toJSONString(obj : this)
+    Char toChar() {
+      return JSON.toJSONChar(obj : this)
     }
 
-    Object<?, ?> OF(String s) {
+    Map<?, ?> OF(Char s) {
 
       return OF(
-        map : JavaJSON.parseObject(json : s)
+        map : JavaJSON.parseMap(json : s)
       )
     }
 
-    Object<?, ?> OF(Map<?, ?> map){
+    Map<?, ?> OF(Map<?, ?> map){
 
       map : map ?; Map<?, ?>{}
-      Object<?, ?> obj : Object<?, ?>{}
+      Map<?, ?> obj : Map<?, ?>{}
       map.forEach(
-        Number index
+        Int index
         Any key
         Any value
       ) {

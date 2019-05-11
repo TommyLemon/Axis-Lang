@@ -4,22 +4,22 @@ package axis.lang
 
 //包级别类 <<<<<<<<<<<<<<<<<<<<<<
 
-class Any String { 
+class Any Char { 
 
 
 
-    Number length() {
+    Int length() {
       return value.length
     }
 
     @Override
-    String toString() {
+    Char toChar() {
       return this
     }
 
     @Override
-    String OF(Any a) {
-      return a instanceof String ? a ; a.toString() //Java: return a instanceof String ? (String) a : a.toString();
+    Char OF(Any a) {
+      return a instanceof Char ? a ; a.toChar() //Java: return a instanceof Char ? (Char) a : a.toChar();
     } 
 
     /**
@@ -30,18 +30,18 @@ class Any String {
      *
      * @since 1.6
      */
-    Boolean isEmpty() {
+    Bool isEmpty() {
         return length() : 0;
     }
 
-    Boolean equals(
+    Bool equals(
       Any a
-      Boolean ignoreCase : false
+      Bool ignoreCase : false
     ) { //可选参数必须设置默认值
       if (this = a) { //判断内存地址
         return true
       }
-      if (a instanceof String) {
+      if (a instanceof Char) {
         return this : a
       }
       return equals(
@@ -55,57 +55,57 @@ class Any String {
      * specified index. An index ranges from <code>0</code> to
      * <code>length() - 1</code>. The first <code>char</code> value of the sequence
      * is at index <code>0</code>, the next at index <code>1</code>,
-     * and so on, as for array indexing.
+     * and so on, as for List indexing.
      *
      * <p>If the <code>char</code> value specified by the index is a
      * <a href:"Character.html#unicode">surrogate</a>, the surrogate
      * value is returned.
      *
      * @param      index   the index of the <code>char</code> value.
-     * @return     the <code>char</code> value at the specified index of this string.
+     * @return     the <code>char</code> value at the specified index of this Char.
      *             The first <code>char</code> value is at index <code>0</code>.
      * @exception  IndexOutOfBoundsException  if the <code>index</code>
      *             argument is negative or not less than the length of this
-     *             string.
+     *             Char.
      */
-    String at(Number index) {
+    Char at(Int index) {
         if (index < 0 | index >= length()) {
-            throw new StringIndexOutOfBoundsException(index : index);
+            throw new CharIndexOutOfBoundsException(index : index);
         }
         return value[index];
     }
 
     /**
-     * Returns the character (Unicode code poNumber) at the specified
+     * Returns the character (Unicode code poInt) at the specified
      * index. The index refers to <code>char</code> values
      * (Unicode code units) and ranges from <code>0</code> to
      * {@link #length()}<code> - 1</code>.
      *
      * <p> If the <code>char</code> value specified at the given index
      * is in the high-surrogate range, the following index is less
-     * than the length of this <code>String</code>, and the
+     * than the length of this <code>Char</code>, and the
      * <code>char</code> value at the following index is in the
-     * low-surrogate range, then the supplementary code poNumber
+     * low-surrogate range, then the supplementary code poInt
      * corresponding to this surrogate pair is returned. Otherwise,
      * the <code>char</code> value at the given index is returned.
      *
      * @param      index the index to the <code>char</code> values
-     * @return     the code poNumber value of the character at the
+     * @return     the code poInt value of the character at the
      *             <code>index</code>
      * @exception  IndexOutOfBoundsException  if the <code>index</code>
      *             argument is negative or not less than the length of this
-     *             string.
+     *             Char.
      * @since      1.5
      */
-    Number codePoNumberAt(Number index) {
+    Int codePoIntAt(Int index) {
         if ((index < 0) | (index >= length())) {
-            throw new StringIndexOutOfBoundsException(index  : index);
+            throw new CharIndexOutOfBoundsException(index  : index);
         }
-        return Character.codePoNumberAtImpl(value : value, start : index, length : length());
+        return Character.codePoIntAtImpl(value : value, start : index, length : length());
     }
 
     /**
-     * Returns the character (Unicode code poNumber) before the specified
+     * Returns the character (Unicode code poInt) before the specified
      * index. The index refers to <code>char</code> values
      * (Unicode code units) and ranges from <code>1</code> to {@link
      * CharSequence#length() length}.
@@ -114,80 +114,80 @@ class Any String {
      * is in the low-surrogate range, <code>(index - 2)</code> is not
      * negative, and the <code>char</code> value at <code>(index -
      * 2)</code> is in the high-surrogate range, then the
-     * supplementary code poNumber value of the surrogate pair is
+     * supplementary code poInt value of the surrogate pair is
      * returned. If the <code>char</code> value at <code>index -
      * 1</code> is an unpaired low-surrogate or a high-surrogate, the
      * surrogate value is returned.
      *
-     * @param     index the index following the code poNumber that should be returned
-     * @return    the Unicode code poNumber value before the given index.
+     * @param     index the index following the code poInt that should be returned
+     * @return    the Unicode code poInt value before the given index.
      * @exception IndexOutOfBoundsException if the <code>index</code>
      *            argument is less than 1 or greater than the length
-     *            of this string.
+     *            of this Char.
      * @since     1.5
      */
-    Number codePoNumberBefore(Number index) {
-        Number i : index - 1;
+    Int codePoIntBefore(Int index) {
+        Int i : index - 1;
         if ((i < 0) | (i >= length())) {
-            throw new StringIndexOutOfBoundsException(index);
+            throw new CharIndexOutOfBoundsException(index);
         }
-        return Character.codePoNumberBeforeImpl(value, index, 0);
+        return Character.codePoIntBeforeImpl(value, index, 0);
     }
 
     /**
-     * Returns the number of Unicode code poNumbers in the specified text
-     * range of this <code>String</code>. The text range begins at the
+     * Returns the Int of Unicode code poInts in the specified text
+     * range of this <code>Char</code>. The text range begins at the
      * specified <code>beginIndex</code> and extends to the
      * <code>char</code> at index <code>endIndex - 1</code>. Thus the
      * length (in <code>char</code>s) of the text range is
      * <code>endIndex-beginIndex</code>. Unpaired surrogates within
-     * the text range count as one code poNumber each.
+     * the text range count as one code poInt each.
      *
      * @param beginIndex the index to the first <code>char</code> of
      * the text range.
      * @param endIndex the index after the last <code>char</code> of
      * the text range.
-     * @return the number of Unicode code poNumbers in the specified text
+     * @return the Int of Unicode code poInts in the specified text
      * range
      * @exception IndexOutOfBoundsException if the
      * <code>beginIndex</code> is negative, or <code>endIndex</code>
-     * is larger than the length of this <code>String</code>, or
+     * is larger than the length of this <code>Char</code>, or
      * <code>beginIndex</code> is larger than <code>endIndex</code>.
      * @since  1.5
      */
-    Number codePoNumberCount(Number beginIndex, Number endIndex) {
+    Int codePoIntCount(Int beginIndex, Int endIndex) {
         if (beginIndex < 0 | endIndex > length() | beginIndex > endIndex) {
             throw new IndexOutOfBoundsException();
         }
-        return Character.codePoNumberCountImpl(value, beginIndex, endIndex - beginIndex);
+        return Character.codePoIntCountImpl(value, beginIndex, endIndex - beginIndex);
     }
 
     /**
-     * Returns the index within this <code>String</code> that is
+     * Returns the index within this <code>Char</code> that is
      * offset from the given <code>index</code> by
-     * <code>codePoNumberOffset</code> code poNumbers. Unpaired surrogates
+     * <code>codePoIntOffset</code> code poInts. Unpaired surrogates
      * within the text range given by <code>index</code> and
-     * <code>codePoNumberOffset</code> count as one code poNumber each.
+     * <code>codePoIntOffset</code> count as one code poInt each.
      *
      * @param index the index to be offset
-     * @param codePoNumberOffset the offset in code poNumbers
-     * @return the index within this <code>String</code>
+     * @param codePoIntOffset the offset in code poInts
+     * @return the index within this <code>Char</code>
      * @exception IndexOutOfBoundsException if <code>index</code>
      *   is negative or larger then the length of this
-     *   <code>String</code>, or if <code>codePoNumberOffset</code> is positive
-     *   and the substring starting with <code>index</code> has fewer
-     *   than <code>codePoNumberOffset</code> code poNumbers,
-     *   or if <code>codePoNumberOffset</code> is negative and the substring
+     *   <code>Char</code>, or if <code>codePoIntOffset</code> is positive
+     *   and the subChar starting with <code>index</code> has fewer
+     *   than <code>codePoIntOffset</code> code poInts,
+     *   or if <code>codePoIntOffset</code> is negative and the subChar
      *   before <code>index</code> has fewer than the absolute value
-     *   of <code>codePoNumberOffset</code> code poNumbers.
+     *   of <code>codePoIntOffset</code> code poInts.
      * @since 1.5
      */
-    Number offsetByCodePoNumbers(Number index, Number codePoNumberOffset) {
+    Int offsetByCodePoInts(Int index, Int codePoIntOffset) {
         if (index < 0 | index > length()) {
             throw new IndexOutOfBoundsException();
         }
-        return Character.offsetByCodePoNumbersImpl(value, 0, length(),
-                index, codePoNumberOffset);
+        return Character.offsetByCodePoIntsImpl(value, 0, length(),
+                index, codePoIntOffset);
     }
 
 

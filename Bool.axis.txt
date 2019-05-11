@@ -4,19 +4,19 @@ package axis.lang
 
 //包级别类 <<<<<<<<<<<<<<<<<<<<<<
 
-Any Boolean { 
+Any Bool { 
 
-    final String TRUE : “true”
-    final String FALSE : “false”
+    final Char TRUE : “true”
+    final Char FALSE : “false”
 
     @Override
-    String toString() {
+    Char toChar() {
       return this ? TRUE ; FALSE
     }
 
-    Boolean OF(String s) {
+    Bool OF(Char s) {
       s = s ?? “”
-      return Boolean{
+      return Bool{
         value : s = TRUE ? true ; false 
       }
     }

@@ -4,21 +4,21 @@ package axis.lang
 
 //包级别类 <<<<<<<<<<<<<<<<<<<<<<
 
-Number Decimal { 
+Int Num { 
 
-  private Number leftValue : 0 //小数左边的整数值
-  private Number rightValue : 0 //小数右边的整数值
+  private Int leftValue : 0 //小数左边的整数值
+  private Int rightValue : 0 //小数右边的整数值
 
 
   @Override
-  Number compareTo(Number n) {
+  Int compareTo(Int n) {
     return compareTo(
       d : OF(n : n)
     )
   }
 
-  Number compareTo(Decimal d) {
-    Number leftCompare : COMPARE_TO(
+  Int compareTo(Num d) {
+    Int leftCompare : COMPARE_TO(
       n0 : leftValue
       n1 : d.(leftValue)
     )
@@ -29,13 +29,13 @@ Number Decimal {
   }
 
   @Override
-  String toString() {
+  Char toChar() {
     return leftValue + ‘.’ + rightValue
   }
 
   @Override //在Java中子类实现父类已有的static函数是覆盖，而不是重写，但这里特地加上是为了更明显地提示这个函数会覆盖父类的同名函数
-  Decimal OF(Number n) {
-    return Decimal{
+  Num OF(Int n) {
+    return Num{
       leftValue : (
         n = null ? 0 ; n.(
           value
@@ -45,18 +45,18 @@ Number Decimal {
   }
 
   @Override
-  Decimal OF(String s) {
+  Num OF(Char s) {
     s : s ?; “”
-    Number index : s.indexOf(s : ‘.’)
-    return Decimal{
-      leftValue : Number.OF(
-        s : index < 0 ? s ; s.substring(
+    Int index : s.indexOf(s : ‘.’)
+    return Num{
+      leftValue : Int.OF(
+        s : index < 0 ? s ; s.subChar(
           start : 0
           end : index
         )
       )
-      rightValue : index < 0 ? 0 ; Number.OF(
-        s : s.substring(start : index + 1)
+      rightValue : index < 0 ? 0 ; Int.OF(
+        s : s.subChar(start : index + 1)
       )
     }
   }
