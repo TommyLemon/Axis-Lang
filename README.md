@@ -7,7 +7,7 @@ Powerful, Flexible, Safe and Simple.
 
 #### Support JSON like Schema
 ```javascript
-Object object : {
+Map object : {
   'key0' : value0
   'key1' : value1
   ...
@@ -18,14 +18,14 @@ Object object : {
 
 
 #### Few system types
-only Boolean, Number, Decimal, String, Object and Array
+only Any, Bool, Int, Num, Char, Map and List
 
 #### Safe type
 ```javascript
-Number id : 0
-String name : null
+Int id : 0
+Char name : null
 
-id.toString() // '0'
+id.toChar() // '0'
 
 name.length //won't execute and won't throw NullPoninterExeption
 name.toUpperCase() //won't execute and won't throw NullPoninterExeption
@@ -51,14 +51,14 @@ function(
 #### Default and anonymous getter and setter functions for fields
 such as
 ```javascript
-String name {
+Char name {
   @Override
-  String get() {
+  Char get() {
     return name
   }
 
   @Override
-  String set(String value) {
+  Char set(Char value) {
     name : value
     return this
   }
@@ -81,29 +81,29 @@ such as
 ```javascript
 package org.axis.api
 
-abtract Boolean isCorrect()
+abtract Bool isCorrect()
 
 LOG(
-  String tag
-  String message
+  Char tag
+  Char message
 ) {
   ...
 }
 ```
 only suppor public abstract and public static functions.
 
-#### Multiple extends and support Objects and functions
+#### Multiple extends and support Maps and functions
 such as
 ```javascript
-class Object User implements isCorrect { // public class User extends Object implements Interface$isCorrect {
+class Map User implements isCorrect { // public class User extends Map implements Interface$isCorrect {
 
   @Override
-  Boolean isCorrect() {
+  Bool isCorrect() {
     return true
   }
 }
 ```
-the first one must be an Object Type, and the after Object Type can only supply CONSTANS and abstract functions.
+the first one must be an Map Type, and the after Map Type can only supply CONSTANS and abstract functions.
 
 
 #### '=' equal for any Types
@@ -120,9 +120,9 @@ user = User{ // user.equals(new User().setId(1).setName('tommy'))
 }
 ```
 
-### '+', '-' between Arrays
+### '+', '-' between Lists
 ```javascript
-Array arr : [1, 2, 3]
+List arr : [1, 2, 3]
 
 //forbidden  arr +: 4 // arr.add(4)
 
@@ -140,7 +140,7 @@ arr -: [5] //arr.remove([5]);
 
 PRINT(arr) // [3, 4, 2, 6]
 
-arr -: 2 //arr.remove((Object) 2)
+arr -: 2 //arr.remove((Map) 2)
 
 PRINT(arr) // [3, 4, 6]
 
@@ -165,9 +165,9 @@ PRINT(arr.'4') // 4
 PRINT(arr) // [3, 4, 6, null, 4]
 ```
 
-### '+', '-' between Objects
+### '+', '-' between Maps
 ```javascript
-Object obj : {
+Map obj : {
   'id' : 1
   'sex' : 0
   'name' : null
@@ -209,17 +209,17 @@ PRINT(obj.'tag') // Java
 
 
 #### forEach
-Array
+List
 ```javascript
-String[] NAMES : [
+Char[] NAMES : [
   'name0'
   'name1'
   'name2'
 ]
 
 NAMES.forEach(
-  Number index
-  String item
+  Int index
+  Char item
 ) {
   LOG(
     tag : 'FOR_EACH'
@@ -228,16 +228,16 @@ NAMES.forEach(
 }
 ```
 
-Object
+Map
 ```javascript
-Object object : {
+Map object : {
   'key0' : value0
   'key1' : value1
   'key2' : value2
 }
 
 object.forEach(
-  String key
+  Char key
   Any value
 ) {
   LOG(
@@ -250,9 +250,9 @@ object.forEach(
 #### Assign value for final fields on any time
 declare a Type 
 ```javascript
-class Object User {
-  final Number id
-  final String name
+class Map User {
+  final Int id
+  final Char name
 }
 ```
 then call
@@ -276,19 +276,19 @@ user.{
 replaced with UPPER_CASE names. <br />
 static class
 ```javascript
-class Object Outter {
-  class Object INNER {
+class Map Outter {
+  class Map INNER {
   }
 }
 ```
 static funciton
 ```javascript
-MAIN(String[] args) {
+MAIN(Char[] args) {
 }
 ```
 static field
 ```javascript
-final String TAG : 'Axis'
+final Char TAG : 'Axis'
 ```
 
 #### No 'new' and no constructor
@@ -302,31 +302,31 @@ User user : User{}
 call() {
 }
 
-String callBack() {
+Char callBack() {
   return 'Title'
 }
 ```
 ```javascript
 call()
-String title : callBack()
+Char title : callBack()
 ```
 
 
 #### No interface
-replaced with Object and function in package level
+replaced with Map and function in package level
 ```javascript
-abstract refresh(Array array)
+abstract refresh(List array)
 
 class AdapterViewCallback {
   View createView(
-    Number type
+    Int type
     ViewGroup parent
   )
   
   bindView(
-    Number type
+    Int type
     ItemView itemView
-    Number position
+    Int position
   )
 }
 ```
@@ -335,7 +335,7 @@ class AdapterViewCallback {
 class Adapter BaseAdapter implements AdapterViewCallback, refresh {
   @Override
   View createView(
-    Number type
+    Int type
     ViewGroup parent
   ) {
     return DemoView{}
@@ -343,9 +343,9 @@ class Adapter BaseAdapter implements AdapterViewCallback, refresh {
   
   @Override
   bindView(
-    Number type
+    Int type
     ItemView itemView
-    Number position
+    Int position
   ) {
     itemView.bindView(
       type : getItemViewType(position : position)
@@ -355,10 +355,10 @@ class Adapter BaseAdapter implements AdapterViewCallback, refresh {
   }
   
   @Override
-  refresh(Array array) {
+  refresh(List array) {
     this.array : when (array =) {
       (null) : []
-      () : Array.OF(array : array)
+      () : List.OF(array : array)
     }
   }
 }
