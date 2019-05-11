@@ -32,10 +32,112 @@ abstract class Any { //任意类型，自动找到实例化时的精准类型并
     }
   } : null //给变量赋初始值
  
+
+  //转任意类型
+  <T> T to(Class<T> clazz) throws ClassCastException {
+     return JSON.parse(toChar(), clazz)
+  }
+  
+
+  //转Bool函数
+  Bool toBool() throws ClassCastException {
+    return to(clazz : Bool.class) //所有调用函数并给参数赋值都必须明确写出 (arg : value) 这种形式，和取值函数 (key) 严格区分
+  }
+
+  //转Int函数
+  Int toInt() throws ClassCastException {
+    return to(clazz : Int.class) //所有调用函数并给参数赋值都必须明确写出 (arg : value) 这种形式，和取值函数 (key) 严格区分
+  } 
+
+  //转Num函数
+  Num toNum() throws ClassCastException {
+    return to(clazz : Num.class) //所有调用函数并给参数赋值都必须明确写出 (arg : value) 这种形式，和取值函数 (key) 严格区分
+  } 
+
   //转Char函数
   Char toChar() {
-    return Char.OF(a : this) //所有调用函数并给参数赋值都必须明确写出 (arg : value) 这种形式，和取值函数 (key) 严格区分
+    return to(clazz : Char.class) //所有调用函数并给参数赋值都必须明确写出 (arg : value) 这种形式，和取值函数 (key) 严格区分
   } 
+
+  //转Map函数
+  Map toMap() throws ClassCastException {
+    return to(clazz : Map.class) //所有调用函数并给参数赋值都必须明确写出 (arg : value) 这种形式，和取值函数 (key) 严格区分
+  } 
+
+
+  //转Map函数
+  List toList() throws ClassCastException {
+    return to(clazz : List.class) //所有调用函数并给参数赋值都必须明确写出 (arg : value) 这种形式，和取值函数 (key) 严格区分
+  } 
+
+
+
+  //转任意类型
+  <T> T toSafely(Class<T> clazz) {
+    try {
+        return to(clazz : clazz)
+    } catch (Exception e) {
+        return null
+    }
+  }
+  
+
+  //转Bool函数
+  Bool toBoolSafely() {
+    try {
+        return toBool()
+    } catch (Exception e) {
+        return null
+    }
+  }
+
+  //转Int函数
+  Int toIntSafely() {
+    try {
+        return toInt()
+    } catch (Exception e) {
+        return null
+    }
+  } 
+
+  //转Num函数
+  Num toNumSafely() {
+    try {
+        return toNum()
+    } catch (Exception e) {
+        return null
+    }
+  } 
+
+  //转Char函数
+  Char toCharSafely() {
+    try {
+        return toChar()
+    } catch (Exception e) {
+        return null
+    }
+  } 
+
+  //转Map函数
+  Map toMapSafely() {
+    try {
+        return toMap()
+    } catch (Exception e) {
+        return null
+    }
+  } 
+
+
+  //转Map函数
+  List toListSafely() {
+    try {
+        return toList()
+    } catch (Exception e) {
+        return null
+    }
+  } 
+
+
 
   //static函数名用全大写形式
   PRINT(Any value) {
