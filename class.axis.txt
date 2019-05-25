@@ -45,8 +45,17 @@ TO_Char(Any a) {
 class Map User implements isCorrect { //Java: public class User extends Map implements Interface$isCorrect
 
   final Int SEX_MAIL : 0 //Java: public static final Int SEX_MAIL;
-  final Int  SEX_FEMAIL : 1 //常量名所有字符全大写，单词中间用 _ 隔开；默认用 public static 修饰
-  final Int  SEX_UNKNOWN : 2
+  final Int SEX_FEMAIL : 1 //常量名所有字符全大写，单词中间用 _ 隔开；默认用 public static 修饰
+  final Int SEX_UNKNOWN : 2
+
+
+  new() { //public User() { super(); }
+    super()
+  }
+  new(Int id) { //public User(Long id) { this(); this.id = id; }
+    this()
+    this.id : id
+  }
 
   Int id //Java: private Int id;
 
