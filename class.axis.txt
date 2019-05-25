@@ -49,15 +49,15 @@ class Map User implements isCorrect { //Java: public class User extends Map impl
   final Int SEX_UNKNOWN : 2
 
 
-  new() { //public User() { super(); }
-    super()
-  }
-  new(Int id) { //public User(Long id) { this(); this.id = id; }
-    this()
-    this.id : id
-  }
+//  NEW() { //public User() { super(); }
+//    super()
+//  }
+//  NEW(Int id) { //public User(Long id) { this(); this.id = id; }   User.new 静态的怎么不是大写？ User.NEW() 内部也得 NEW
+//    this()
+//    this.id : id
+//  }
 
-  Int id //Java: private Int id;
+  new Int id //Java: private Int id; //new 表示构造时必传，还是没能满足 super(id) 和 super(null) 这种需求，除非子类和父类变量名不允许相同，即便是private的，但这个限制就很大了
 
   Char name //变量名第一个字符为小写英语字母，其它每个字符都必须是 英文字母、数字、下划线 中的一种；默认用 private 修饰
 
