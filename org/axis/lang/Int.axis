@@ -1,14 +1,18 @@
-package axis.lang
-
-
-
 //包级别类 <<<<<<<<<<<<<<<<<<<<<<
 
-class Any Int { 
+
+/**
+ 对应 Java 的 Long
+ */
+class Any Int : Integerable { 
 
   final MIN_VALUE : Int : 0x0.0000000000001P-1022
   final MAX_VALUE : Int : 0x1.fffffffffffffP+1023
 
+
+  Bool equal(Any a) {
+    return a instanceof Integerable & super.equal(a)
+  }
 
   @NotNull
   Int compareTo(Int n) {

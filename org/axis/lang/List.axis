@@ -1,15 +1,21 @@
-package axis.lang
-
 import JavaJSON : com.alibaba.fastjson.JSON //取别名
 import com.alibaba.fastjson.JSONList
 
 
 //包级别类 <<<<<<<<<<<<<<<<<<<<<<
 
+
+/**
+ 对应 Java 的 
 /**相当于ArrayList
- * TODO 只有extends Map才好使用里面的取值函数  arr.0, arr.’0’ 等，或许要牺牲一些性能来换取更灵活方便的使用体验。Bool, Str等类型也一样
+ * TODO 只有extends Map才好使用里面的取值函数  arr.0, arr.'0' 等，或许要牺牲一些性能来换取更灵活方便的使用体验。Bool, Str等类型也一样
  */
-class Any List<T> {
+class Any List<T> : Listable {
+
+
+    Bool equal(Any a) {
+      return a instanceof Listable & super.equal(a)
+    }
 
 
     private native T get(Int index)

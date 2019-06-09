@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSONMap
 
 //包级别类 <<<<<<<<<<<<<<<<<<<<<<
 
-class Any Map<K, V> { 
+class Map<String, Any> User : Serializable { // Java: public class User extends LinkedHashMap<String, Any> implements Serializable {
 
     private native V get(K key)
 

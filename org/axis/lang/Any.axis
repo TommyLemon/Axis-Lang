@@ -1,5 +1,3 @@
-package axis.lang
-
 //包级别常量 <<<<<<<<<<<<<<<<<<<<<<
 
 Str UTF_8 : 'utf-8'
@@ -19,7 +17,16 @@ Str[] BASE_TYPES : [
 
 //包级别类 <<<<<<<<<<<<<<<<<<<<<<
 
-abstract class Any { //任意类型，自动找到实例化时的精准类型并替换
+/**
+ 对应 Java 的 Objecg
+ */
+abstract class Any : isSelf { //任意类型，自动找到实例化时的精准类型并替换
+
+  native IS_SELF(
+      Any val0 : this
+      Any val1 : a
+  )
+
 
   private Any value { //重写变量的内部函数
     Any get() { //取值函数getter，定义 any : Any  -> 调用 any 或 any.get()
@@ -32,6 +39,24 @@ abstract class Any { //任意类型，自动找到实例化时的精准类型并
     }
   } : null //给变量赋初始值
  
+
+  Bool isSelf(Any a) {
+    return IS_SELF(
+      /* Any val0 : */ this
+      /* Any val1 : */ a
+    )
+  }
+
+  Bool equal(Any a) {
+    if (isSelf()) {
+      return true
+    }
+    if (this.getClass() = a.getClass()) {
+      return this.toStr() = a.toStr()
+    }
+    return false
+  }
+
 
   //转任意类型
   <T> T to(Class<T> clazz) throws ClassCastException {

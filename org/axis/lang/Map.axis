@@ -1,0 +1,59 @@
+import JavaJSON : com.alibaba.fastjson.JSON //取别名
+import com.alibaba.fastjson.JSONMap
+
+//包级别类 <<<<<<<<<<<<<<<<<<<<<<
+
+/**
+ 对应 Java 的 LinkedHashMap
+ */
+class Any Map<K, V> : Mappable { 
+
+    private native V get(K key)
+
+
+    Bool equal(Any a) {
+      return a instanceof Mappable & super.equal(a)
+    }
+
+
+    private native Map<K, V> put(
+      K key
+      V value
+    )
+
+
+    @Override
+    Str toStr() {
+      return JSON.toJSONString(obj : this)
+    }
+
+    Map<?, ?> OF(Str s) {
+
+      return OF(
+        map : JavaJSON.parseMap(json : s)
+      )
+    }
+
+    Map<?, ?> OF(Map<?, ?> map){
+
+      map : map ?; Map<?, ?>{}
+      Map<?, ?> obj : Map<?, ?>{}
+      map.forEach(
+        Int index
+        Any key
+        Any value
+      ) {
+
+        obj
+          .key : key
+          .value : value
+      }
+
+      return obj
+    }
+
+
+
+}
+
+//包级别类 >>>>>>>>>>>>>>>>>>>>>>

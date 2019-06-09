@@ -1,0 +1,118 @@
+//包级别 function <<<<<<<<<<<<<<<<<<<<<<
+
+
+and() // &
+or() // |
+not() // !
+
+add() // +
+minus() // - 
+multi() // *
+divide() // /
+square() // ^
+remain() // %
+
+isSelf() // ==
+
+equal() // =
+more() // >
+less() // <
+moreOrEqual() // >=
+lessOrEqual() // <=
+notEqual() // !=
+
+
+//包级别 function >>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
+
+//包级别 interface <<<<<<<<<<<<<<<<<<<<<<
+
+
+/**
+  逻辑运算
+ */
+interface Logicable : and, or, not {}
+
+/**
+  数学运算
+ */
+interface Calculatable : add, minus, multi, divide, square, remain {}
+
+
+/**
+  等价运算 =, !=
+ */
+interface Equallable : equal, notEqual {}
+
+
+/**
+  比较运算 =, >, <, >=, <=, != 
+ */
+interface Comparable : Equabllable {}
+
+
+
+//TODO 该不该提供 Booelean, Intergerable, Numberic，String，容易导致 1 + 2 = 3 这种重写 add 方法后出现的奇葩问题，不过也可以直接给 add() 方法加 final 来解决。
+/**
+  判断 Booelean
+ */
+interface Booleanable : Equallable, not { 
+
+    final Bool TRUE : true
+    final Bool FALSE : false
+}
+
+/**
+  整数 Integer + Long，例如
+  1, 2, 5, 10, 100, -1, -128, -1024
+ */
+interface Intergerable : Comparable, Calculatable {}
+
+/**
+  小数 Numberic，例如
+  1.0, 2.1, 5.5, 10.24, 100.99, -1.1, -128.05, -1024.210
+ */
+interface Numbericable : Comparable, Calculatable {}
+
+/**
+  字符串 String，例如
+  '0', 'a', 'bcd', '1.23', '{}', '[]'
+ */
+interface Stringable : Comparable {}
+
+
+/**
+  映射 Map，可包含键值对 key : value，其中 key 和 value 都默认可为任何类型，如果泛型指定了类型，则按指定的类型。例如
+  {}, {'a' : 1}, 
+  {
+    'b' : false
+    'c' : 'str'
+    'd' : {}
+    'e' : [
+      1
+      2
+      3
+    ]
+  }
+ */
+interface Mappable<K, V> : Comparable, add, minus {}
+
+
+/**
+  列表 List，可包含任何类型的元素 element，element 默认可为任何类型，如果泛型指定了类型，则按指定的类型。例如
+  [], [1], 
+  [
+    2
+    5
+    10
+  ], 
+ */
+interface Listable<E> : Equallable, add, minus {}
+
+
+//包级别 interface >>>>>>>>>>>>>>>>>>>>>>
+
+

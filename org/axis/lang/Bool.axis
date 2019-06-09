@@ -1,15 +1,14 @@
-package axis.lang
-
-
-
 //包级别类 <<<<<<<<<<<<<<<<<<<<<<
 
-Any Bool { 
+/**
+ 对应 Java 的 Boolean
+ */
+Any Bool : Booleanable { 
 
     final Str TRUE : 'true'
     final Str FALSE : 'false'
 
-    @Override
+    //IDE 自动索引并显示左侧的上下箭头，不用写，导出会自动加上 @Override
     Str toStr() {
       return this ? TRUE ; FALSE
     }
@@ -20,6 +19,12 @@ Any Bool {
         value : s = TRUE ? true ; false 
       }
     }
+
+
+    Bool equal(Any a) {
+      return a instanceof Booleanable & super.equal(a)
+    }
+
 }
 
 //包级别类 >>>>>>>>>>>>>>>>>>>>>>

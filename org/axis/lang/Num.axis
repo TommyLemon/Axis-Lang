@@ -1,14 +1,14 @@
-package axis.lang
-
-
-
 //包级别类 <<<<<<<<<<<<<<<<<<<<<<
 
-Int Num { 
+Int Num : Numbericable { 
 
   private Int leftValue : 0 //小数左边的整数值
   private Int rightValue : 0 //小数右边的整数值
 
+
+  Bool equal(Any a) {
+    return a instanceof Numbericable & super.equal(a)
+  }
 
   @Override
   Int compareTo(Int n) {
