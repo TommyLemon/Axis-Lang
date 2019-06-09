@@ -18,21 +18,21 @@ Map map : {
 
 
 #### Few system types
-only Any, Bool, Int, Num, Char, Map and List
+only Any, Bool, Int, Num, Str, Map and List
 
 #### Safe type
 ```javascript
 Int id : 0
-Char name : null
+Str name : null
 
-id.toChar() // '0'
+id.toStr() // '0'
 
 name.length //won't throw NullPoninterExeption but return null
 name.toUpperCase() //won't throw NullPoninterExeption but return null 
 
 User user = null
 user.name : name //automatically create user and name in user when they are null and the expression is for assign
-PRINT(user.toChar()) //{ name : null }
+PRINT(user.toStr()) //{ name : null }
 ```
 
 #### Default value for arguments
@@ -55,14 +55,14 @@ function(
 #### Default and anonymous getter and setter functions for fields
 such as
 ```javascript
-Char name {
+Str name {
   @Override
-  Char get() {
+  Str get() {
     return name
   }
 
   @Override
-  Char set(Char value) {
+  Str set(Str value) {
     name : value
     return this
   }
@@ -88,8 +88,8 @@ package org.axis.api
 abtract Bool isCorrect()
 
 LOG(
-  Char tag
-  Char message
+  Str tag
+  Str message
 ) {
   ...
 }
@@ -215,7 +215,7 @@ PRINT(map.'tag') // Java
 #### forEach
 List
 ```javascript
-Char[] NAMES : [
+Str[] NAMES : [
   'name0'
   'name1'
   'name2'
@@ -223,7 +223,7 @@ Char[] NAMES : [
 
 NAMES.forEach(
   Int index
-  Char item
+  Str item
 ) {
   LOG(
     tag : 'FOR_EACH'
@@ -241,7 +241,7 @@ Map map : {
 }
 
 map.forEach(
-  Char key
+  Str key
   Any value
 ) {
   LOG(
@@ -256,7 +256,7 @@ declare a Type
 ```javascript
 class Map User {
   final Int id
-  final Char name
+  final Str name
 }
 ```
 then call
@@ -316,12 +316,12 @@ class Map Outter {
 ```
 static funciton
 ```javascript
-MAIN(Char[] args) {
+MAIN(Str[] args) {
 }
 ```
 static field
 ```javascript
-final Char TAG : 'Axis'
+final Str TAG : 'Axis'
 ```
 
 #### No 'new' and no constructor
@@ -335,13 +335,13 @@ User user : User{}
 call() {
 }
 
-Char callBack() {
+Str callBack() {
   return 'Title'
 }
 ```
 ```javascript
 call()
-Char title : callBack()
+Str title : callBack()
 ```
 
 
