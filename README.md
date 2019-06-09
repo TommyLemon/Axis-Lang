@@ -316,6 +316,15 @@ Char title : callBack()
 ```
 
 
+#### No package
+Auto set package for Axis Files. And you don't need to write such code in Java
+```java
+package org.axis.lang;
+```
+And if the path of an Axis file changed(Myabe the file was moved to another folder),
+you don't need to edit the code above.
+
+
 #### No interface
 replaced with Map and function in package level
 ```javascript
