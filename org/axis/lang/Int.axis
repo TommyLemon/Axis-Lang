@@ -11,7 +11,7 @@ class Any Int : Integerable {
 
 
   Bool equal(Any a) {
-    return a instanceof Integerable & super.equal(a)
+    return a instanceof Integerable & super.equal(/* Any a : */ a)
   }
 
   @NotNull

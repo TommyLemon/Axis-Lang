@@ -7,7 +7,7 @@ Int Num : Numbericable {
 
 
   Bool equal(Any a) {
-    return a instanceof Numbericable & super.equal(a)
+    return a instanceof Numbericable & super.equal(/* Any a : */ a)
   }
 
   @Override

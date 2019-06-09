@@ -12,7 +12,7 @@ class Any Map<K, V> : Mappable {
 
 
     Bool equal(Any a) {
-      return a instanceof Mappable & super.equal(a)
+      return a instanceof Mappable & super.equal(/* Any a : */ a)
     }
 
 

@@ -13,6 +13,7 @@ square() // ^
 remain() // %
 
 isSelf() // ==
+isNotSelf() // !==
 
 equal() // =
 more() // >

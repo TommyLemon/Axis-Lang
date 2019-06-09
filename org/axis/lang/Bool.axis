@@ -22,7 +22,7 @@ Any Bool : Booleanable {
 
 
     Bool equal(Any a) {
-      return a instanceof Booleanable & super.equal(a)
+      return a instanceof Booleanable & super.equal(/* Any a : */ a)
     }
 
 }

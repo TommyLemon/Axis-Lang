@@ -4,7 +4,7 @@ class Any Str : Stringable {
 
 
     Bool equal(Any a) {
-      return a instanceof Stringable & super.equal(a)
+      return a instanceof Stringable & super.equal(/* Any a : */ a)
     }
 
     Int length() {

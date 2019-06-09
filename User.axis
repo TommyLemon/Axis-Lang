@@ -1,5 +1,3 @@
-package axis.lang
-
 import JavaJSON : com.alibaba.fastjson.JSON //取别名
 import com.alibaba.fastjson.JSONMap
 
@@ -7,46 +5,42 @@ import com.alibaba.fastjson.JSONMap
 
 class Map<String, Any> User : Serializable { // Java: public class User extends LinkedHashMap<String, Any> implements Serializable {
 
-    private native V get(K key)
+	Int _id
+	Str _name
+	List<Int> _id //对于类型不同的变量，名称可重复，引用时会自动带上类型标注来区分，例如 _id@Int, _id@List，泛型不行
 
-    private native Map<K, V> put(
-      K key
-      V value
-    )
+ 	//会自动生成这些默认方法  <<<<<<<<<<<<<<<<<<<
+	Int getId() {
+		return _id@Int // @Int 是 IDE 自动给出的类型提示，高亮显示，不可编辑，导出代码会自动生成
+	}
+	setId(Int id) {
+		this._id@Int : id@Int // @Int 是 IDE 自动给出的类型提示，高亮显示，不可编辑，导出代码会自动生成
+	}
+
+    setName(Str name) {
+    	this._name@Str : name@Str // @Str 是 IDE 自动给出的类型提示，高亮显示，不可编辑，导出代码会自动生成
+    }
+    //会自动生成这些默认方法  >>>>>>>>>>>>>>>>>>>>
 
 
-    @Override
-    Str toStr() {
-      return JSON.toJSONString(obj : this)
+    //_id@List 和 _id@Int 重名，必须重命名方法来区分，否则以后各种 方法名()@返回类型 ，就很难看了  <<<<<<<<<<<<<<<<<<<
+    List<Int> getIdList() {
+    	return _id@List = null ? [] ; _id@List //可简化为 return _id@List ?; []
     }
 
-    Map<?, ?> OF(Str s) {
-
-      return OF(
-        map : JavaJSON.parseMap(json : s)
-      )
+    setIdList(List<Int> id) {
+		this._id@List : id@List // @List 是 IDE 自动给出的类型提示，高亮显示，不可编辑，导出代码会自动生成
     }
+	//_id@List 和 _id@Int 重名，必须重命名方法来区分，否则以后就是各种 方法名()@返回类型 ，那就很难看了  >>>>>>>>>>>>>>>>>>>
 
-    Map<?, ?> OF(Map<?, ?> map){
 
-      map : map ?; Map<?, ?>{}
-      Map<?, ?> obj : Map<?, ?>{}
-      map.forEach(
-        Int index
-        Any key
-        Any value
-      ) {
-
-        obj
-          .key : key
-          .value : value
-      }
-
-      return obj
+    toStr() {
+    	return '{'
+    		+ '\n  id:' + _id@Int
+    		+ '\n  name:' + _name@Str
+    		+ '\n  idList:' + getIdList()
+    	    + '\n}'
     }
-
-
-
 }
 
 //包级别类 >>>>>>>>>>>>>>>>>>>>>>

@@ -46,9 +46,12 @@ abstract class Any : isSelf { //任意类型，自动找到实例化时的精准
       /* Any val1 : */ a
     )
   }
+  Bool isNotSelf(Any a) {
+    return ! isSelf(/* Any a : */ a)
+  }
 
   Bool equal(Any a) {
-    if (isSelf()) {
+    if (isSelf(/* Any a : */ a)) {
       return true
     }
     if (this.getClass() = a.getClass()) {

@@ -14,7 +14,7 @@ class Any List<T> : Listable {
 
 
     Bool equal(Any a) {
-      return a instanceof Listable & super.equal(a)
+      return a instanceof Listable & super.equal(/* Any a : */ a)
     }
 
 
