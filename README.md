@@ -276,7 +276,7 @@ user.{
 }
 ```
 
-#### Short and repeatable variable or constant names in the same scop
+#### Short and repeatable variable or constant names in the same scope
 ```javascript
 Int id
 List<Int> id
