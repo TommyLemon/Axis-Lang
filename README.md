@@ -289,6 +289,8 @@ setIdList(List<Int> id) {
 }
 ```
 If the type of a variable or a constant was changed, IDE will automatically change all the type annotaions about it.
+For example, you edit 'List<Int> id' and change it to 'Map<Int, Int> id',
+then all codes of 'id@List' will automatically become 'id@Map'.
 ```javascript
 Map<Int, Int> id
 
