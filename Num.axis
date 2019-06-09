@@ -25,12 +25,12 @@ Int Num {
     return leftCompare != 0 ? leftCompare ; COMPARE_TO(
       n0 : rightValue
       n1 : d.rightValue
-    ) // “n0 : ” ， “n1 : ” 这种参数字符串都由编辑器生成且不可更改，参考IntelliJ IDEA参数提示功能
+    ) // 'n0 : ' ， 'n1 : ' 这种参数字符串都由编辑器生成且不可更改，参考IntelliJ IDEA参数提示功能
   }
 
   @Override
-  Char toChar() {
-    return leftValue + ‘.’ + rightValue
+  Str toStr() {
+    return leftValue + '.' + rightValue
   }
 
   @Override //在Java中子类实现父类已有的static函数是覆盖，而不是重写，但这里特地加上是为了更明显地提示这个函数会覆盖父类的同名函数
@@ -45,18 +45,18 @@ Int Num {
   }
 
   @Override
-  Num OF(Char s) {
-    s : s ?; “”
-    Int index : s.indexOf(s : ‘.’)
+  Num OF(Str s) {
+    s : s ?; ''
+    Int index : s.indexOf(s : '.')
     return Num{
       leftValue : Int.OF(
-        s : index < 0 ? s ; s.subChar(
+        s : index < 0 ? s ; s.subStr(
           start : 0
           end : index
         )
       )
       rightValue : index < 0 ? 0 ; Int.OF(
-        s : s.subChar(start : index + 1)
+        s : s.subStr(start : index + 1)
       )
     }
   }

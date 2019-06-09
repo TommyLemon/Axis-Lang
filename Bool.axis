@@ -6,16 +6,16 @@ package axis.lang
 
 Any Bool { 
 
-    final Char TRUE : “true”
-    final Char FALSE : “false”
+    final Str TRUE : 'true'
+    final Str FALSE : 'false'
 
     @Override
-    Char toChar() {
+    Str toStr() {
       return this ? TRUE ; FALSE
     }
 
-    Bool OF(Char s) {
-      s = s ?? “”
+    Bool OF(Str s) {
+      s = s ?? ''
       return Bool{
         value : s = TRUE ? true ; false 
       }

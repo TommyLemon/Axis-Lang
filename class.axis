@@ -2,16 +2,16 @@ package axis.lang
 
 //包级别常量 <<<<<<<<<<<<<<<<<<<<<<
 
-Char UTF_8 : “utf-8”
-Char VERSION_NAME : “1.0”
+Str UTF_8 : 'utf-8'
+Str VERSION_NAME : '1.0'
 Int VERSION_CODE : 1
 Bool DEBUG : true
-Char[] BASE_TYPES : [
-  “Bool”
-  “Int”
-  “Char”
-  “Map”
-  “List”
+Str[] BASE_TYPES : [
+  'Bool'
+  'Int'
+  'Str'
+  'Map'
+  'List'
 ]
 
 //包级别常量 >>>>>>>>>>>>>>>>>>>>>>
@@ -26,9 +26,9 @@ abstract callback(Int arg)  //Java: public interface Interface$callback { void c
 
 abstract isCorrect()
 
-TO_Char(Any a) {
-  return a = null ? null ; a.toChar()
-} //Java: public class Class$TO_Char { public static TO_Char(Any a) { return a == null ? null : a.toChar(); } }
+TO_STR(Any a) {
+  return a = null ? null ; a.toStr()
+} //Java: public class Class$TO_STR { public static TO_STR(Any a) { return a == null ? null : a.toStr(); } }
 
 //包级别函数 >>>>>>>>>>>>>>>>>>>>>>
 
@@ -49,17 +49,17 @@ class Map User implements isCorrect { //Java: public class User extends Map impl
   final Int SEX_UNKNOWN : 2
 
 
-//  NEW() { //public User() { super(); }
+//  this() { //public User() { super(); }
 //    super()
 //  }
-//  NEW(Int id) { //public User(Long id) { this(); this.id = id; }   User.new 静态的怎么不是大写？ User.NEW() 内部也得 NEW
+//  this(Int id) { //public User(Long id) { this(); this.id = id; }  //废弃 new/NEW，只允许 Class {} 这一种构造方式  //User.new 静态的怎么不是大写？ User.NEW() 内部也得 NEW
 //    this()
 //    this.id : id
 //  }
 
   new Int id //Java: private Int id; //new 表示构造时必传，还是没能满足 super(id) 和 super(null) 这种需求，除非子类和父类变量名不允许相同，即便是private的，但这个限制就很大了
 
-  Char name //变量名第一个字符为小写英语字母，其它每个字符都必须是 英文字母、数字、下划线 中的一种；默认用 private 修饰
+  Str name //变量名第一个字符为小写英语字母，其它每个字符都必须是 英文字母、数字、下划线 中的一种；默认用 private 修饰
 
   Int sex
 

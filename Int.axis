@@ -35,21 +35,21 @@ class Any Int {
   }
 
   @Override
-  Char toChar() {
+  Str toStr() {
     return “” + value
   }
   
 
-  OF(Char s) {
+  OF(Str s) {
 
-    s : s ?; “”
+    s : s ?; ''
     return Int{
       value : castToInt(s : s)
     }
   }
 
 
-  final native Int castToInt(Char s)
+  final native Int castToInt(Str s)
 }
 
 //包级别类 >>>>>>>>>>>>>>>>>>>>>>

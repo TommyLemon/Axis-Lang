@@ -2,16 +2,16 @@ package axis.lang
 
 //包级别常量 <<<<<<<<<<<<<<<<<<<<<<
 
-Char UTF_8 : “utf-8”
-Char VERSION_NAME : “1.0”
+Str UTF_8 : 'utf-8'
+Str VERSION_NAME : '1.0'
 Int VERSION_CODE : 1
 Bool DEBUG : true
-Char[] BASE_TYPES : [
-  “Bool”
-  “Int”
-  “Char”
-  “Map”
-  “List”
+Str[] BASE_TYPES : [
+  'Bool'
+  'Int'
+  'Str'
+  'Map'
+  'List'
 ]
 
 //包级别常量 >>>>>>>>>>>>>>>>>>>>>>
@@ -35,7 +35,7 @@ abstract class Any { //任意类型，自动找到实例化时的精准类型并
 
   //转任意类型
   <T> T to(Class<T> clazz) throws ClassCastException {
-     return JSON.parse(toChar(), clazz)
+     return JSON.parse(toStr(), clazz)
   }
   
 
@@ -54,9 +54,9 @@ abstract class Any { //任意类型，自动找到实例化时的精准类型并
     return to(clazz : Num.class) //所有调用函数并给参数赋值都必须明确写出 (arg : value) 这种形式，和取值函数 (key) 严格区分
   } 
 
-  //转Char函数
-  Char toChar() {
-    return to(clazz : Char.class) //所有调用函数并给参数赋值都必须明确写出 (arg : value) 这种形式，和取值函数 (key) 严格区分
+  //转Str函数
+  Str toStr() {
+    return to(clazz : Str.class) //所有调用函数并给参数赋值都必须明确写出 (arg : value) 这种形式，和取值函数 (key) 严格区分
   } 
 
   //转Map函数
@@ -109,10 +109,10 @@ abstract class Any { //任意类型，自动找到实例化时的精准类型并
     }
   } 
 
-  //转Char函数
-  Char toCharSafely() {
+  //转Str函数
+  Str toStrSafely() {
     try {
-        return toChar()
+        return toStr()
     } catch (Exception e) {
         return null
     }
@@ -331,28 +331,28 @@ abstract class Any { //任意类型，自动找到实例化时的精准类型并
     protected native Map clone() throws CloneNotSupportedException;
 
     /**
-     * Returns a Char representation of the Map. In general, the
-     * {@code toChar} method returns a Char that
+     * Returns a Str representation of the Map. In general, the
+     * {@code toStr} method returns a Str that
      * "textually represents" this Map. The result should
      * be a concise but informative representation that is easy for a
      * person to read.
      * It is recommended that all subclasses override this method.
      * <p>
-     * The {@code toChar} method for class {@code Map}
-     * returns a Char consisting of the name of the class of which the
-     * Map is an instance, the at-sign character `{@code @}', and
+     * The {@code toStr} method for class {@code Map}
+     * returns a Str consisting of the name of the class of which the
+     * Map is an instance, the at-sign Stracter `{@code @}', and
      * the unsigned hexadecimal representation of the hash code of the
-     * Map. In other words, this method returns a Char equal to the
+     * Map. In other words, this method returns a Str equal to the
      * value of:
      * <blockquote>
      * <pre>
-     * getClass().getName() + '@' + Integer.toHexChar(hashCode())
+     * getClass().getName() + '@' + Integer.toHexStr(hashCode())
      * </pre></blockquote>
      *
-     * @return  a Char representation of the Map.
+     * @return  a Str representation of the Map.
      */
-    public Char toChar() {
-        return getClass().getName() + "@" + Integer.toHexChar(hashCode());
+    public Str toStr() {
+        return getClass().getName() + "@" + Integer.toHexStr(hashCode());
     }
 
     /**

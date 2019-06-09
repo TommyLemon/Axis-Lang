@@ -16,11 +16,11 @@ class Any Map<K, V> {
 
 
     @Override
-    Char toChar() {
-      return JSON.toJSONChar(obj : this)
+    Str toStr() {
+      return JSON.toJSONString(obj : this)
     }
 
-    Map<?, ?> OF(Char s) {
+    Map<?, ?> OF(Str s) {
 
       return OF(
         map : JavaJSON.parseMap(json : s)
