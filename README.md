@@ -409,54 +409,59 @@ class Adapter BaseAdapter implements AdapterViewCallback, refresh {
 
 #### If
 replace if-else if-else, switch-case
+
+if
 ```javascript
-if () {
-  (a = 1) {
-    ...
-  }
-  (a < 1 & a != -1) {
-    ...
-  }
-  () { //else
-    ...
-  }
+if a = 1 {  // if
+   ...
 }
 ```
 
+if-else
 ```javascript
-if (a) {
-  (= 1) {
-    ...
-  }
-  (< 1) {
-    ...
-  }
-  () { //else
-    ...
-  }
+if a = 1 {  // if
+   ...
+}  {  // else
+   ...
 }
 ```
 
+if-else-else if
 ```javascript
-if (a =) {
-  (1) {
+if
+   a = 1 {  // if
     ...
-  }
-  (2 | 3) {
+}  a < 1 & a != -1 {  // else if
     ...
-  }
-  () { //else
+}  { //else
     ...
-  }
 }
 ```
 
-
+if-else-else if
 ```javascript
-if (a = 1) {
-  ...
+if a
+   = 1 {  // if
+   ...
+}  < 1 {  // else if
+   ...
+}  {  //else
+   ...
 }
 ```
+
+if-else-else if
+```javascript
+if a =
+   1 {  // if
+   ...
+}  2 | a = 3 {  // else if
+   ...
+}  {  //else
+   ...
+}
+```
+
 
 #### Callback
 ##### Abstract Method
