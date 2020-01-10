@@ -4,7 +4,7 @@
 /**
  对应 Java 的 Long
  */
-class Any Int : Integerable { 
+class Int : Integerable { 
 
   final MIN_VALUE : Int : 0x0.0000000000001P-1022
   final MAX_VALUE : Int : 0x1.fffffffffffffP+1023

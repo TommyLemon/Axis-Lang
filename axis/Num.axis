@@ -1,6 +1,6 @@
 //包级别类 <<<<<<<<<<<<<<<<<<<<<<
 
-Int Num : Numbericable { 
+class Num : Int, Numbericable {  //父类必须写在第一个，后面的只能是 interface 或 function
 
   private Int leftValue : 0 //小数左边的整数值
   private Int rightValue : 0 //小数右边的整数值

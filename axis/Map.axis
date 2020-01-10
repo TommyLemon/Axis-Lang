@@ -6,7 +6,7 @@ import com.alibaba.fastjson.JSONMap
 /**
  对应 Java 的 LinkedHashMap
  */
-class Any Map<K, V> : Mappable { 
+class Map<K, V> : Mappable { 
 
     private native V get(K key)
 
@@ -27,17 +27,17 @@ class Any Map<K, V> : Mappable {
       return JSON.toJSONString(obj : this)
     }
 
-    Map<?, ?> OF(Str s) {
+    Map OF(Str s) {
 
       return OF(
-        map : JavaJSON.parseMap(json : s)
+        map : JavaJSON.parseObject(json : s)
       )
     }
 
-    Map<?, ?> OF(Map<?, ?> map){
+    Map OF(Map map){
 
-      map : map ?; Map<?, ?>{}
-      Map<?, ?> obj : Map<?, ?>{}
+      map : map ?; Map{}
+      Map obj : Map{}
       map.forEach(
         Int index
         Any key

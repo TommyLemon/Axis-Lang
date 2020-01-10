@@ -3,7 +3,7 @@
 /**
  对应 Java 的 Boolean
  */
-Any Bool : Booleanable { 
+class Bool : Booleanable {  //默认继承 Any 
 
     final Str TRUE : 'true'
     final Str FALSE : 'false'

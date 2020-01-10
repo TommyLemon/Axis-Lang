@@ -1,6 +1,6 @@
 //包级别类 <<<<<<<<<<<<<<<<<<<<<<
 
-class Any Str : Stringable { 
+class Str : Stringable { 
 
 
     Bool equal(Any a) {
