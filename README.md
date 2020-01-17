@@ -27,6 +27,7 @@ final Str NAME_AUTHOR : 'Lemon'
 class User : {
   Int id
   Str name
+  Any extra
 }
 User user : {}
 ```
@@ -35,6 +36,7 @@ then when user or its fields were called, the IDE will automatically generate th
   user`@User` : { // user = new User().setId(1).setName('tommy') <br />
     id`@Int` : 1 // setId(1) <br />
     name`@Str` : 'tommy' // setName('tommy') <br />
+    extra : null //no hint for Any, don't need it.  setExtra(null) <br />
   } <br />
 
 #### Safe type
