@@ -175,7 +175,7 @@ PRINT(msg : list@List<Int>) // [3, 4, 2, 5, 6]
 list@List<Int> -: [
   0
   5
-] //list.remove((Object) 0);  list.remove((Object)5);
+] //list.remove((Object) 0);  list.remove((Object) 5);
 
 PRINT(msg : list@List<Int>) // [3, 4, 2, 6]
 
