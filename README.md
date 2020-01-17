@@ -21,7 +21,7 @@ Map map : {
 only Any, Bool, Int, Num, Str, Map and List
 
 #### Type hint
-if NAME_AUTHOR, User and an instance for it was defined like this:
+if NAME_AUTHOR, User and an instance of User was defined like this:
 ```
 final Str NAME_AUTHOR : 'Lemon'
 class User : {
