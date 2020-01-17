@@ -21,7 +21,6 @@ Map map : {
 only Any, Bool, Int, Num, Str, Map and List
 
 #### Safe type
-```javascript
 Int id : 0
 Str name : null
 
@@ -33,7 +32,6 @@ name`@Str`.toUpperCase() //won't throw NullPoninterExeption but return null
 User user = null
 user.name`@Str` : name //automatically create user and name in user when they are null and the expression is for assign
 PRINT(`msg : `user`@User`.toStr()) //{ name : null }
-```
 
 #### Default value for arguments
 such as 
