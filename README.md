@@ -1,7 +1,7 @@
 # Axis-Lang
-A programming language running on JVM.
-Powerful, Flexible, Safe and Simple.
-
+A programming language running on JVM. <br />
+Powerful, Flexible, Safe and Simple. <br />
+[Designing...]
 
 ## Features
 
