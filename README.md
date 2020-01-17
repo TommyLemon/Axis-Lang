@@ -32,9 +32,9 @@ User user : {}
 ```
 then when user or its fields were called, the IDE will automatically generate the Type behind instances: <br />
   user`@User`.name`@Str` : NAME_AUTHOR`@Str` <br />
-  user`@User` : User{ // user.equals(new User().setId(1).setName('tommy')) <br />
-    id@Int : 1 // setId(1) <br />
-    name@Str : 'tommy' // setName('tommy') <br />
+  user`@User` : { // user = new User().setId(1).setName('tommy') <br />
+    id`@Int` : 1 // setId(1) <br />
+    name`@Str` : 'tommy' // setName('tommy') <br />
   } <br />
 
 #### Safe type
