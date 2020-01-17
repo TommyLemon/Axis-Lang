@@ -1,5 +1,5 @@
 import JavaJSON : com.alibaba.fastjson.JSON //取别名
-import com.alibaba.fastjson.JSONMap
+import com.alibaba.fastjson.JSONObject
 
 //包级别类 <<<<<<<<<<<<<<<<<<<<<<
 
