@@ -20,18 +20,37 @@ Map map : {
 #### Few system types
 only Any, Bool, Int, Num, Str, Map and List
 
+#### Type hint
+if NAME_AUTHOR, User and an instance for it was defined like this:
+```
+final Str NAME_AUTHOR : 'Lemon'
+class User : {
+  Int id
+  Str name
+}
+User user : {}
+```
+then when user or its fields were called, the IDE will automatically generate the Type behind instances:
+user`@User`.name`@Str` : NAME_AUTHOR`@Str`
+user`@User` : User{ // user.equals(new User().setId(1).setName('tommy'))
+  id@Int : 1 // setId(1)
+  name@Str : 'tommy' // setName('tommy')
+}
+
 #### Safe type
+```javascript
 Int id : 0
 Str name : null
 
-id`@Int`.toStr() // '0'
+id@Int.toStr() // '0'
 
-name`@Str`.length`@Int` //won't throw NullPoninterExeption but return null
-name`@Str`.toUpperCase() //won't throw NullPoninterExeption but return null 
+name@Str.length@Int //won't throw NullPoninterExeption but return null
+name@Str.toUpperCase() //won't throw NullPoninterExeption but return null 
 
 User user = null
-user.name`@Str` : name //automatically create user and name in user when they are null and the expression is for assign
-PRINT(`msg : `user`@User`.toStr()) //{ name : null }
+user@User.name@Str : name@Str //automatically create user and name in user when they are null and the expression is for assign
+PRINT(msg : user@User.toStr()) //{ name : null }
+```
 
 #### Default value for arguments
 such as 
@@ -45,8 +64,8 @@ function(*arg0 : *value0)
 or 
 ```javascript
 function(
-  `arg0@Type0 : `value0
-  `arg1@Type1 : `value1
+  arg0@Type0 : value0
+  arg1@Type1 : value1
 )
 ```
 
@@ -56,25 +75,26 @@ such as
 Str name {
   @Override
   Str get() {
-    return name`@Str`
+    return name@Str
   }
 
   @Override
   Str set(Str value) {
-    name`@Str` : value
-    return this`@User`
+    name@Str : value
+    return this@User
   }
 } : null
 ```
+
 private, protected or public fields have no getter or setter functions.
 
 #### Expand fields
 such as
 ```javascript
-user`@User`.'isFriend' : true //isFriend is not a field decleared in User, so it must be covered with ''
+user@User.'isFriend' : true //isFriend is not a field decleared in User, so it must be covered with ''
 LOG(
-  `tag@Str : `User.class`@Class`.getSimpleName()
-  `msg@Str : `'id = ' + user`@User`.id`@Int` + '; isFriend = ' + user`@User`.'isFriend'
+  tag@Str : User.class@Class.getSimpleName()
+  msg@Str : 'id = ' + user@User.id@Int + '; isFriend = ' + user@User.'isFriend'
 )
 ```
 
@@ -92,6 +112,7 @@ LOG(
   ...
 }
 ```
+
 only suppor public abstract and public static functions.
 
 #### Multiple extends and support Maps and functions
@@ -105,6 +126,7 @@ class User : Map, isCorrect { // public class User extends Map implements Interf
   }
 }
 ```
+
 the first one must be an Map Type, and the after Map Type can only supply CONSTANS and abstract functions.
 
 
@@ -117,8 +139,8 @@ map = {} // map.equals({})
 list = [] // list.equals([])
 user = User{} // user.equals(new User())
 user = User{ // user.equals(new User().setId(1).setName('tommy'))
-  `id : `1 // setId(1)
-  `name : `'tommy' // setName('tommy')
+  id@Int : 1 // setId(1)
+  name@Str : 'tommy' // setName('tommy')
 }
 ```
 
@@ -128,43 +150,43 @@ List<Int> list : [1, 2, 3]
 
 //forbidden  list +: 4 // list.add(4)
 
-PRINT(`msg : `list`@List<Int>`) // [1, 2, 3, 4]
+PRINT(msg : list@List<Int>) // [1, 2, 3, 4]
 
-list`@List<Int>` +: [2, 5, 6] //list.addAll([2, 5, 6])
+list@List<Int> +: [2, 5, 6] //list.addAll([2, 5, 6])
 
-PRINT(`msg : `list`@List<Int>`) // [1, 2, 3, 4, 2, 5, 6]
+PRINT(msg : list@List<Int>) // [1, 2, 3, 4, 2, 5, 6]
 
-list`@List<Int>` -: <0, 1> //list.remove(0);  list.remove(1);
+list@List<Int> -: <0, 1> //list.remove(0);  list.remove(1);
 
-PRINT(`msg : `list`@List<Int>`) // [3, 4, 2, 5, 6]
+PRINT(msg : list@List<Int>) // [3, 4, 2, 5, 6]
 
-list`@List<Int>` -: [5] //list.remove([5]);
+list@List<Int> -: [5] //list.remove([5]);
 
-PRINT(`msg : `list`@List<Int>`) // [3, 4, 2, 6]
+PRINT(msg : list@List<Int>) // [3, 4, 2, 6]
 
-list`@List<Int>` -: 2 //list.remove((Map) 2)
+list@List<Int> -: 2 //list.remove((Map) 2)
 
-PRINT(`msg : `list`@List<Int>`) // [3, 4, 6]
+PRINT(msg : list@List<Int>) // [3, 4, 6]
 
 //forbidden  list -: {0, 2} //list.remove(0) list.remove(2)
 
-PRINT(`msg : `list`@List<Int>`.0`@Int`) // 3
+PRINT(msg : list@List<Int>.0@Int) // 3
 
-PRINT(`msg : `list`@List<Int>`.'0'`@Int`) // 3
+PRINT(msg : list@List<Int>.'0'@Int) // 3
 
-PRINT(`msg : `list`@List<Int>`.3`@Int`) // throw IndexOutOfBoundsException('index : 3, list.length : 3, index >: list.length !')
+PRINT(msg : list@List<Int>.3@Int) // throw IndexOutOfBoundsException('index : 3, list.length : 3, index >: list.length !')
 
-PRINT(`msg : `list`@List<Int>`.'3'`@Int`) // null
+PRINT(msg : list@List<Int>.'3'@Int) // null
 
 //forbidden  PRINT(list.'a') //the index must be a number
 
-list`@List<Int>`.4`@Int` : 4 // throw IndexOutOfBoundsException('index : 4, list.length : 3, index > list.length !')
+list@List<Int>.4@Int : 4 // throw IndexOutOfBoundsException('index : 4, list.length : 3, index > list.length !')
 
-list`@List<Int>`.'4'`@Int` : 4
+list@List<Int>.'4'@Int : 4
 
-PRINT(`msg : `list`@List<Int>`.'4'`@Int`) // 4
+PRINT(msg : list@List<Int>.'4'@Int) // 4
 
-PRINT(`msg : `list`@List<Int>`) // [3, 4, 6, null, 4]
+PRINT(msg : list@List<Int>) // [3, 4, 6, null, 4]
 ```
 
 ### '+', '-' between Maps
@@ -175,38 +197,38 @@ Map map : {
   'name' : null
 }
 
-map`@Map` +: {
+map@Map +: {
   'name'  : 'test'
   'phone' : '123456789'
 } // map.putAll({'name' : 'test', 'phone': '123456789'})
 
-PRINT(`msg : `map`@Map`) // { 'id' : 1, 'sex' : 0, 'name' : 'test', 'phone' : '123456789' }
+PRINT(msg : map@Map) // { 'id' : 1, 'sex' : 0, 'name' : 'test', 'phone' : '123456789' }
 
-map`@Map` -: <'sex'> //map.remove('sex')
+map@Map -: <'sex'> //map.remove('sex')
 
-PRINT(`msg : `map`@Map`) // { 'id' : 1, 'name' : 'test', 'phone' : '123456789' }
+PRINT(msg : map@Map) // { 'id' : 1, 'name' : 'test', 'phone' : '123456789' }
 
-map`@Map` -: 1 //map.removeValue(1);
+map@Map -: 1 //map.removeValue(1);
 
-PRINT(`msg : `map`@Map`) // { 'name' : 'test', 'phone' : '123456789' }
+PRINT(msg : map@Map) // { 'name' : 'test', 'phone' : '123456789' }
 
-map`@Map` -: ['123456789'] //map.removeValues(['123456789']);
+map@Map -: ['123456789'] //map.removeValues(['123456789']);
 
-PRINT(`msg : `map`@Map`) // { 'name' : 'test' }
+PRINT(msg : map@Map) // { 'name' : 'test' }
 
-PRINT(`msg : `map`@Map`.name) // error, undefined filed name in map@Map!
+PRINT(msg : map@Map.name) // error, undefined filed name in map@Map!
 
-PRINT(`msg : `map`@Map`.'name') // test
+PRINT(msg : map@Map.'name') // test
 
 //forbidden  PRINT(map.tag) // throw NotFoundException('could not find the key "tag" in map !')
 
-PRINT(`msg : `map`@Map`.'tag') // null
+PRINT(msg : map@Map.'tag') // null
 
 //forbidden  map.tag : 'Java'
 
-map`@Map`.'tag' : 'Java'
+map@Map.'tag' : 'Java'
 
-PRINT(`msg : `map`@Map`.'tag') // Java
+PRINT(msg : map@Map.'tag') // Java
 ```
 
 
@@ -224,8 +246,8 @@ NAMES.each(
   Str item
 ) {
   LOG(
-    `tag@Str : `'FOR_EACH'
-    `msg@Str : `item`@Str`
+    tag@Str : 'FOR_EACH'
+    msg@Str : item@Str
   )
 }
 ```
@@ -233,18 +255,18 @@ NAMES.each(
 Map
 ```javascript
 Map map<Str, Any> : {
-  'key0' : value0`@Int`
-  'key1' : value1`@Str`
-  'key2' : value2`@List`
+  'key0' : value0@Int
+  'key1' : value1@Str
+  'key2' : value2@List
 }
 
-map`Map<Str, Any>`.each(
+mapMap<Str, Any>.each(
   Str key
   Any value
 ) {
   LOG(
-    `tag@Str : `'FOR_EACH'
-    `msg@Str : `'key = ' + key`@Str` + '; value = ' + value
+    tag@Str : 'FOR_EACH'
+    msg@Str : 'key = ' + key@Str + '; value = ' + value
   )
 }
 ```
@@ -260,17 +282,17 @@ class User : Map {
 then call
 ```javascript
 User user : {
-  `id@Int : `1
-  `name@Str : `null
+  id@Int : 1
+  name@Str : null
 }
 ```
 or
 ```javascript
 User user : {} // User user = new User();
-user`@User`.sex`@Int` : 0 // user.setSex(0);
-user`@User`.{
-  `id@Int : `1 // user.setId(1);
-  `name@Str : `null // user.setName(null);
+user@User.sex@Int : 0 // user.setSex(0);
+user@User.{
+  id@Int : 1 // user.setId(1);
+  name@Str : null // user.setName(null);
 }
 ```
 
@@ -280,26 +302,27 @@ Int id
 List<Int> id
 
 getId() {
-  return id`@Int` // @Int is a type annotation generated by IDE, highlight and uneditable, generate code when export
+  return id@Int // @Int is a type annotation generated by IDE, highlight and uneditable, generate code when export
 }
 setIdList(List<Int> id) {
-  this.id`@List` : id`@List` // @List is a type annotation generated by IDE, highlight and uneditable, generate code when export
+  this.id@List : id@List // @List is a type annotation generated by IDE, highlight and uneditable, generate code when export
 }
 getFromIdList(Int position) {
-  return id`@List`.get(`positoin@Int : `position`@Int`)
+  return id@List.get(positoin@Int : position@Int)
 }
 ```
+
 If the type of a variable or a constant was changed, IDE will automatically change all the type annotations about it. <br />
 For example, you edit 'List<Int> id' and change it to 'Map<Int, Int> id', <br />
-then all codes of 'id@`List`' will automatically become 'id`@Map`'.
+then all codes of 'id@List' will automatically become 'id@Map'.
 ```javascript
 Map<Int, Int> id
 
 setIdList(List<Int> id) {
-  this.id`@Map` : id`@List` // Error！Type mismatch between id@Map and id@List ！
+  this.id@Map : id@List // Error！Type mismatch between id@Map and id@List ！
 }
 getFromIdList(Int position) {
-  return id`@Map`.get(`key@Int : `position`@Int`)
+  return id@Map.get(key@Int : position@Int)
 }
 ```
 
@@ -336,8 +359,7 @@ call() {
 Str callBack() {
   return 'Title'
 }
-```
-```javascript
+
 call()
 Str title : callBack()
 ```
@@ -345,9 +367,9 @@ Str title : callBack()
 
 #### No package
 Auto set package for Axis files. And you don't need to write such code in Java
-```java
+java
 package org.axis.lang;
-```
+
 And if the path of an Axis file changed(Myabe the file was moved to another folder), <br />
 you don't need to edit the code above.
 
@@ -388,17 +410,17 @@ class BaseAdapter<T> : Adapter, AdapterViewCallback, refresh {
     Int position
   ) {
     itemView.bindView(
-      `type@Int : `getItemViewType(`position@Int : `position`@Int`)
-      `itemView@ItemView : `getItem(`position@Int : `position`@Int`)
-      `position@Int : `position`@Int`
+      type@Int : getItemViewType(position@Int : position@Int)
+      itemView@ItemView : getItem(position@Int : position@Int)
+      position@Int : position@Int
     )
   }
   
   @Override
   refresh(List<T> list) {
-    this.list`@List<T>` : when (list`@List<T>` =) {
+    this.list@List<T> : when (list@List<T> =) {
       (null) : []
-      () : List.OF(`list@Listable : `list`@List<T>`)
+      () : List.OF(list@Listable : list@List<T>)
     }
   }
 }
@@ -410,14 +432,14 @@ replace if-else if-else, switch-case
 
 if
 ```javascript
-if a`@Int` = 1 {  // if
+if a@Int = 1 {  // if
    ...
 }
 ```
 
 if-else
 ```javascript
-if a`@Int` = 1 {  // if
+if a@Int = 1 {  // if
    ...
 }  {  // else
    ...
@@ -427,9 +449,9 @@ if a`@Int` = 1 {  // if
 if-else-else if
 ```javascript
 if
-   a`@Int` = 1 {  // if
+   a@Int = 1 {  // if
     ...
-}  a`@Int` < 1 & a`@Int` != -1 {  // else if
+}  a@Int < 1 & a@Int != -1 {  // else if
     ...
 }  { //else
     ...
@@ -438,7 +460,7 @@ if
 
 if-else-else if
 ```javascript
-if a`@Int`
+if a@Int
    = 1 {  // if
    ...
 }  < 1 {  // else if
@@ -450,10 +472,10 @@ if a`@Int`
 
 if-else-else if
 ```javascript
-if a`@Int` =
+if a@Int =
    1 {  // if
    ...
-}  2 | a`@Int` = 3 {  // else if
+}  2 | a@Int = 3 {  // else if
    ...
 }  {  //else
    ...
@@ -476,7 +498,7 @@ runOnUiThread (run action) {
 3.Then you can call:
 ```javascript
 runOnUiThread (
-  `action@run : `() { //type was a generated comment. No name means default name 'run'.
+  action@run : () { //type was a generated comment. No name means default name 'run'.
     ...
   }
 )
@@ -498,7 +520,7 @@ runOnUiThread (Runnable action) {
 3.Then you can call:
 ```javascript
 runOnUiThread (
-  `action@Runnable : `{ //type was a generated comment. No name means default name 'Runnable'.
+  action@Runnable : { //type was a generated comment. No name means default name 'Runnable'.
     run() {
       ...
     }
