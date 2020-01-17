@@ -44,30 +44,32 @@ then when user or its fields were called, the IDE will automatically generate th
 Int id : 0
 Str name : null
 
-id@Int.toStr() // '0'
+id@Int.toStr()@Str // '0'
 
 name@Str.length@Int //won't throw NullPoninterExeption but return null
-name@Str.toUpperCase() //won't throw NullPoninterExeption but return null 
+name@Str.toUpperCase()@Str //won't throw NullPoninterExeption but return null 
 
 User user = null
 user@User.name@Str : name@Str //automatically create user and name in user when they are null and the expression is for assign
-PRINT(msg : user@User.toStr()) //{ name : null }
+PRINT(msg : user@User) //{ name : null }
 ```
 
 #### Default value for arguments
 such as 
 ```javascript
-function(Type0 arg0, Type1 arg1 : null)
+function(Type0 arg0, Type1 arg1 : null) {
+  ...
+}
 ```
 then you can call 
 ```javascript
-function(arg0@Type0 : value0)
+function(arg0@Type0 : value0@Type0)
 ```
 or 
 ```javascript
 function(
-  arg0@Type0 : value0
-  arg1@Type1 : value1
+  arg0@Type0 : value0@Type0
+  arg1@Type1 : value1@Type1
 )
 ```
 
@@ -95,7 +97,7 @@ such as
 ```javascript
 user@User.'isFriend' : true //isFriend is not a field decleared in User, so it must be covered with ''
 LOG(
-  tag@Str : User.class@Class.getSimpleName()
+  tag@Str : User.class@Class.getSimpleName()@Str
   msg@Str : 'id = ' + user@User.id@Int + '; isFriend = ' + user@User.'isFriend'
 )
 ```
@@ -103,7 +105,7 @@ LOG(
 #### Package level funcions
 such as
 ```javascript
-package org.axis.api
+package axis.api
 
 abtract Bool isCorrect()
 
@@ -134,13 +136,13 @@ the first one must be an Map Type, and the after Map Type can only supply CONSTA
 
 #### '=' equal for any Types
 ```javascript
-b = true // b.equals(true)
-i = 0 // i.equals(0)
-s = '' // s.equals('')
-map = {} // map.equals({})
-list = [] // list.equals([])
-user = User{} // user.equals(new User())
-user = User{ // user.equals(new User().setId(1).setName('tommy'))
+b@Bool = true // b.equals(true)
+i@Int = 0 // i.equals(0)
+s@Str = '' // s.equals('')
+map@Map = {} // map.equals({})
+list@List = [] // list.equals([])
+user@User = User{} // user.equals(new User())
+user@User = User{ // user.equals(new User().setId(1).setName('tommy'))
   id@Int : 1 // setId(1)
   name@Str : 'tommy' // setName('tommy')
 }
@@ -148,25 +150,36 @@ user = User{ // user.equals(new User().setId(1).setName('tommy'))
 
 ### '+', '-' between Lists
 ```javascript
-List<Int> list : [1, 2, 3]
+List<Int> list : [
+  1
+  2
+  3
+]
 
-//forbidden  list +: 4 // list.add(4)
+list +: 4 // list.add(4)
 
 PRINT(msg : list@List<Int>) // [1, 2, 3, 4]
 
-list@List<Int> +: [2, 5, 6] //list.addAll([2, 5, 6])
+list@List<Int> +: [
+  2
+  5
+  6
+] //list.addAll([2, 5, 6])
 
 PRINT(msg : list@List<Int>) // [1, 2, 3, 4, 2, 5, 6]
 
-list@List<Int> -: <0, 1> //list.remove(0);  list.remove(1);
+list@List<Int> -: <0> //list.remove(0);
 
 PRINT(msg : list@List<Int>) // [3, 4, 2, 5, 6]
 
-list@List<Int> -: [5] //list.remove([5]);
+list@List<Int> -: [
+  2
+  5
+] //list.remove((Object) 2);  list.remove((Object)5);
 
 PRINT(msg : list@List<Int>) // [3, 4, 2, 6]
 
-list@List<Int> -: 2 //list.remove((Map) 2)
+list@List<Int> -: 2 //list.remove((Object) 2)
 
 PRINT(msg : list@List<Int>) // [3, 4, 6]
 
