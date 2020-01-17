@@ -40,7 +40,7 @@ function(Type0 arg0, Type1 arg1 : null)
 ```
 then you can call 
 ```javascript
-function(`arg0 : `value0)
+function(*arg0 : *value0)
 ```
 or 
 ```javascript
