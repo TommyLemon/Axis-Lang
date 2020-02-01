@@ -340,7 +340,18 @@ getFromIdList(Int position) {
   return id@Map.get(key@Int : position@Int)
 }
 ```
-
+#### No Comma ',' and no semicolon ';'
+replaced with escape character <br />
+static class
+```javascript
+Str name : 'Axis'
+Int version : 1
+Map extra : {
+  'type' : 'Language'
+  'for' : 'Programming'
+}
+```
+  
 #### No 'static'
 replaced with UPPER_CASE names. <br />
 static class
