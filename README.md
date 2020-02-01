@@ -399,6 +399,22 @@ package org.axis.lang;
 And if the path of an Axis file changed(Myabe the file was moved to another folder), <br />
 you don't need to edit the code above.
 
+#### No varargs
+replaced with List \[...]
+```javascript
+Any invoke(
+  Any instance
+  List values
+) {
+  ...
+}
+```
+replace the code follows written with Java:
+```java
+public Object invoke(Object instance, Object... values) {
+  ...
+}
+```
 
 #### Interface
 replaced with Map and function in package level
