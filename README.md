@@ -400,21 +400,41 @@ And if the path of an Axis file changed(Myabe the file was moved to another fold
 you don't need to edit the code above.
 
 #### No varargs
-replaced with List \[...]
+in Java, sometimes you need to use varargs to reduce codes like:
+declear:
+```java
+public Object invoke(Object obj, Object... args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+  ...
+}
+```
+then call:
+```java
+invoke(info, 1, 'Aixs', null);
+```
+
+while varargs is replaced with \[...] in Axis:
+declear:
 ```javascript
 Any invoke(
-  Any instance
-  List values
-) {
+  Any obj
+  List args
+) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
   ...
 }
 ```
-replace the code follows written with Java:
-```java
-public Object invoke(Object instance, Object... values) {
-  ...
-}
+you can call:
+```javascript
+invoke(
+  obj : info@Info
+  args@List : [
+    1
+    'Aixs'
+    null
+  ]
+)
 ```
+
+
 
 #### Interface
 replaced with Map and function in package level
