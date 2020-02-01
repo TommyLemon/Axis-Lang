@@ -341,7 +341,7 @@ getFromIdList(Int position) {
 }
 ```
 #### No Comma ',' and no semicolon ';'
-replaced with escape character <br />
+replaced with escape character in many cases such as field and function declearations, value initiations, function calls. <br />
 static class
 ```javascript
 Str name : 'Axis'
@@ -350,6 +350,18 @@ Map extra : {
   'type' : 'Language'
   'for' : 'Programming'
 }
+  
+LOG(
+  Str tag
+  Str msg
+) {
+  ...
+}
+
+LOG(
+  tag@Str : 'Axis'
+  msg@Str : 'is a much better programming language than Java running on JVM.'
+)
 ```
   
 #### No 'static'
@@ -400,7 +412,7 @@ And if the path of an Axis file changed(Myabe the file was moved to another fold
 you don't need to edit the code above.
 
 #### No varargs
-in Java, sometimes you need to use varargs to reduce codes like:
+in Java, sometimes you need to use varargs to reduce codes like: <br />
 declear:
 ```java
 public Object invoke(Object obj, Object... args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
@@ -412,7 +424,7 @@ then call:
 invoke(info, 1, 'Aixs', null);
 ```
 
-while varargs is replaced with \[...] in Axis:
+while varargs is replaced with \[...] in Axis: <br />
 declear:
 ```javascript
 Any invoke(
