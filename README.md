@@ -27,7 +27,7 @@ only Any, Bool, Int, Num, Str, Map and List
 if NAME_AUTHOR, User and an instance of User was defined like this:
 ```
 final Str NAME_AUTHOR : 'Lemon'
-class User : {
+class User {
   Int id
   Str name
   Any extra
@@ -567,6 +567,8 @@ functions:
 call() {  //public void call() {
 }
 Bool _connect() {  //private Boolean connect() {
+ ...
+ ^ true
 }
 $onStart() {  //protected void onStart() {
 }
