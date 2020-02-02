@@ -33,10 +33,10 @@ User user : {}
 ```
 then when user or its fields were called, the IDE will automatically generate the Type behind instances: <br />
 &emsp;  user`@User`.name`@Str` : NAME_AUTHOR`@Str` <br />
-&emsp;  user`@User` : { // user = new User().setId(1).setName('tommy') <br />
-&emsp;&emsp;  id`@Int` : 1 // setId(1) <br />
-&emsp;&emsp;  name`@Str` : 'tommy' // setName('tommy') <br />
-&emsp;&emsp;  extra : null //no hint for Any, don't need it.  setExtra(null) <br />
+&emsp;  user`@User` : { `// user = new User().setId(1).setName("tommy");` <br />
+&emsp;&emsp;  id`@Int` : 1 `// user.setId(1);` <br />
+&emsp;&emsp;  name`@Str` : 'tommy' `// user.setName("tommy");` <br />
+&emsp;&emsp;  extra : null `//no hint for Any, don't need it.  user.setExtra(null);` <br />
 &emsp;  } <br />
 
 #### Safe type
