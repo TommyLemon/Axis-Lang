@@ -200,13 +200,11 @@ If you write 'continue', the IDE will recommend '<<'.
 such as
 ```javascript
 Str name {
-  @Override
-  Str get() {
+  override Str get() {
     ^ name@Str  //return name;
   }
 
-  @Override
-  Str set(Str value) {
+  override Str set(Str value) {
     name@Str : value
     ^ this@User  //return this;
   }
@@ -250,8 +248,7 @@ such as
 ```javascript
 class User : Map, isCorrect { // public class User extends Map implements Interface$isCorrect {
 
-  @Override
-  Bool isCorrect() {
+  override Bool isCorrect() {
     ^ true
   }
 }
