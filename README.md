@@ -718,8 +718,8 @@ if
 #### Instanceof
 replaced with 'is'
 ```javascript
-if true is Bool  //true
-if 0 is Str  //false
+true is Bool  //true
+0 is Str  //false
 ```
 If you write 'instanceof', the IDE will recommend 'is'.
 
