@@ -145,13 +145,13 @@ Any get(
   Listable list
   Int position
 ) # NullPoninterExeption, IndexOutOfBoundsException  {
-  if list = null {
+  if list@Listable = null {
     # NullPoninterExeption(msg@Str : 'list can not be null!')
   }
-  if position = null {
+  if position@Int = null {
     # NullPoninterExeption(msg@Str : 'position can not be null!')
   }
-  if position < 0 | position >= list.length {
+  if position@Int < 0 | position@Int >= list@Listable.length@Int {
     # IndexOutOfBoundsException(msg@Str : 'position is out of bounds of list!')
   }
 
