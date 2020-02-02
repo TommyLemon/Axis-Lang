@@ -500,7 +500,7 @@ replaced with UPPER_CASE names. <br />
 static class
 ```javascript
 class Outter : Map {  //public class Outter extends Map {
-  class INNER : Map {  //public static class INNER extends Map {
+  class INNER {  //public static class INNER {
   }
 }
 ```
@@ -544,6 +544,46 @@ package org.axis.lang;
 And if the path of an Axis file changed(Myabe the file was moved to another folder), <br />
 you don't need to edit the code above.
 
+
+#### No public, private, protected, default
+variables, fields, arguments or constants:
+```javascript
+Bool DEBUG : false  //public static Boolean DEBUG = false;
+Int _i : 1  //private Integer i = 1;
+Str $s : 'Axis'  //protected String s = "Axis";
+```
+
+class:
+```javascript
+class Outter {  //public class Outter {
+
+}
+class _Inner {  //private class Outter {
+}
+```
+
+functions:
+```javascript
+call() {  //public void call() {
+}
+Bool _connect() {  //private Boolean connect() {
+}
+$onStart() {  //protected void onStart() {
+}
+
+interface Logger {
+  log(Any msg) {  //default void log(Object msg) {
+    PRINT(msg : msg)
+  }
+}
+```
+
+variables:
+```javascript
+Int _i : 1  //private int i = 1;
+Str $s : 'Axis'  //protected String s = "Axis";
+Bool DEBUG : false  //public Boolean DEBUG = false;
+```
 
 #### No varargs
 in Java, sometimes you need to use varargs to reduce codes like: <br />
