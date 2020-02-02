@@ -110,7 +110,7 @@ Str getNotNull(Str arg) {
 #### Lambda
 Lambda is an anonymous callback
 ```javascript
-function() ^ {
+function() ^() {
   ^()  //callback.callback();
 }
 function()  //这里比较难判断是声明还是调用，所以回调函数的 括号 () 也不能省
@@ -167,7 +167,6 @@ Any get(
 }
 ```
 
-
 #### Break
 the keyword 'break' is replaced with '>>' <br />
 such as
@@ -188,7 +187,6 @@ until false {  //replace  do {...} while(...);
   <<
 }
 ```
-
 
 #### Default and anonymous getter and setter functions for fields
 such as
@@ -733,7 +731,7 @@ childThread {
   // run on child thread
   
   mainThread {
-       // run on main thread
+     // run on main thread
   }
 }
 ```
