@@ -98,6 +98,7 @@ function() {
   ^  //return;
 }
 
+@NotNull
 Str getNotNull(Str arg) {
   if arg = null {
     ^ ''  //return "";
@@ -120,7 +121,7 @@ function()  //这里比较难判断是声明还是调用，所以回调函数的
 }
 
 getNotNullAync(Str in)
-  ^(Str out) {
+  ^(@NotNull Str out) {
   if in = null {
     ^('')  //callback.callback("");
   }
@@ -128,12 +129,12 @@ getNotNullAync(Str in)
   ^(in)  //callback.callback(in);
 }
 getNotNullAync(in@Str : null)
-  (Str out) {  //调用 getNotNullAync 时代码提示，一起自动生成
+  (@NotNull Str out) {  //调用 getNotNullAync 时代码提示，一起自动生成
   //do something
 }
 
 Bool getNotNullAync(Str in)
-  ^(Str out) {
+  ^(@NotNull Str out) {
   if in = null {
     ^ false  //return false;
   }
@@ -142,7 +143,7 @@ Bool getNotNullAync(Str in)
   ^ true  //return true;
 }
 Bool handled = getNotNullAync(in@Str : null)
-  (Str out) {  //调用 getNotNullAync 时代码提示，一起自动生成
+  (@NotNull Str out) {  //调用 getNotNullAync 时代码提示，一起自动生成
   //do something
 }
 
