@@ -100,7 +100,7 @@ function() {
 
 @NotNull
 Any getNotNull(Any arg) {
-  ^ arg = null ? '' ; arg  //return arg == null ? "" : arg;
+  ^ arg = null ? {} ; arg  //return arg == null ? new Object() : arg;
 }
 ```
 
@@ -118,7 +118,7 @@ function()  //这里比较难判断是声明还是调用，所以回调函数的
 
 getNotNullAync(Any in)
   ^(@NotNull Any out) {
-  ^(out : in = null ? {} ; in)  //callback.callback(in == null ? "" : in);
+  ^(out : in = null ? {} ; in)  //callback.callback(in == null ? new Object() : in);
 }
 getNotNullAync(in : null)
   (@NotNull Str out) {  //调用 getNotNullAync 时代码提示，一起自动生成
@@ -127,7 +127,7 @@ getNotNullAync(in : null)
 
 Bool getNotNullAync(Any in)
   ^(@NotNull Any out) {
-  ^(out : in = null ? {} ; in)  //callback.callback(in == null ? "" : in);
+  ^(out : in = null ? {} ; in)  //callback.callback(in == null ? new Object() : in);
   ^ in != null  //return in != null;
 }
 Bool handled = getNotNullAync(in : null)
