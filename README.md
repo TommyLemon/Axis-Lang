@@ -661,13 +661,13 @@ if a = 1 {  // if
 
 if-else-else if
 ```javascript
-if
-   a = 1 {  // if
-    ...
-}  a < 1 & a != -1 {  // else if
-    ...
-}  { // else
-    ...
+if a =
+   1 {  // if
+   ...
+}  2 | a = 3 {  // else if
+   ...
+}  {  // else
+   ...
 }
 ```
 
@@ -685,13 +685,13 @@ if a
 
 if-else-else if
 ```javascript
-if a =
-   1 {  // if
-   ...
-}  2 | a = 3 {  // else if
-   ...
-}  {  // else
-   ...
+if
+   a = 1 {  // if
+    ...
+}  a < 1 & a != -1 {  // else if
+    ...
+}  { // else
+    ...
 }
 ```
 
