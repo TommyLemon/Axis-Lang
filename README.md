@@ -99,8 +99,8 @@ function() {
 }
 
 @NotNull
-Str getNotNull(Str arg) {
-  ^ arg@Str = null ? '' ; arg@Str  //return arg == null ? "" : arg;
+Any getNotNull(Any arg) {
+  ^ arg = null ? '' ; arg  //return arg == null ? "" : arg;
 }
 ```
 
@@ -116,21 +116,21 @@ function()  //这里比较难判断是声明还是调用，所以回调函数的
   //do something
 }
 
-getNotNullAync(Str in)
-  ^(@NotNull Str out) {
-  ^(out@Str : in@Str = null ? '' ; in@Str)  //callback.callback(in == null ? "" : in);
+getNotNullAync(Any in)
+  ^(@NotNull Any out) {
+  ^(out : in = null ? {} ; in)  //callback.callback(in == null ? "" : in);
 }
-getNotNullAync(in@Str : null)
+getNotNullAync(in : null)
   (@NotNull Str out) {  //调用 getNotNullAync 时代码提示，一起自动生成
   //do something
 }
 
-Bool getNotNullAync(Str in)
-  ^(@NotNull Str out) {
-  ^(out@Str : in@Str = null ? '' ; in@Str)  //callback.callback(in == null ? "" : in);
-  ^ in@Str != null  //return in != null;
+Bool getNotNullAync(Any in)
+  ^(@NotNull Any out) {
+  ^(out : in = null ? {} ; in)  //callback.callback(in == null ? "" : in);
+  ^ in != null  //return in != null;
 }
-Bool handled = getNotNullAync(in@Str : null)
+Bool handled = getNotNullAync(in : null)
   (@NotNull Str out) {  //调用 getNotNullAync 时代码提示，一起自动生成
   //do something
 }
