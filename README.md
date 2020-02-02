@@ -499,40 +499,40 @@ LOG(
 replaced with UPPER_CASE names. <br />
 static class
 ```javascript
-class Outter : Map {
-  class INNER : Map {
+class Outter : Map {  //public class Outter extends Map {
+  class INNER : Map {  //public static class INNER extends Map {
   }
 }
 ```
 static funciton
 ```javascript
-MAIN(Str[] args) {
+MAIN(Str[] args : null) {  //public static void main(Str[] args) {
 }
 ```
 static field
 ```javascript
-final Str TAG : 'Axis'
+final Str TAG : 'Axis'  //public static final String TAG = "Axis";
 ```
 
 
 #### No 'new' and no constructor
 replaced with Type{}, such as
 ```javascript
-User user : User{}
+User user : User{}  //User user = new User();
 ```
 
 
 #### No 'void' for functions
 ```javascript
-call() {
+call() {  //public void call() {
 }
 
-Str callBack() {
+Str callBack() {  //public String cacallBackll() {
   ^ 'Title'
 }
 
-call()
-Str title : callBack()
+call()  //call();
+Str title : callBack()  //String title = callBack();
 ```
 
 
@@ -590,13 +590,13 @@ interface Runnable {
 ```
 2.Define a method with argument, and the type of the argument is a interface above:
 ```javascript
-runOnUiThread (Runnable action) {
+runOnUiThread(Runnable action) {
   ...
 }
 ```
 3.Then you can call:
 ```javascript
-runOnUiThread (
+runOnUiThread(
   action@Runnable : { //type was a generated comment. No name means default name 'Runnable'.
     run() {
       ...
@@ -746,13 +746,13 @@ run()
 ```
 2.Define a method with argument, and the type of the argument is a abstract method above:
 ```javascript
-runOnUiThread (run action) {
+runOnUiThread(run action) {
   ...
 }
 ```
 3.Then you can call:
 ```javascript
-runOnUiThread (
+runOnUiThread(
   action@run : () {  // type was a generated comment. No name means default name 'run'.
     ...
   }
