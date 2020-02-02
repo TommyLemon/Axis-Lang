@@ -473,7 +473,6 @@ getFromIdList(Int position) {
 ```
 #### No Comma ',' and no semicolon ';'
 replaced with escape character in many cases such as field and function declearations, value initiations, function calls. <br />
-static class
 ```javascript
 Str name : 'Axis'
 Int version : 1
