@@ -27,7 +27,7 @@ abstract callback(Int arg)  //Java: public interface Interface$callback { void c
 abstract isCorrect()
 
 TO_STR(Any a) {
-  return a = null ? null ; a.toStr()
+  ^ a = null ? null ; a.toStr()
 } //Java: public class Class$TO_STR { public static TO_STR(Any a) { return a == null ? null : a.toStr(); } }
 
 //包级别函数 >>>>>>>>>>>>>>>>>>>>>>
@@ -65,10 +65,9 @@ class Map User implements isCorrect { //Java: public class User extends Map impl
 
   Bool certified {
 
-    @Override
-    Bool get() { //重写getter函数
+    override Bool get() { //重写getter函数
       this = this ?; false
-      return this
+      ^ this
     }
   }
   /**
@@ -89,10 +88,9 @@ class Map User implements isCorrect { //Java: public class User extends Map impl
 
   List<Int> contactIdList { //TODO 这里不适合用 Int[] ，因为会有歧义？
     
-    @Override
-    User set(List<Int> value) { //重写setter函数
+    override User set(List<Int> value) { //重写setter函数
       (value = value ?; List<Int>{})
-      return User.this
+      ^ this@User
     }
   }
   /**
@@ -110,9 +108,8 @@ class Map User implements isCorrect { //Java: public class User extends Map impl
 
 
 
-  @Override
-  Bool isCorrect() {
-     return id > 0
+  override Bool isCorrect() {
+     ^ id > 0
   }
   
 

@@ -11,13 +11,13 @@ class Int : Integerable {
 
 
   Bool equal(Any a) {
-    return a instanceof Integerable & super.equal(/* Any a : */ a)
+    ^ a instanceof Integerable & super.equal(/* Any a : */ a)
   }
 
   @NotNull
   Int compareTo(Int n) {
 
-    return COMPARE_TO(
+    ^ COMPARE_TO(
       n0 : this
       n1 : n
     )
@@ -33,21 +33,20 @@ class Int : Integerable {
     n1 : n1 ?; 0
     Int diff : n0.(value) - n1.(value) //如果有null则转为0
     if (diff = 0) {
-      return 0
+      ^ 0
     }
-    return diff < 0 ? -1 ; 1 //用 diff / Math.abs(n : diff) 可能因为计算误差导致算出小数
+    ^ diff < 0 ? -1 ; 1 //用 diff / Math.abs(n : diff) 可能因为计算误差导致算出小数
   }
 
-  @Override
-  Str toStr() {
-    return “” + value
+  override Str toStr() {
+    ^ “” + value
   }
   
 
   OF(Str s) {
 
     s : s ?; ''
-    return Int{
+    ^ Int{
       value : castToInt(s : s)
     }
   }

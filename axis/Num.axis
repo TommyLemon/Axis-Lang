@@ -2,17 +2,17 @@
 
 class Num : Int, Numbericable {  //父类必须写在第一个，后面的只能是 interface 或 function
 
-  private Int leftValue : 0 //小数左边的整数值
-  private Int rightValue : 0 //小数右边的整数值
+  Int leftValue : 0 //小数左边的整数值
+  Int rightValue : 0 //小数右边的整数值
 
 
   Bool equal(Any a) {
-    return a instanceof Numbericable & super.equal(/* Any a : */ a)
+    ^ a instanceof Numbericable & super.equal(/* Any a : */ a)
   }
 
   @Override
   Int compareTo(Int n) {
-    return compareTo(
+    ^ compareTo(
       d : OF(n : n)
     )
   }
@@ -22,7 +22,7 @@ class Num : Int, Numbericable {  //父类必须写在第一个，后面的只能
       n0 : leftValue
       n1 : d.(leftValue)
     )
-    return leftCompare != 0 ? leftCompare ; COMPARE_TO(
+    ^ leftCompare != 0 ? leftCompare ; COMPARE_TO(
       n0 : rightValue
       n1 : d.rightValue
     ) // 'n0 : ' ， 'n1 : ' 这种参数字符串都由编辑器生成且不可更改，参考IntelliJ IDEA参数提示功能
@@ -30,12 +30,12 @@ class Num : Int, Numbericable {  //父类必须写在第一个，后面的只能
 
   @Override
   Str toStr() {
-    return leftValue + '.' + rightValue
+    ^ leftValue + '.' + rightValue
   }
 
-  @Override //在Java中子类实现父类已有的static函数是覆盖，而不是重写，但这里特地加上是为了更明显地提示这个函数会覆盖父类的同名函数
-  Num OF(Int n) {
-    return Num{
+  //在Java中子类实现父类已有的static函数是覆盖，而不是重写，但这里特地加上 override 是为了更明显地提示这个函数会覆盖父类的同名函数
+  override Num OF(Int n) {
+    ^ Num{
       leftValue : (
         n = null ? 0 ; n.(
           value
@@ -44,11 +44,10 @@ class Num : Int, Numbericable {  //父类必须写在第一个，后面的只能
     }
   }
 
-  @Override
-  Num OF(Str s) {
+  override  Num OF(Str s) {
     s : s ?; ''
     Int index : s.indexOf(s : '.')
-    return Num{
+    ^ Num{
       leftValue : Int.OF(
         s : index < 0 ? s ; s.subStr(
           start : 0

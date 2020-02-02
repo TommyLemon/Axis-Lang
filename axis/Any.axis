@@ -28,74 +28,74 @@ abstract class Any : isSelf { //任意类型，自动找到实例化时的精准
   )
 
 
-  private Any value { //重写变量的内部函数
+  Any _value { //重写变量的内部函数
     Any get() { //取值函数getter，定义 any : Any  -> 调用 any 或 any.get()
-       return value
+       ^ _value
     }
 
     Any set(Any value) { //赋值函数setter，定义 any : Any  -> 调用 any = val 或 any.set(val)
-      this.value : value //最终所有赋值都是赋给value？
-      return this
+      this._value : value //最终所有赋值都是赋给value？
+      ^ this
     }
   } : null //给变量赋初始值
  
 
   Bool isSelf(Any a) {
-    return IS_SELF(
+    ^ IS_SELF(
       /* Any val0 : */ this
       /* Any val1 : */ a
     )
   }
   Bool isNotSelf(Any a) {
-    return ! isSelf(/* Any a : */ a)
+    ^ ! isSelf(/* Any a : */ a)
   }
 
   Bool equal(Any a) {
     if (isSelf(/* Any a : */ a)) {
-      return true
+      ^ true
     }
     if (this.getClass() = a.getClass()) {
-      return this.toStr() = a.toStr()
+      ^ this.toStr() = a.toStr()
     }
-    return false
+    ^ false
   }
 
 
   //转任意类型
   <T> T to(Class<T> clazz) throws ClassCastException {
-     return JSON.parse(toStr(), clazz)
+     ^ JSON.parse(toStr(), clazz)
   }
   
 
   //转Bool函数
   Bool toBool() throws ClassCastException {
-    return to(clazz : Bool.class) //所有调用函数并给参数赋值都必须明确写出 (arg : value) 这种形式，和取值函数 (key) 严格区分
+    ^ to(clazz : Bool.class) //所有调用函数并给参数赋值都必须明确写出 (arg : value) 这种形式，和取值函数 (key) 严格区分
   }
 
   //转Int函数
   Int toInt() throws ClassCastException {
-    return to(clazz : Int.class) //所有调用函数并给参数赋值都必须明确写出 (arg : value) 这种形式，和取值函数 (key) 严格区分
+    ^ to(clazz : Int.class) //所有调用函数并给参数赋值都必须明确写出 (arg : value) 这种形式，和取值函数 (key) 严格区分
   } 
 
   //转Num函数
   Num toNum() throws ClassCastException {
-    return to(clazz : Num.class) //所有调用函数并给参数赋值都必须明确写出 (arg : value) 这种形式，和取值函数 (key) 严格区分
+    ^ to(clazz : Num.class) //所有调用函数并给参数赋值都必须明确写出 (arg : value) 这种形式，和取值函数 (key) 严格区分
   } 
 
   //转Str函数
   Str toStr() {
-    return to(clazz : Str.class) //所有调用函数并给参数赋值都必须明确写出 (arg : value) 这种形式，和取值函数 (key) 严格区分
+    ^ to(clazz : Str.class) //所有调用函数并给参数赋值都必须明确写出 (arg : value) 这种形式，和取值函数 (key) 严格区分
   } 
 
   //转Map函数
   Map toMap() throws ClassCastException {
-    return to(clazz : Map.class) //所有调用函数并给参数赋值都必须明确写出 (arg : value) 这种形式，和取值函数 (key) 严格区分
+    ^ to(clazz : Map.class) //所有调用函数并给参数赋值都必须明确写出 (arg : value) 这种形式，和取值函数 (key) 严格区分
   } 
 
 
   //转Map函数
   List toList() throws ClassCastException {
-    return to(clazz : List.class) //所有调用函数并给参数赋值都必须明确写出 (arg : value) 这种形式，和取值函数 (key) 严格区分
+    ^ to(clazz : List.class) //所有调用函数并给参数赋值都必须明确写出 (arg : value) 这种形式，和取值函数 (key) 严格区分
   } 
 
 
@@ -103,9 +103,9 @@ abstract class Any : isSelf { //任意类型，自动找到实例化时的精准
   //转任意类型
   <T> T toSafely(Class<T> clazz) {
     try {
-        return to(clazz : clazz)
-    } catch (Exception e) {
-        return null
+        ^ to(clazz : clazz)
+    } catch(Exception e) {
+        ^ null
     }
   }
   
@@ -113,45 +113,45 @@ abstract class Any : isSelf { //任意类型，自动找到实例化时的精准
   //转Bool函数
   Bool toBoolSafely() {
     try {
-        return toBool()
-    } catch (Exception e) {
-        return null
+        ^ toBool()
+    } catch(Exception e) {
+        ^ null
     }
   }
 
   //转Int函数
   Int toIntSafely() {
     try {
-        return toInt()
+        ^ toInt()
     } catch (Exception e) {
-        return null
+        ^ null
     }
   } 
 
   //转Num函数
   Num toNumSafely() {
     try {
-        return toNum()
-    } catch (Exception e) {
-        return null
+        ^ toNum()
+    } catch(Exception e) {
+        ^ null
     }
   } 
 
   //转Str函数
   Str toStrSafely() {
     try {
-        return toStr()
-    } catch (Exception e) {
-        return null
+        ^ toStr()
+    } catch(Exception e) {
+        ^ null
     }
   } 
 
   //转Map函数
   Map toMapSafely() {
     try {
-        return toMap()
-    } catch (Exception e) {
-        return null
+        ^ toMap()
+    } catch(Exception e) {
+        ^ null
     }
   } 
 
@@ -159,9 +159,9 @@ abstract class Any : isSelf { //任意类型，自动找到实例化时的精准
   //转Map函数
   List toListSafely() {
     try {
-        return toList()
-    } catch (Exception e) {
-        return null
+        ^ toList()
+    } catch(Exception e) {
+        ^ null
     }
   } 
 
@@ -175,7 +175,7 @@ abstract class Any : isSelf { //任意类型，自动找到实例化时的精准
 
   //static函数名用全大写形式
   Any OF(Any value) { //自动找到实例化时的精准类型并替换，例如实例化类型是 User，则替换为 User OF(User value) {…}
-    return Any{ //支持任意类的构造函数
+    ^ Any{ //支持任意类的构造函数
       value : value //相当于 Any{}.value : value
     }
   }

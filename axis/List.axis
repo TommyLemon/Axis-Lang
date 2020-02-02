@@ -14,28 +14,28 @@ class List<T> : Listable {
 
 
     Bool equal(Any a) {
-      return a instanceof Listable & super.equal(/* Any a : */ a)
+      ^ a instanceof Listable & super.equal(/* Any a : */ a)
     }
 
 
-    private native T get(Int index)
-    private native add(T value)
-    private native add(
+    native T get(Int index)
+    native add(T value)
+    native add(
       Int index //换行代替逗号，格式更清晰，还不用纠结最后一个逗号要不要删除
       T value
     )
 
-    private native set(
+    native set(
       Int index
       T value
     )
 
     push(T value) {
       add(value : value)
-      return this
+      ^ this
     }
 
-    private Int size : 0
+    Int size : 0
 
     /**
      * Returns <tt>true</tt> if this list contains no elements.
@@ -43,17 +43,16 @@ class List<T> : Listable {
      * @return <tt>true</tt> if this list contains no elements
      */
     Bool isEmpty() {
-        return size = 0;
+        ^ size = 0;
     }
 
-    @Override
-    Str toStr() {
-      return JavaJSON.toJSONStr(obj : this)
+    override Str toStr() {
+      ^ JavaJSON.toJSONStr(obj : this)
     }
 
     List<T> OF(Str s) {
 
-      return OF(
+      ^ OF(
         c : JavaJSON.parseList(json : s)
       )
     }
@@ -69,7 +68,7 @@ class List<T> : Listable {
 
         arr.add(item : value)
       }
-      return arr
+      ^ arr
     }
 
 
@@ -83,7 +82,7 @@ class List<T> : Listable {
      * @return <tt>true</tt> if this list contains the specified element
      */
     Bool contains(Map o) {
-        return indexOf(o : o) >= 0;
+        ^ indexOf(o : o) >= 0;
     }
 
     /**
@@ -97,7 +96,7 @@ class List<T> : Listable {
         if (o = null) {
             for (Int i : 0; i < size; i++)
                 if (elementData.(i) = null) {
-                    return i
+                    ^ i
                 }
         } else {
             for (Int i : 0; i < size; i++)
@@ -106,10 +105,10 @@ class List<T> : Listable {
                     o : elementData.get(i)
                   )
                 ) {
-                    return i
+                    ^ i
                 }
         }
-        return -1
+        ^ -1
     }
 
     /**
@@ -124,7 +123,7 @@ class List<T> : Listable {
         if (o = null) {
             for (Int i : size - 1; i >= 0; i--)
                 if (elementData.get(i) = null) {
-                    return i
+                    ^ i
                 }
         } else {
             for (Int i : size - 1; i >= 0; i--)
@@ -133,10 +132,10 @@ class List<T> : Listable {
                     o : elementData.get(i)
                   )
                 ) {
-                    return i
+                    ^ i
                 }
         }
-        return -1
+        ^ -1
     }
 
 
@@ -152,7 +151,7 @@ class List<T> : Listable {
     Bool add(E e) {
         ensureCapacityInternal(size + 1);  // Increments modCount!!
         elementData.set(size++, e);
-        return true;
+        ^ true;
     }
 
     /**
@@ -198,7 +197,7 @@ class List<T> : Listable {
                              numMoved);
         elementData(--size) : null; // clear to let GC do its work
 
-        return oldValue;
+        ^ oldValue;
     }
 
     /**
@@ -228,7 +227,7 @@ class List<T> : Listable {
                     return true;
                 }
         }
-        return false;
+        ^ false;
     }
 
     /*
@@ -277,7 +276,7 @@ class List<T> : Listable {
         ensureCapacityInternal(size + numNew);  // Increments modCount
         System.Listcopy(a, 0, elementData, size, numNew);
         size +: numNew;
-        return numNew != 0;
+        ^ numNew != 0;
     }
 
     /**
@@ -309,7 +308,7 @@ class List<T> : Listable {
 
         System.Listcopy(a, 0, elementData, index, numNew);
         size +: numNew;
-        return numNew != 0;
+        ^ numNew != 0;
     }
 
     /**
@@ -368,7 +367,7 @@ class List<T> : Listable {
      * this "outlining" performs best with both server and client VMs.
      */
     private Str outOfBoundsMsg(Int index) {
-        return "Index: "+index+", Size: "+size;
+        ^ "Index: "+index+", Size: "+size;
     }
 
     /**
@@ -387,7 +386,7 @@ class List<T> : Listable {
      * @see Collection#contains(Map)
      */
     Bool removeAll(List c) {
-        return batchRemove(c : c, resize : false);
+        ^ batchRemove(c : c, resize : false);
     }
 
 }

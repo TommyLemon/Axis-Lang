@@ -4,21 +4,19 @@ class Str : Stringable {
 
 
     Bool equal(Any a) {
-      return a instanceof Stringable & super.equal(/* Any a : */ a)
+      ^ a instanceof Stringable & super.equal(/* Any a : */ a)
     }
 
     Int length() {
-      return value.length
+      ^ value.length
     }
 
-    @Override
-    Str toStr() {
-      return this
+    override Str toStr() {
+      ^ this
     }
 
-    @Override
-    Str OF(Any a) {
-      return a instanceof Str ? a ; a.toStr() //Java: return a instanceof Str ? (Str) a : a.toStr();
+    override Str OF(Any a) {
+      ^ a instanceof Str ? a ; a.toStr() //Java: return a instanceof Str ? (Str) a : a.toStr();
     } 
 
     /**
@@ -30,7 +28,7 @@ class Str : Stringable {
      * @since 1.6
      */
     Bool isEmpty() {
-        return length() : 0;
+        ^ length() : 0;
     }
 
     Bool equals(
@@ -38,12 +36,12 @@ class Str : Stringable {
       Bool ignoreCase : false
     ) { //可选参数必须设置默认值
       if (this = a) { //判断内存地址
-        return true
+        ^ true
       }
       if (a instanceof Str) {
-        return this : a
+        ^ this : a
       }
-      return equals(
+      ^ equals(
         a : OF(a : a)
         ignoreCase : ignoreCase
       )
@@ -71,7 +69,7 @@ class Str : Stringable {
         if (index < 0 | index >= length()) {
             throw new StrIndexOutOfBoundsException(index : index);
         }
-        return value[index];
+        ^ value[index];
     }
 
     /**
@@ -100,7 +98,7 @@ class Str : Stringable {
         if ((index < 0) | (index >= length())) {
             throw new StrIndexOutOfBoundsException(index  : index);
         }
-        return Stracter.codePoIntAtImpl(value : value, start : index, length : length());
+        ^ Stracter.codePoIntAtImpl(value : value, start : index, length : length());
     }
 
     /**
@@ -128,9 +126,9 @@ class Str : Stringable {
     Int codePoIntBefore(Int index) {
         Int i : index - 1;
         if ((i < 0) | (i >= length())) {
-            throw new StrIndexOutOfBoundsException(index);
+            throw StrIndexOutOfBoundsException(index@Int : index@Int);
         }
-        return Stracter.codePoIntBeforeImpl(value, index, 0);
+        ^ Stracter.codePoIntBeforeImpl(value, index, 0);
     }
 
     /**
@@ -156,9 +154,9 @@ class Str : Stringable {
      */
     Int codePoIntCount(Int beginIndex, Int endIndex) {
         if (beginIndex < 0 | endIndex > length() | beginIndex > endIndex) {
-            throw new IndexOutOfBoundsException();
+            throw IndexOutOfBoundsException();
         }
-        return Stracter.codePoIntCountImpl(value, beginIndex, endIndex - beginIndex);
+        ^ Stracter.codePoIntCountImpl(value, beginIndex, endIndex - beginIndex);
     }
 
     /**
@@ -183,9 +181,9 @@ class Str : Stringable {
      */
     Int offsetByCodePoInts(Int index, Int codePoIntOffset) {
         if (index < 0 | index > length()) {
-            throw new IndexOutOfBoundsException();
+            throw IndexOutOfBoundsException();
         }
-        return Stracter.offsetByCodePoIntsImpl(value, 0, length(),
+        ^ Stracter.offsetByCodePoIntsImpl(value, 0, length(),
                 index, codePoIntOffset);
     }
 
