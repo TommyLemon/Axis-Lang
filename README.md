@@ -95,15 +95,15 @@ the keyword 'return' is replaced with '^' <br />
 such as
 ```javascript
 function() {
-	^  //return;
+  ^  //return;
 }
 
 Str getNotNull(Str arg) {
-	if arg = null {
-		^ ''  //return "";
-	}
+  if arg = null {
+    ^ ''  //return "";
+  }
 
-	^ arg  //return arg;
+  ^ arg  //return arg;
 }
 ```
 
@@ -111,36 +111,36 @@ Str getNotNull(Str arg) {
 Lambda is an anonymous callback
 ```javascript
 function() ^ {
-	^()  //callback.callback();
+  ^()  //callback.callback();
 }
 function()  //这里比较难判断是声明还是调用，所以回调函数的 括号 () 也不能省
-    () {  //调用 function 时代码提示，一起自动生成
-    //do something
+  () {  //调用 function 时代码提示，一起自动生成
+  //do something
 }
 
 getNotNullAync(Str arg) ^(Str arg) {
-	if arg = null {
-		^('')  //callback.callback("");
-	}
+  if arg = null {
+    ^('')  //callback.callback("");
+  }
 
-	^(arg)  //callback.callback(arg);
+  ^(arg)  //callback.callback(arg);
 }
 getNotNullAync(arg@Str : null)
-    (Str arg) {  //调用 getNotNullAync 时代码提示，一起自动生成
-    //do something
+  (Str arg) {  //调用 getNotNullAync 时代码提示，一起自动生成
+  //do something
 }
 
 Bool getNotNullAync(Str arg) ^(Str arg) {
-	if arg = null {
-		^ false  //return false;
-	}
+  if arg = null {
+    ^ false  //return false;
+  }
 
-	^(arg)  //callback.callback(arg);
-	^ true  //return true;
+  ^(arg)  //callback.callback(arg);
+  ^ true  //return true;
 }
 Bool handled = getNotNullAync(arg@Str : null)
-    (Str arg) {  //调用 getNotNullAync 时代码提示，一起自动生成
-    //do something
+  (Str arg) {  //调用 getNotNullAync 时代码提示，一起自动生成
+  //do something
 }
 
 ```
@@ -547,7 +547,7 @@ declear:
 Any invoke(
   Any obj
   List args
-) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+) # IllegalAccessException, IllegalArgumentException, InvocationTargetException {
   ...
 }
 ```
