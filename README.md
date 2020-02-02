@@ -146,13 +146,13 @@ Any get(
   Int position
 ) # NullPoninterExeption, IndexOutOfBoundsException  {
   if list@Listable = null {
-    # NullPoninterExeption(msg@Str : 'list can not be null!')
+    # NullPoninterExeption(msg@Str : 'list can not be null!')  //throw new NullPoninterExeption("list can not be null!");
   }
   if position@Int = null {
-    # NullPoninterExeption(msg@Str : 'position can not be null!')
+    # NullPoninterExeption(msg@Str : 'position can not be null!')  //throw new NullPoninterExeption("position can not be null!");
   }
   if position@Int < 0 | position@Int >= list@Listable.length@Int {
-    # IndexOutOfBoundsException(msg@Str : 'position is out of bounds of list!')
+    # IndexOutOfBoundsException(msg@Str : 'position is out of bounds of list!')  //throw new IndexOutOfBoundsException("position is out of bounds of list!");
   }
 
   ^ list@Listable.get(position@Int : position@Int)
@@ -165,7 +165,7 @@ such as
 ```javascript
 while true {  //replace  while(true) { ... }
   PRINT(msg : 'while...')
-  >>
+  >>  //break;
 }
 ```
 
@@ -176,7 +176,7 @@ such as
 until false {  //replace  do {...} while(...);
   PRINT(msg : 'do while...')
   Thread.sleep(time@Int : 1000)
-  <<
+  <<  //continue;
 }
 ```
 
