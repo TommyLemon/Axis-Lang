@@ -645,14 +645,14 @@ replace if-else if-else, switch-case
 
 if
 ```javascript
-if a@Int = 1 {  // if
+if a = 1 {  // if
    ...
 }
 ```
 
 if-else
 ```javascript
-if a@Int = 1 {  // if
+if a = 1 {  // if
    ...
 }  {  // else
    ...
@@ -662,9 +662,9 @@ if a@Int = 1 {  // if
 if-else-else if
 ```javascript
 if
-   a@Int = 1 {  // if
+   a = 1 {  // if
     ...
-}  a@Int < 1 & a@Int != -1 {  // else if
+}  a < 1 & a != -1 {  // else if
     ...
 }  { // else
     ...
@@ -673,7 +673,7 @@ if
 
 if-else-else if
 ```javascript
-if a@Int
+if a
    = 1 {  // if
    ...
 }  < 1 {  // else if
@@ -685,12 +685,12 @@ if a@Int
 
 if-else-else if
 ```javascript
-if a@Int =
+if a =
    1 {  // if
    ...
-}  2 | a@Int = 3 {  // else if
+}  2 | a = 3 {  // else if
    ...
-}  {  //else
+}  {  // else
    ...
 }
 ```
