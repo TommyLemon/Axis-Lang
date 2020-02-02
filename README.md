@@ -100,11 +100,7 @@ function() {
 
 @NotNull
 Str getNotNull(Str arg) {
-  if arg = null {
-    ^ ''  //return "";
-  }
-
-  ^ arg  //return arg;
+  ^ arg = null ? '' ; arg  //return arg == null ? "" : arg;
 }
 ```
 
