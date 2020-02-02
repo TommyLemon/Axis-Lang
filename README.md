@@ -110,7 +110,8 @@ Str getNotNull(Str arg) {
 #### Lambda
 Lambda is an anonymous callback
 ```javascript
-function() ^() {
+function()
+  ^() {
   ^()  //callback.callback();
 }
 function()  //这里比较难判断是声明还是调用，所以回调函数的 括号 () 也不能省
@@ -118,7 +119,8 @@ function()  //这里比较难判断是声明还是调用，所以回调函数的
   //do something
 }
 
-getNotNullAync(Str arg) ^(Str arg) {
+getNotNullAync(Str arg)
+  ^(Str arg) {
   if arg = null {
     ^('')  //callback.callback("");
   }
@@ -130,7 +132,8 @@ getNotNullAync(arg@Str : null)
   //do something
 }
 
-Bool getNotNullAync(Str arg) ^(Str arg) {
+Bool getNotNullAync(Str arg)
+  ^(Str arg) {
   if arg = null {
     ^ false  //return false;
   }
