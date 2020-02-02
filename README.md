@@ -3,6 +3,7 @@ A programming language running on JVM. <br />
 Powerful, Flexible, Safe and Simple. <br />
 [Designing...]
 
+
 ## Features
 
 #### Support JSON like Schema
@@ -14,11 +15,13 @@ Map map : {
 }
 ```
 
+
 #### Strong and static Type 
 
 
 #### Few system types
 only Any, Bool, Int, Num, Str, Map and List
+
 
 #### Type hint
 if NAME_AUTHOR, User and an instance of User was defined like this:
@@ -39,6 +42,7 @@ then when user or its fields were called, the IDE will automatically generate th
 &emsp;&emsp;  extra : null `//no hint for Any, don't need it.  user.setExtra(null);` <br />
 &emsp;  } <br />
 
+
 #### Safe type
 ```javascript
 Int id : 0
@@ -53,6 +57,7 @@ User user = null
 user@User.name@Str : name@Str //automatically create user and name in user when they are null and the expression is for assign
 PRINT(msg : user@User) //{ name : null }
 ```
+
 
 #### Indexes for arrays
 Positive index:
@@ -70,6 +75,7 @@ if arr.length@Int <= index@Int {
   # IndexOutOfBoundsException(msg@Str : 'arr.length <= index! index is out of bounds!')
 }
 ```
+
 
 #### Default value for arguments
 such as 
@@ -90,6 +96,7 @@ function(
 )
 ```
 
+
 #### Return
 the keyword 'return' is replaced with '^' <br />
 such as
@@ -103,6 +110,8 @@ Any getNotNull(Any arg) {
   ^ arg = null ? {} ; arg  //return arg == null ? new Object() : arg;
 }
 ```
+If you write 'return', the IDE will recommend '^'.
+
 
 #### Lambda
 Lambda is an anonymous callback
@@ -137,6 +146,7 @@ Bool handled = getNotNullAync(in : null)
 
 ```
 
+
 #### Throw
 the keyword 'throw' is replaced with '#' <br />
 such as
@@ -158,6 +168,8 @@ Any get(
   ^ list@Listable.get(position@Int : position@Int)
 }
 ```
+If you write 'throw' or 'throws', the IDE will recommend '#'.
+
 
 #### Break
 the keyword 'break' is replaced with '>>' <br />
@@ -168,6 +180,8 @@ while true {  //replace  while(true) { ... }
   >>  //break;
 }
 ```
+If you write 'break', the IDE will recommend '>>'.
+
 
 #### Continue
 the keyword 'continue' is replaced with '<<' <br />
@@ -179,6 +193,8 @@ until false {  //replace  do {...} while(...);
   <<  //continue;
 }
 ```
+If you write 'continue', the IDE will recommend '<<'.
+
 
 #### Default and anonymous getter and setter functions for fields
 such as
@@ -199,6 +215,7 @@ Str name {
 
 private, protected or public fields have no getter or setter functions.
 
+
 #### Expand fields
 such as
 ```javascript
@@ -208,6 +225,7 @@ LOG(
   msg@Str : 'id = ' + user@User.id@Int + '; isFriend = ' + user@User.'isFriend'
 )
 ```
+
 
 #### Package level funcions
 such as
@@ -225,6 +243,7 @@ LOG(
 ```
 
 only suppor public abstract and public static functions.
+
 
 #### Multiple extends and support Maps and functions
 such as
@@ -254,6 +273,7 @@ user@User = User{ // user.equals(new User().setId(1).setName('tommy'))
   name@Str : 'tommy' // setName('tommy')
 }
 ```
+
 
 ### '+', '-' between Lists
 ```javascript
@@ -310,6 +330,7 @@ PRINT(msg : list@List<Int>.'4'@Int) // 4
 
 PRINT(msg : list@List<Int>) // [3, 4, 6, null, 4]
 ```
+
 
 ### '+', '-' between Maps
 ```javascript
@@ -374,6 +395,7 @@ NAMES.each(
 }
 ```
 
+
 Map
 ```javascript
 Map map<Str, Any> : {
@@ -392,6 +414,7 @@ mapMap<Str, Any>.each(
   )
 }
 ```
+
 
 #### Assign value for final fields on any time
 declare a Type 
@@ -417,6 +440,7 @@ user@User.{
   name@Str : null // user.setName(null);
 }
 ```
+
 
 #### Short and repeatable variable or constant names in the same scope
 ```javascript
@@ -470,6 +494,7 @@ LOG(
   msg@Str : 'is a much better programming language than Java running on JVM.'
 )
 ```
+
   
 #### No 'static'
 replaced with UPPER_CASE names. <br />
@@ -490,11 +515,13 @@ static field
 final Str TAG : 'Axis'
 ```
 
+
 #### No 'new' and no constructor
 replaced with Type{}, such as
 ```javascript
 User user : User{}
 ```
+
 
 #### No 'void' for functions
 ```javascript
@@ -517,6 +544,7 @@ package org.axis.lang;
 
 And if the path of an Axis file changed(Myabe the file was moved to another folder), <br />
 you don't need to edit the code above.
+
 
 #### No varargs
 in Java, sometimes you need to use varargs to reduce codes like: <br />
@@ -552,7 +580,6 @@ invoke(
   ]
 )
 ```
-
 
 
 #### Interface
@@ -688,7 +715,31 @@ if
 ```
 
 
+#### Instanceof
+replaced with 'is'
+```javascript
+if true is Bool  //true
+if 0 is Str  //false
+```
+If you write 'instanceof', the IDE will recommend 'is'.
+
+
+#### Synchonized
+replaced with 'sync'
+```javascript
+sync(this) {
+  //dosomething
+}
+
+sync(Any.class) {
+  //dosomething
+}
+```
+If you write 'synchonized', the IDE will recommend 'sync'.
+
+
 #### Callback
+
 ##### Abstract Method
 1.Define an abstract method:
 ```javascript
