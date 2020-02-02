@@ -66,7 +66,7 @@ arr.-1  // arr[arr.length - 1]
 If the index is out of arr's bounds [0, arr.length - 1]，it will return null instead of throw IndexOutOfBoundsException. <br />
 If you want to stop the process when the case above happen, then you can:
 ```javascript
-if (arr.length <= index) {
+if arr.length <= index {
   # IndexOutOfBoundsException(msg@Str : 'arr.length <= index! index is out of bounds!')
 }
 ```
