@@ -558,7 +558,7 @@ class:
 class Outter {  //public class Outter {
 
 }
-class _Inner {  //private class Outter {
+class _Inner {  //private class Inner {
 }
 ```
 
