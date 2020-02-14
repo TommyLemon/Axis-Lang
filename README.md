@@ -146,26 +146,26 @@ Bool handled : getNotNullAync(in : null)
 
 <T> T[] SORT(T[] list)
   Int ^(T item0, T item1) {
-  if list = null | list.siz() <= 1 {
-    return list.clone()
+  if list@T[] = null | list@T[].size() <= 1 {
+    return list@T[].clone()
   }
   
-  T[] sortedList : T[list.size()][]
+  T[] sortedList : T[list@T[].size()][]
   // ... add items to sortedList by an order  
   ^(
     /*item0@T : */ list.get(/*index@Int : */ index@Int)
     /*item1@T : */ list.get(/*index@Int : */ index@Int + 1)
   )
   
-  ^ sortedList
+  ^ sortedList@T[]
 }
 
 Int[] sortedList : SORT(/*list@Int[] : */ [2, 5, 6, 1, 9, 3])
   /*Int (Int item0, Int item1)*/ {
-  if item0 = item1 {
+  if item0@Int = item1@Int {
     ^ 0
   }
-  ^ item0 < item1 ? -1 ; 1
+  ^ item0@Int < item1@Int ? -1 ; 1
 )
 ```
 
