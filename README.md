@@ -165,6 +165,13 @@ Int[] sortedList : SORT(/*list@Int[] : */ [2, 5, 6, 1, 9, 3])
   if item0@Int = item1@Int {
     ^ 0
   }
+  if item0@Int = null {
+    ^ item1@Int
+  }
+  if item1@Int = null {
+    ^ item0@Int
+  }
+  
   ^ item0@Int < item1@Int ? -1 ; 1
 )
 ```
