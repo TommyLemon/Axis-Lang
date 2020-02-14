@@ -159,7 +159,6 @@ Bool handled : getNotNullAync(in : null)
   
   ^ sortedList@T[]
 }
-
 Int[] sortedList : SORT(/*list@Int[] : */ [2, 5, 6, 1, 9, 3])
   /*Int (Int item0, Int item1)*/ {
   if item0@Int = item1@Int {
