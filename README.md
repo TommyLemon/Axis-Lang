@@ -372,7 +372,9 @@ PRINT(msg : map@Map.'tag') // Java
 ```
 
 
-#### for each
+#### Loop
+
+##### for
 List
 ```javascript
 Str[] NAMES : [
@@ -381,10 +383,24 @@ Str[] NAMES : [
   'name2'
 ]
 
-NAMES.each(
-  Int index
-  Str item
-) {
+//for(int i = 0; i < NAMES.length - 1; i ++)
+for NAMES@Str[] { /*Int index, Str item*/ //automatically generated hint for arguments in the callback function
+  LOG(
+    tag@Str : 'FOR_EACH'
+    msg@Str : item@Str
+  )
+}
+
+//for(int i = NAMES.length - 1; i > 0; i --)
+for NAMES@Str[] - { /*Int index, Str item*/ //automatically generated hint for arguments in the callback function
+  LOG(
+    tag@Str : 'FOR_EACH'
+    msg@Str : item@Str
+  )
+}
+
+//for(int i = 0; i < NAMES.length - 1; i += 2)
+for NAMES@Str[] + 2 { /*Int index, Str item*/ //automatically generated hint for arguments in the callback function
   LOG(
     tag@Str : 'FOR_EACH'
     msg@Str : item@Str
@@ -395,20 +411,33 @@ NAMES.each(
 
 Map
 ```javascript
-Map map<Str, Any> : {
+Map<Str, Any> map : {
   'key0' : value0@Int
   'key1' : value1@Str
   'key2' : value2@List
 }
 
-mapMap<Str, Any>.each(
-  Str key
-  Any value
-) {
+//Set<Entry<Str, Any>> set = map.entrySet();  int index = 0; for(Entry<K, V> e : set) { ... ; ... index ++ }
+for map@Map<Str, Any> { /*Int index, Entry<Str, Any> e*/ //automatically generated hint for arguments in the callback function
   LOG(
     tag@Str : 'FOR_EACH'
     msg@Str : 'key = ' + key@Str + '; value = ' + value
   )
+}
+```
+##### while
+no parentheses
+```javascript
+//while (true) {}
+while true {
+}
+```
+
+##### until
+'do-while' is replaced by 'until'
+```javascript
+//do {} while (true)
+until false {
 }
 ```
 
