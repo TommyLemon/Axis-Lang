@@ -121,7 +121,7 @@ function()
   ^()  //callback.callback();
 }
 function()  //这里比较难判断是声明还是调用，所以回调函数的 括号 () 也不能省
-  () {  //调用 function 时代码提示，一起自动生成
+  /*()*/ {  //调用 function 时代码提示，一起自动生成
   //do something
 }
 
@@ -130,7 +130,7 @@ getNotNullAync(Any in)
   ^(out : in = null ? {} ; in)  //callback.callback(in == null ? new Object() : in);
 }
 getNotNullAync(in : null)
-  (@NotNull Str out) {  //调用 getNotNullAync 时代码提示，一起自动生成
+  /*(@NotNull Str out)*/ {  //调用 getNotNullAync 时代码提示，一起自动生成
   //do something
 }
 
@@ -139,11 +139,34 @@ Bool getNotNullAync(Any in)
   ^(out : in = null ? {} ; in)  //callback.callback(in == null ? new Object() : in);
   ^ in != null  //return in != null;
 }
-Bool handled = getNotNullAync(in : null)
-  (@NotNull Str out) {  //调用 getNotNullAync 时代码提示，一起自动生成
+Bool handled : getNotNullAync(in : null)
+  /*(@NotNull Str out)*/ {  //调用 getNotNullAync 时代码提示，一起自动生成
   //do something
 }
 
+<T> T[] SORT(T[] list)
+  Int ^(T item0, T item1) {
+  if list = null | list.siz() <= 1 {
+    return list.clone()
+  }
+  
+  T[] sortedList : T[list.size()][]
+  // ... add items to sortedList by an order  
+  ^(
+    /*item0@T : */ list.get(/*index@Int : */ index@Int)
+    /*item1@T : */ list.get(/*index@Int : */ index@Int + 1)
+  )
+  
+  ^ sortedList
+}
+
+Int[] sortedList : SORT(/*list@Int[] : */ [2, 5, 6, 1, 9, 3])
+  /*Int (Int item0, Int item1)*/ {
+  if item0 = item1 {
+    ^ 0
+  }
+  ^ item0 < item1 ? -1 ; 1
+)
 ```
 
 
