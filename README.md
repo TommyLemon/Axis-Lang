@@ -823,11 +823,11 @@ If you write 'instanceof', the IDE will recommend 'is'.
 #### Synchonized
 replaced with 'sync'
 ```javascript
-sync(this) {
+sync this {
   //dosomething
 }
 
-sync(Any.class) {
+sync Any.class {
   //dosomething
 }
 ```
