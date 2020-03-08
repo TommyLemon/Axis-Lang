@@ -201,28 +201,28 @@ If you write 'throw' or 'throws', the IDE will recommend '#'.
 
 
 #### Break
-the keyword 'break' is replaced with '>>' <br />
+the keyword 'break' is replaced with '<<' <br />
 such as
 ```javascript
 while true {  //replace  while(true) { ... }
   PRINT(msg : 'while...')
-  >>  //break;
+  <<  //break;
 }
 ```
 If you write 'break', the IDE will recommend '>>'.
 
 
 #### Continue
-the keyword 'continue' is replaced with '<<' <br />
+the keyword 'continue' is replaced with '>>' <br />
 such as
 ```javascript
 until false {  //replace  do {...} while(...);
   PRINT(msg : 'do while...')
   Thread.sleep(time@Int : 1000)
-  <<  //continue;
+  >>  //continue;
 }
 ```
-If you write 'continue', the IDE will recommend '<<'.
+If you write 'continue', the IDE will recommend '>>'.
 
 
 #### Default and anonymous getter and setter functions for fields
@@ -247,10 +247,7 @@ private, protected or public fields have no getter or setter functions.
 such as
 ```javascript
 user@User.'isFriend' : true //isFriend is not a field decleared in User, so it must be covered with ''
-LOG(
-  tag@Str : User.class@Class.getSimpleName()@Str
-  msg@Str : 'id = ' + user@User.id@Int + '; isFriend = ' + user@User.'isFriend'
-)
+log(msg@Str : 'id = ' + user@User.id@Int + '; isFriend = ' + user@User.'isFriend')
 ```
 
 
@@ -261,10 +258,7 @@ package axis.api
 
 abtract Bool isCorrect()
 
-LOG(
-  Str tag
-  Str msg
-) {
+PRINT(Any msg) {
   ...
 }
 ```
